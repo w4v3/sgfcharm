@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SgfView">
+        <attr name="blackColor" format="color" />
+        <attr name="whiteColor" format="color" />
+        <attr name="gridColor" format="color" />
+        <attr name="borderColor" format="color" />
+        <attr name="showText" format="boolean" />
+    </declare-styleable>
+</resources>
