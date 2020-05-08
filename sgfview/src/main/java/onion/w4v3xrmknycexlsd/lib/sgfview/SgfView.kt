@@ -35,6 +35,9 @@ import kotlin.math.round
  * shaped, in the size of half the space between two lines on the grid. Directly underneath, the
  * text is drawn with the `android:text*` attributes.
  *
+ * For best results, you should not set the height of the view to an absolute value, use
+ * `MATCH_PARENT` or `WRAP_CONTENT` instead. Otherwise, the view might be clipped.
+ *
  * XML attributes:
  * @property[blackColor] the color of black's pieces.
  * @property[whiteColor] the color of white's pieces.
@@ -44,21 +47,25 @@ import kotlin.math.round
  */
 class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
     // data properties
-    var pieces = listOf<Piece>(
-    Piece(Player.PLAYER_WHITE, 1, 3),
-    Piece(Player.PLAYER_BLACK, 3, 2),
-    Piece(Player.PLAYER_BLACK, 2, 2)
-    )
-    var text = "hello world gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really gosh this text is really            long    "
-    var gridColumns = 5
-    var gridRows = 5
+    var pieces = listOf<Piece>()
+        set(pieces) {
+            field = pieces
+            invalidate()
+        }
+    var text = ""
+        set(text) {
+            field = text
+            invalidate()
+        }
+    var gridColumns = 19
+    var gridRows = 19
 
     // XML properties
-    var blackColor = DEFAULT_BLACK_COLOR
-    var whiteColor = DEFAULT_WHITE_COLOR
-    var gridColor = DEFAULT_GRID_COLOR
-    var borderColor = DEFAULT_BORDER_COLOR
-    var showText = DEFAULT_SHOW_TEXT
+    private var blackColor = DEFAULT_BLACK_COLOR
+    private var whiteColor = DEFAULT_WHITE_COLOR
+    private var gridColor = DEFAULT_GRID_COLOR
+    private var borderColor = DEFAULT_BORDER_COLOR
+    private var showText = DEFAULT_SHOW_TEXT
 
     // drawing properties
     private val boardPaint = Paint(Paint.ANTI_ALIAS_FLAG) // for pieces and the grid, to keep paint from TextView preserved
@@ -73,7 +80,7 @@ class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(contex
     private lateinit var redoRect: Rect // rectangle representing the redo button
     private lateinit var staticText: StaticLayout // for multiline text
 
-    private var listener: SgfViewTouchListener? = null
+    var listener: OnTouchListener? = null
 
     init {
         setupAttributes(attrs)
@@ -220,6 +227,19 @@ class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(contex
 
     private fun calculateHeight() = paddingTop + boardPadding + boardSize + buttonSep +
                 buttonSize + buttonSep + (if (showText) staticText.height else 0) + paddingBottom
+
+
+    /** Interface for communicating touch events from the view to the controller. */
+    interface OnTouchListener {
+        /** Triggered when user has touched the board at grid coordinates [x] and [y]. */
+        fun onMove(x: Int, y: Int)
+
+        /** Triggered when user has touched the undo button. */
+        fun onUndo()
+
+        /** Triggered when user has touched the redo button. */
+        fun onRedo()
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
