@@ -15,8 +15,8 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.withTranslation
+import onion.w4v3xrmknycexlsd.lib.sgfview.data.ColorValue
 import onion.w4v3xrmknycexlsd.lib.sgfview.data.Piece
-import onion.w4v3xrmknycexlsd.lib.sgfview.data.Player
 import kotlin.math.min
 import kotlin.math.round
 
@@ -124,9 +124,9 @@ class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(contex
     private fun Canvas.drawPieces() = pieces.map { drawPiece(it) }
 
     private fun Canvas.drawPiece(piece: Piece) {
-        boardPaint.color = when (piece.player) {
-            Player.PLAYER_BLACK -> blackColor
-            Player.PLAYER_WHITE -> whiteColor
+        boardPaint.color = when (piece.color.value) {
+            ColorValue.BLACK -> blackColor
+            ColorValue.WHITE -> whiteColor
         }
 
         drawCircle(
