@@ -84,7 +84,9 @@ object SgfParser {
             }
         }
 
-        return currentTree.children.getOrNull(0) // we ignore all other GameTrees in this collection except the first
+        // we ignore all other GameTrees in this collection except the first
+        // and make it root tree
+        return currentTree.children.getOrNull(0)?.apply { parent = null }
     }
 
     // makes a new [SgfProperty] from the [propIdent] identifier and the [propValue] value strings
@@ -103,11 +105,11 @@ object SgfParser {
             "KO" -> SgfProperty.KO
             "MN" -> propValue.parseNumber()?.let { SgfProperty.MN(it) }
             "AB" -> (property as? SgfProperty.AB ?: SgfProperty.AB())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "AW" -> (property as? SgfProperty.AW ?: SgfProperty.AW())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "AE" -> (property as? SgfProperty.AE ?: SgfProperty.AE())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "PL" -> propValue.parseColor()?.let { SgfProperty.PL(it) }
             "C" -> propValue.parseText().let { SgfProperty.C(it) }
             "DM" -> propValue.parseDouble()?.let { SgfProperty.DM(it) }
@@ -123,25 +125,25 @@ object SgfParser {
             "TE" -> propValue.parseDouble()?.let { SgfProperty.TE(it) }
             "AR" -> (property as? SgfProperty.AR ?: SgfProperty.AR())
                 .apply { propValue.parseCompose(String::parsePoint, String::parsePoint)
-                    ?.let {value.value.add(it) } }
+                    ?.let {value.content.add(it) } }
             "CR" -> (property as? SgfProperty.CR ?: SgfProperty.CR())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "DD" -> (property as? SgfProperty.DD ?: SgfProperty.DD())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "LB" -> (property as? SgfProperty.LB ?: SgfProperty.LB())
                 .apply { propValue.parseCompose(String::parsePoint, String::parseSimpleText)
-                    ?.let {value.value.add(it) } }
+                    ?.let {value.content.add(it) } }
             "LN" -> (property as? SgfProperty.LN ?: SgfProperty.LN())
                 .apply { propValue.parseCompose(String::parsePoint, String::parsePoint)
-                    ?.let {value.value.add(it) } }
+                    ?.let {value.content.add(it) } }
             "MA" -> (property as? SgfProperty.MA ?: SgfProperty.MA())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "SL" -> (property as? SgfProperty.SL ?: SgfProperty.SL())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "SQ" -> (property as? SgfProperty.SQ ?: SgfProperty.SQ())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "TR" -> (property as? SgfProperty.TR ?: SgfProperty.TR())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "AP" -> propValue.parseCompose(String::parseSimpleText, String::parseSimpleText)?.let { SgfProperty.AP(it) }
             "CA" -> propValue.parseSimpleText().let { SgfProperty.CA(it) }
             "FF" -> propValue.parseNumber()?.let { SgfProperty.FF(it) }
@@ -176,13 +178,13 @@ object SgfParser {
             "FG" -> propValue.parseCompose(String::parseNumber, String::parseSimpleText)?.let { SgfProperty.FG(it) }
             "PM" -> propValue.parseNumber()?.let { SgfProperty.PM(it) }
             "VW" -> (property as? SgfProperty.VW ?: SgfProperty.VW())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "HA" -> propValue.parseNumber()?.let { SgfProperty.HA(it) }
             "KM" -> propValue.parseReal()?.let { SgfProperty.KM(it) }
             "TB" -> (property as? SgfProperty.TB ?: SgfProperty.TB())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             "TW" -> (property as? SgfProperty.TW ?: SgfProperty.TW())
-                .apply { value.value.addAll(propValue.parseList()) }
+                .apply { value.content.addAll(propValue.parseList()) }
             else -> null
         }
     }

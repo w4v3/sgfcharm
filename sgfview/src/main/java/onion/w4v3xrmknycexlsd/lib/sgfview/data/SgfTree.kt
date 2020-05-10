@@ -15,46 +15,47 @@ typealias SgfNode = MutableList<SgfProperty<SgfType<*>>>
 enum class DoubleValue { GOOD, VERY_GOOD }
 /** Possible values for the SGF `Color` data type. */
 enum class ColorValue { BLACK, WHITE }
+operator fun ColorValue.not() = if (this == ColorValue.BLACK) ColorValue.WHITE else ColorValue.BLACK
 
 /** For strong typing, this class is the base class for all SGF data types.
  * Unfortunately, neither `inline sealed class` nor union data types are supported by Kotlin, yet.
  * This is a performance bottleneck ... */
-sealed class SgfType<out T>(open val value: T) {
+sealed class SgfType<out T>(open val content: T) {
     /** Base class for [Move], [Point] and [Stone], including explicit downcasting. */
-    open class Coordinate(override val value: Pair<Int, Int>) : SgfType<Pair<Int, Int>>(value) {
+    open class Coordinate(override val content: Pair<Int, Int>) : SgfType<Pair<Int, Int>>(content) {
         inline fun <reified T : Coordinate> get() : T =
             when (T::class) {
-                Move::class -> Move(value) as T
-                Point::class -> Point(value) as T
-                Stone::class -> Stone(value) as T
-                else -> Coordinate(value) as T // should never happen
+                Move::class -> Move(content) as T
+                Point::class -> Point(content) as T
+                Stone::class -> Stone(content) as T
+                else -> Coordinate(content) as T // should never happen
             }
     }
     /** A move to (x,y), where x is the row and y the column, starting at 1.
      * Note that this is the other way around as in the SGF notation. */
-    data class Move(override val value: Pair<Int, Int>) : Coordinate(value)
+    data class Move(override val content: Pair<Int, Int>) : Coordinate(content)
     /** For Go, [Move] and [Point] are the same. */
-    data class Point(override val value: Pair<Int, Int>) : Coordinate(value)
+    data class Point(override val content: Pair<Int, Int>) : Coordinate(content)
     /** For Go, [Move] and [Stone] are the same. */
-    data class Stone(override val value: Pair<Int, Int>) : Coordinate(value)
+    data class Stone(override val content: Pair<Int, Int>) : Coordinate(content)
     /** Emphasis type */
-    data class Double(override val value: DoubleValue) : SgfType<DoubleValue>(value)
+    data class Double(override val content: DoubleValue) : SgfType<DoubleValue>(content)
     /** A color to play. */
-    data class Color(override val value: ColorValue) : SgfType<ColorValue>(value)
+    data class Color(override val content: ColorValue) : SgfType<ColorValue>(content)
     /** SGF `Number` type holding integer override values. */
-    data class Number(override val value: Int) : SgfType<Int>(value)
+    data class Number(override val content: Int) : SgfType<Int>(content)
     /** SGF `Real` type holding floating point override values. */
-    data class Real(override val value: Float) : SgfType<Float>(value)
+    data class Real(override val content: Float) : SgfType<Float>(content)
     /** SGF `Text` type holding arbitrary text. */
-    data class Text(override val value: String) : SgfType<String>(value)
+    data class Text(override val content: String) : SgfType<String>(content)
     /** SGF `SimpleText` type holding text without newlines. */
-    data class SimpleText(override val value: String) : SgfType<String>(value)
+    data class SimpleText(override val content: String) : SgfType<String>(content)
     /** SGF `None` data type (Singleton). */
     object None : SgfType<Unit>(Unit)
     /** SGF `List` and `Elist` data types, lists of [SgfType]. */
-    data class List<T : SgfType<*>>(override val value: MutableList<T>) : SgfType<MutableList<T>>(value)
+    data class List<T : SgfType<*>>(override val content: MutableList<T>) : SgfType<MutableList<T>>(content)
     /** SGF `Compose` data type, a pair of [SgfType]. */
-    data class Compose<S : SgfType<*>, T : SgfType<*>>(override val value: Pair<S, T>) : SgfType<Pair<S, T>>(value)
+    data class Compose<S : SgfType<*>, T : SgfType<*>>(override val content: Pair<S, T>) : SgfType<Pair<S, T>>(content)
 }
 
 /** Base class for all properties, typed. */
@@ -204,4 +205,4 @@ operator fun Pair<Int, Int>.rangeTo(other: Pair<Int, Int>): List<Pair<Int, Int>>
 
 /** A [rangeTo] extension for [SgfType.Coordinate], for SGF `Compose` types. */
 inline operator fun <reified T : SgfType.Coordinate> T.rangeTo(snd: T): List<T> =
-    (this.value..snd.value).map { SgfType.Coordinate(it).get() as T }
+    (this.content..snd.content).map { SgfType.Coordinate(it).get() as T }

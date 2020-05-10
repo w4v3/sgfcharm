@@ -45,9 +45,9 @@ import kotlin.math.round
  * @property[borderColor] the color of the border of the pieces.
  * @property[showText] whether or not to display information text.
  */
-class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
+open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
     // data properties
-    var pieces = listOf<Piece>()
+    var pieces = mutableListOf<Piece>()
         set(pieces) {
             field = pieces
             invalidate()
@@ -124,7 +124,7 @@ class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(contex
     private fun Canvas.drawPieces() = pieces.map { drawPiece(it) }
 
     private fun Canvas.drawPiece(piece: Piece) {
-        boardPaint.color = when (piece.color.value) {
+        boardPaint.color = when (piece.color) {
             ColorValue.BLACK -> blackColor
             ColorValue.WHITE -> whiteColor
         }
