@@ -30,7 +30,7 @@ object SgfParser {
         var propValueString = ""
         var currentProp: SgfProperty<SgfType<*>>? = null
 
-        for (c in sgfString) {
+        for (c in sgfString.replace(Regex("\r\n?|\n?\r"),"\n")) { // all newlines are treated the same
             when (state) {
                 // whenever we are neither reading a property identifier or value, anything could come:
                 // * a new `GameTree`, beginning with '('
@@ -149,7 +149,7 @@ object SgfParser {
             "FF" -> propValue.parseNumber()?.let { SgfProperty.FF(it) }
             "GM" -> propValue.parseNumber()?.let { SgfProperty.GM(it) }
             "ST" -> propValue.parseNumber()?.let { SgfProperty.ST(it) }
-            "SZ" -> propValue.parseCompose(String::parseNumber, String::parseNumber)?.let { SgfProperty.SZ(it) }
+            "SZ" -> propValue.parseNumberOrComposeNumber()?.let { SgfProperty.SZ(it) }
             "AN" -> propValue.parseSimpleText().let { SgfProperty.AN(it) }
             "BR" -> propValue.parseSimpleText().let { SgfProperty.BR(it) }
             "BT" -> propValue.parseSimpleText().let { SgfProperty.BT(it) }
@@ -192,8 +192,8 @@ object SgfParser {
 
 // a Coordinate consists of two characters, denoting column and row
 private inline fun <reified T : SgfType.Coordinate> String.parseCoordinate(): T? =
-    getOrNull(0)?.getInt()?.let { y -> // we reverse the order
-        getOrNull(1)?.getInt()?.let { x ->
+    getOrNull(0)?.getInt()?.let { x ->
+        getOrNull(1)?.getInt()?.let { y ->
             SgfType.Coordinate(x to y).get()
         }
     }
@@ -209,8 +209,8 @@ private fun Char.getInt(): Int? = when (this) {
 
 private fun String.parseDouble(): SgfType.Double? =
     when (this) {
-        "1" -> SgfType.Double(DoubleValue.GOOD)
-        "2" -> SgfType.Double(DoubleValue.VERY_GOOD)
+        "1" -> SgfType.Double(DoubleValue.MUCH)
+        "2" -> SgfType.Double(DoubleValue.VERY_MUCH)
         else -> null
     }
 
@@ -247,3 +247,11 @@ private fun <S : SgfType<*>, T : SgfType<*>> String.parseCompose(
     } else {
         null
     }
+
+// for SZ (board size), which may be either a number or a composed number, where in the former case
+// a compose of the same number with itself will be given back
+private fun String.parseNumberOrComposeNumber(): SgfType.Compose<SgfType.Number, SgfType.Number>? =
+    if (contains(':'))
+        parseCompose(String::parseNumber, String::parseNumber)
+    else
+        parseNumber()?.let { SgfType.Compose(it to it) }

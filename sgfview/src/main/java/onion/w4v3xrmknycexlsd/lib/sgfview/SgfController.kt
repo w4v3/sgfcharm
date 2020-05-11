@@ -1,7 +1,6 @@
 package onion.w4v3xrmknycexlsd.lib.sgfview
 
-import onion.w4v3xrmknycexlsd.lib.sgfview.data.Piece
-import onion.w4v3xrmknycexlsd.lib.sgfview.data.SgfData
+import onion.w4v3xrmknycexlsd.lib.sgfview.data.*
 
 /**
  * Controls interaction between the [SgfView] and the [SgfHandler].
@@ -38,13 +37,23 @@ class SgfController(var showVariations: Boolean = true) : SgfView.OnTouchListene
     private fun List<SgfData>.loadInstructions() {
         sgfView?.apply {
             val tmpPieces = mutableListOf<Piece>()
+            val tmpInfos = mutableListOf<NodeInfo>()
+            val tmpMarkups = mutableListOf<Markup>()
+            lastMove = null
             for (data in this@loadInstructions) {
                 when (data) {
                     is Piece -> tmpPieces.add(data)
+                    is NodeInfo -> tmpInfos.add(data)
+                    is Markup -> tmpMarkups.add(data)
+                    is GameInfo -> { gridRows = data.numRows; gridColumns = data.numCols }
+                    is MoveInfo -> lastMove = data
                 }
             }
 
             pieces = tmpPieces
+            infos = tmpInfos
+            markups = tmpMarkups
+            invalidate()
         }
     }
 

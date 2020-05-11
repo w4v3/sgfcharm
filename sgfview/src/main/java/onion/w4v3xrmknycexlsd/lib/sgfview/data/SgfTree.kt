@@ -12,7 +12,7 @@ typealias SgfSequence = MutableList<SgfNode>
 typealias SgfNode = MutableList<SgfProperty<SgfType<*>>>
 
 /** Possible values for the SGF `Double` data type. */
-enum class DoubleValue { GOOD, VERY_GOOD }
+enum class DoubleValue { MUCH, VERY_MUCH }
 /** Possible values for the SGF `Color` data type. */
 enum class ColorValue { BLACK, WHITE }
 operator fun ColorValue.not() = if (this == ColorValue.BLACK) ColorValue.WHITE else ColorValue.BLACK

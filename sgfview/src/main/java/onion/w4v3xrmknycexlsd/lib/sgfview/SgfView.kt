@@ -2,12 +2,11 @@ package onion.w4v3xrmknycexlsd.lib.sgfview
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.text.Layout
+import android.text.SpannableStringBuilder
 import android.text.StaticLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -15,10 +14,9 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.withTranslation
-import onion.w4v3xrmknycexlsd.lib.sgfview.data.ColorValue
-import onion.w4v3xrmknycexlsd.lib.sgfview.data.Piece
-import kotlin.math.min
-import kotlin.math.round
+import androidx.core.text.bold
+import onion.w4v3xrmknycexlsd.lib.sgfview.data.*
+import kotlin.math.*
 
 
 /**
@@ -26,7 +24,7 @@ import kotlin.math.round
  * `TextView`, so the text it displays is styled according to the `TextView` attributes.
  *
  * @property[pieces] a list of [Piece]s currently displayed.
- * @property[text] the additional text to be shown.
+ * @property[infos] a list of additional [NodeInfo]s to be shown.
  * @property[gridColumns] number of columns on the board.
  * @property[gridRows] number of rows on the board.
  *
@@ -48,15 +46,10 @@ import kotlin.math.round
 open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
     // data properties
     var pieces = mutableListOf<Piece>()
-        set(pieces) {
-            field = pieces
-            invalidate()
-        }
-    var text = ""
-        set(text) {
-            field = text
-            invalidate()
-        }
+    var infos = mutableListOf<NodeInfo>()
+    var markups = mutableListOf<Markup>()
+    var lastMove: MoveInfo? = null
+
     var gridColumns = 19
     var gridRows = 19
 
@@ -78,7 +71,7 @@ open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(c
     private var buttonSep = 0 // space between the buttons as well as above and below them
     private lateinit var undoRect: Rect // rectangle representing the undo button
     private lateinit var redoRect: Rect // rectangle representing the redo button
-    private lateinit var staticText: StaticLayout // for multiline text
+    private var staticText: StaticLayout? = null // for multiline text
 
     var listener: OnTouchListener? = null
 
@@ -92,6 +85,7 @@ open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(c
         canvas?.apply {
             drawGrid()
             drawPieces()
+            drawMarkup()
             drawButtons()
             if (showText) drawText()
         }
@@ -150,6 +144,101 @@ open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(c
         )
     }
 
+    private fun Canvas.drawMarkup() {
+        for (markup in markups) {
+            val x = getXCoordinateFromBoard(markup.x)
+            val y = getYCoordinateFromBoard(markup.y)
+            val x2 = getXCoordinateFromBoard(markup.x2 ?: 0)
+            val y2 = getYCoordinateFromBoard(markup.y2 ?: 0)
+            when (markup.type) {
+                MarkupType.VARIATION -> drawText(markup.label ?: "", x - markup.label.width() / 2, y + markup.label.height() / 2, paint)
+                MarkupType.ARROW -> drawArrow(x, y, x2, y2)
+                MarkupType.CIRCLE -> drawCircle(x, y, pieceSize * 7 / 10, paint)
+                MarkupType.DIM -> drawRect(x - gridSep / 2, y - gridSep / 2, x + gridSep / 2, y + gridSep / 2, boardPaint.apply { color = Color.argb(100,255,255,255) })
+                MarkupType.LABEL -> drawText(markup.label ?: "", x - markup.label.width() / 2, y + markup.label.height() / 2, paint)
+                MarkupType.LINE -> drawLine(x, y, x2, y2, paint)
+                MarkupType.X -> drawText("X", x - "X".width() / 2, y + "X".height() / 2, paint)
+                MarkupType.SELECT -> drawCircle(x, y, pieceSize, paint)
+                MarkupType.SQUARE -> drawRect(x - gridSep * 0.3f, y - gridSep * 0.3f, x + gridSep * 0.3f, y + gridSep * 0.3f, paint)
+                MarkupType.TRIANGLE -> drawTriangle(x.toInt(), y.toInt() - gridSep / 3, gridSep * 6 / 10)
+                MarkupType.VISIBLE -> {}
+                MarkupType.BLACK_TERRITORY -> drawRect(x - gridSep * 0.3f, y - gridSep * 0.3f, x + gridSep * 0.3f, y + gridSep * 0.3f, boardPaint.apply { color = blackColor })
+                MarkupType.WHITE_TERRITORY -> drawRect(x - gridSep * 0.3f, y - gridSep * 0.3f, x + gridSep * 0.3f, y + gridSep * 0.3f, boardPaint.apply { color = whiteColor })
+            }
+        }
+
+        val visibles = markups.filter { it.type == MarkupType.VISIBLE }.map { it.x to it.y }
+        if (visibles.isNotEmpty()) {
+            (((1 to 1)..(gridColumns to gridRows)).toSet().minus(visibles)).map { (xb, yb) ->
+                getXCoordinateFromBoard(xb).let { x ->
+                    getYCoordinateFromBoard(yb).let { y ->
+                        drawRect(x - gridSep / 2, y - gridSep / 2, x + gridSep / 2, y + gridSep / 2, boardPaint.apply { color = (background as? ColorDrawable)?.color ?: Color.WHITE })
+                    }
+                }
+            }
+        }
+    }
+
+    // getting dimensions of text when printed
+    private var txtBounds = Rect()
+    private fun String?.width(): Int {
+        paint.getTextBounds(this, 0, (this ?: "").length, txtBounds)
+        return txtBounds.width()
+    }
+
+    private fun String?.height(): Int {
+        paint.getTextBounds(this, 0, (this ?: "").length, txtBounds)
+        return txtBounds.height()
+    }
+
+    private fun Canvas.drawArrow(
+        from_x: Float,
+        from_y: Float,
+        to_x: Float,
+        to_y: Float
+    ) {
+        val anglerad: Float
+
+        //values to change for other appearance *CHANGE THESE FOR OTHER SIZE ARROWHEADS*
+        val radius = 10f
+        val angle = 15f
+
+        //some angle calculations
+        anglerad = (PI.toFloat() * angle / 180.0f)
+        val lineangle: Float = atan2(to_y - from_y, to_x - from_x)
+
+        //tha line
+        drawLine(from_x, from_y, to_x, to_y, paint)
+
+        //tha triangle
+        val path = Path()
+        path.fillType = Path.FillType.EVEN_ODD
+        path.moveTo(to_x, to_y)
+        path.lineTo(
+            (to_x - radius * cos(lineangle - anglerad / 2.0)).toFloat(),
+            (to_y - radius * sin(lineangle - anglerad / 2.0)).toFloat()
+        )
+        path.lineTo(
+            (to_x - radius * cos(lineangle + anglerad / 2.0)).toFloat(),
+            (to_y - radius * sin(lineangle + anglerad / 2.0)).toFloat()
+        )
+        path.close()
+        drawPath(path, paint)
+    }
+
+    private fun Canvas.drawTriangle(topx: Int, topy: Int, sidelength: Int) {
+        val a = Point(topx, topy)
+        // y middle point of base: dy = sl sqrt(3)/2
+        val b = Point(topx - sidelength / 2, topy + (sidelength * sqrt(3f) / 2).toInt())
+        val c = Point(topx + sidelength / 2, topy + (sidelength * sqrt(3f) / 2).toInt())
+        val path = Path()
+        path.moveTo(a.x.toFloat(), a.y.toFloat())
+        path.lineTo(b.x.toFloat(), b.y.toFloat())
+        path.lineTo(c.x.toFloat(), c.y.toFloat())
+        path.lineTo(a.x.toFloat(), a.y.toFloat())
+        drawPath(path, paint)
+    }
+
     private fun Canvas.drawButtons() {
         val undo = ContextCompat.getDrawable(context, R.drawable.ic_undo_white_24dp)
         val redo = ContextCompat.getDrawable(context, R.drawable.ic_redo_black_24dp)
@@ -165,14 +254,42 @@ open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(c
     }
 
     private fun Canvas.drawText() {
+        staticText = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            StaticLayout.Builder.obtain(makeText(), 0, makeText().length, paint, boardSize)
+                .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                .setLineSpacing(0f, 1.1f)
+                .setIncludePad(false)
+                .build()
+        } else {
+            @Suppress("DEPRECATION")
+            StaticLayout(makeText(), paint, boardSize, Layout.Alignment.ALIGN_NORMAL, 1.1f, 0f, false)
+        }
+
         withTranslation (
             paddingLeft + boardPadding.toFloat(),
             paddingTop + boardPadding.toFloat() + boardSize + buttonSep + buttonSize + buttonSep
         ) {
-            staticText.draw(this)
+            staticText?.draw(this)
         }
+
+        requestLayout() // dimensions might have changed
     }
 
+    /** Returns the transformed [infos] list into text with Spannables */
+    private fun makeText(): CharSequence {
+        return SpannableStringBuilder().apply {
+            lastMove?.let {
+                bold { append("${it.lastPlaced.color} #${it.moveNumber} @ ${it.lastPlaced.x}-${it.lastPlaced.y}\n") }
+                append("# prisoners black ${it.prisoners.first} white ${it.prisoners.second}\n")
+            }
+            infos.map {
+                when (it.propKey) {
+                    null -> append(it.message + "\n")
+                    else -> bold { append(it.propKey + " ") }.append(it.message + "\n")
+                }
+            }
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -210,23 +327,10 @@ open class SgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(c
             right = left + buttonSize
             bottom = top + buttonSize
         }
-
-        if (showText) {
-            staticText = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                StaticLayout.Builder.obtain(text, 0, text.length, paint, boardSize)
-                    .setAlignment(Layout.Alignment.ALIGN_NORMAL)
-                    .setLineSpacing(0f, 1.1f)
-                    .setIncludePad(false)
-                    .build()
-            } else {
-                @Suppress("DEPRECATION")
-                StaticLayout(text, paint, boardSize, Layout.Alignment.ALIGN_NORMAL, 1.1f, 0f, false)
-            }
-        }
     }
 
     private fun calculateHeight() = paddingTop + boardPadding + boardSize + buttonSep +
-                buttonSize + buttonSep + (if (showText) staticText.height else 0) + paddingBottom
+                buttonSize + buttonSep + (if (showText) staticText?.height ?: 0 else 0) + paddingBottom
 
 
     /** Interface for communicating touch events from the view to the controller. */
