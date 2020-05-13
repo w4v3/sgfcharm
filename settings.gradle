@@ -1,3 +1,3 @@
 rootProject.name='SgfView'
 include ':app'
-include ':sgfview'
+include ':sgfcharmer'
