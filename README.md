@@ -23,10 +23,10 @@ to use it to define views for other games, as well. See [Customization](#customi
 **project `build.gradle`**
 
 	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	    repositories {
+	        ...
+	        maven { url 'https://jitpack.io' }
+	    }
 	}
 	
 **module `build.gradle`**
