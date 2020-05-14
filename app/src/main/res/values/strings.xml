@@ -1,3 +1,563 @@
+<!--
+  ~    Copyright [2020] [w4v3]
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  ~
+  -->
+
 <resources>
     <string name="app_name">SgfView</string>
+
+    <string name="ear_reddening_game">
+        (;CA[UTF-8]SZ[19]C[Copyright by gogameworld.com and weiqi.tom.com.When it was still in the middle game, everybody thought Shusaku, who took Black, would lose the game, but one doctor said: \"Although I don\'t know how to play Go, but my medical knowledge is just fine. Soon after Shusaku released his last move (Black 127), although Gennan seems calm, however his ears suddenly got red. This is a natural response from human body when one is panic, Black must have played an outstanding move, and White feels very hard to deal with it, so I conclude Black will win the game.\"]PW[Gennan Inseki]RE[B+3]PB[Honinbo Shusaku]PC[Japan]WR[8p]BR[4p]DT[1846-7-25]EV[Japan Famous Ear-reddening Game];B[qd]C[Shusaku (1829-1862) is the 14th Honinbo, he together with Honinbo Dosaku is acknowledged as \"Kisei\", his play is clever, temperate and refined, and he was also the originator the \"Shusaku Opening\" which had a big impact on Go\'s revolution.];W[dc]C[Gennan Inseki is the 11th head of Inoue.];B[pq]C[At the game time, Shusaku was only 17 years\' old, his strength was 4p.];W[oc]C[This was the second game between them, Shusaku was allowed to take Black without giving any komi. The first game was Shusaku\'s two stone handicap, but that game had never been finished (suspended forever).];B[cp]C[Black takes three small-points in a row, this is \"Shusaku\'s Opening\" .];W[cf];B[ep];W[qo];B[pe]C[The diagonal is Shusaku\'s proud move, and it is also the pivotal move in the \"Shusaku\'s opening\".];W[np]LB[qj:a][qi:b]C[The \"great slant\" of W10 is a positive move, seeking variations, normally White would make an extension at \'a\' or \'b\'.];B[po];W[pp];B[op];W[qp];B[oq];W[oo];B[pn];W[qq];B[nq];W[on];B[pm];W[om]C[W20 and W22 were novel plays at that time.];B[pl];W[mp];B[mq]LB[lr:a]C[B25 is not good, Black should make the knight\'s move at \'a\', this is the direct reason why Black is at a disadvantage in the opening.];W[ol]C[White elects to first press with W26.];B[pk];W[lq];B[lr];W[kr]C[Next the double hane of W28 and W30 is severe. Black\'s mistake is: If the original B25 was played at 29, then when White makes the diagonal extension at 28, Black certainly would extend at 30 instead of playing at 25.];B[lp];W[kq];B[qr];W[rr];B[rs]C[Black first plays the atari at 31 and then makes a ko with B33 and B35, it is a good sequence play.];W[mr];B[nr]C[White first plays atari to exchange W36 for B37.];W[pr]C[Then starts the ko with W38, the order is correct.];B[ps];W[qs];B[no]C[B41 is the only ko threat.];W[mo];B[qr];W[rm];B[rl];W[qs];B[lo];W[mn];B[qr];W[qm];B[or];W[ql];B[qj]C[B53 is the right move.];W[rj];B[ri];W[rk];B[ln];W[mm];B[qi];W[rq]C[After this move, the local exchange comes to an end, locally White has taken a little advantage, Black\'s effect of playing first is already not obvious.];B[jn];W[ls];B[ns];W[gq];B[go]C[The sequence from B61 to B65 is inevitable.];W[ck];B[kc]C[W66 and B67 are all big miai points.];W[ic];B[pc];W[nj]C[Strengthening the center is the key in this situation.];B[ke];W[og]LB[oe:a][qg:b]C[W72 is Gennan\'s top-rated conception, next White would be left with the attachment at \'a\' and the jump at \'b\'.];B[oh];W[pb];B[qb];W[ng];B[mi]C[B77 is a play to attack in order to defend.];W[mj];B[nd]LB[qg:a][ph:b]C[After White blocks with W78, Black gets to strengthen first at 79, now White already can\'t directly jump to \'a\', otherwise B \'b\' is sente, White would be unreasonable to initiate a fight.];W[ph];B[qg];W[pg]C[W80 and W82 are very thick moves, White\'s center potential is huge.];B[hq];W[hr];B[ir];W[iq];B[hp];W[jr];B[fc];W[lc]C[As to the invasion of B89, the play of W90 is clever.];B[ld];W[mc];B[lb];W[mb];B[md];W[qf]C[With the sequence after W96, White first reduces liberties on the right, its timing is perfect.];B[pf];W[qh];B[rg];W[rh];B[sh];W[rf];B[sg];W[pj]C[W104 is an excellent move to reduce liberties.];B[pi];W[oi];B[oj];W[ni];B[qk];W[ok];B[qe];W[kb];B[jb];W[ka];B[jc];W[ob];B[ja];W[la]C[After this move, the fight at the top comes to an end, White\'s reduction is very brilliant, the outcome of the game is still unclear.];B[db];W[cc];B[fe]C[B121 is the vital point for both sides.];W[cn];B[gr]C[W122 and B123 are all big points, each side gets to play one.];W[is];B[fq];W[io]C[W126 is a mistake. The purpose of this move is to pound at Black\'s weakness, but Black released ......];B[ji]C[...... B127, an excellent move. It was said that at the game time most people thought the game was already in the bag for White, but one doctor said Black would win, the reason was that when Black played B127, Gennan\'s ears suddenly got red, so B127 is praised as \"Ear-reddening move\". Notes from American Go Journal: It (B127) kills four birds with one stone by 1: reducing the influence of White\'s thickness on the right; 2: increasing the potential of Black\'s position at the top; 3: helping Black\'s four stones below; 4: aiming at a reduction of White\'s position on the left.];W[eb];B[fb];W[eg];B[dj]C[The shoulder-hit of B131 is a superb point.];W[dk];B[ej];W[cj];B[dh];W[ij]C[W136: White aims to create complications, the following variation is complicated.];B[hm];W[gj];B[eh];W[fl];B[fg];W[er]C[W142 is an asking move.];B[dm]LB[gs:a][bp:b][do:c]C[Black counterattacks fiercely with B143, if Black descends at \'a\', then White can take advantage by the attachment at \'b\' and the diagonal at \'c\'.];W[fn];B[dn];W[gn];B[jj]C[Black already has assurance of success with B147.];W[jk];B[kk];W[ii];B[ik];W[jl];B[kl];W[il];B[jh];W[co];B[do];W[ih];B[hn];W[hl];B[bl]C[B161 is a big move.];W[dg];B[gh];W[ch]C[W162 and W164: White can only settle the shape this way.];B[ig]C[After the middle game fight comes to an end, the situation is clear, Black is a little favorable.];W[ec]C[W166 is a big endgame worth about 20 points.];B[cr]C[After Black strengthens with B167, Black wins the game for sure.];W[fd];B[gd];W[ed];B[gc];W[bk];B[cm];W[gs];B[gp];W[li];B[kg];W[in];B[lj];W[lg];B[gm];W[jf];B[jg];W[im];B[fm];W[kf];B[lf];W[mf];B[le];W[gf]C[W190 a tesuji for reduction.];B[hf]LB[ff:a][hg:b]C[Black can only answer with the diagonal of B191, if Black connects at \'a\', then White will play the hane at \'b\', White would break through Black\'s territory.];W[ff];B[gg];W[lk];B[kj];W[km];B[lm];W[ll];B[jm];W[ge];B[he];W[ee];B[ea];W[cb];B[fr];W[fs];B[dr]C[B205 and B207: The outcome of the game has been already decided.];W[qa];B[ra];W[pa];B[rb];W[da];B[gi];W[fj];B[fi];W[fa];B[ga];W[gl];B[ek];W[em];B[ho];W[el];B[en];W[jo];B[kn];W[ci];B[lh];W[mh];B[mg];W[di];B[ei];W[lg];B[qn];W[rn];B[re];W[sl];B[mg];W[bm];B[am];W[lg];B[eq];W[es];B[mg];W[ha];B[gb];W[lg];B[ds];W[hs];B[mg];W[sj];B[si];W[lg];B[sr];W[sq];B[mg];W[hd];B[hb];W[lg];B[ro];W[so];B[mg];W[ss];B[qs];W[lg];B[sn];W[rp];B[mg];W[cl];B[bn];W[lg];B[ml];W[mk];B[mg];W[pj];B[sf];W[lg];B[nn];W[nl];B[mg];W[ib];B[ia];W[lg];B[nc];W[nb];B[mg];W[jd];B[kd];W[lg];B[ma];W[na];B[mg];W[qc];B[rc];W[lg];B[js];W[ks];B[mg];W[hc];B[id];W[lg];B[fk];W[hj];B[mg];W[hh];B[hg];W[lg];B[gk];W[hk];B[mg];W[ak];B[lg];W[al];B[bm];W[nf];B[od];W[ki];B[ms];W[kp];B[ip];W[jp];B[lr];W[oj];B[mr];W[ea];B[sr]C[Black wins by 3 points in the end. ])"
+    </string>
+
+    <string name="lee_sedol_vs_alpha_go">
+        (;GM[1]FF[4]CA[UTF-8]AP[CGoban:3]ST[2]
+        RU[Chinese]SZ[19]KM[7.50]TM[7200]OT[3x60 byo-yomi]
+        PW[Lee Sedol]PB[AlphaGo]WR[9p]DT[2016-03-13]C[Game 4 - Endurance
+
+        Commentary by Fan Hui 2p
+        Expert Go analysis by Gu Li 9p and Zhou Ruiyang 9p
+        Translated by Lucas Baker, Thomas Hubert, and Thore Graepel
+
+        When I arrived in the playing room on the morning of the fourth game, everyone appeared more relaxed than before. Whatever happened today, the match had already been decided. Nonetheless, there were still two games to play, and a true professional like Lee must give his all each time he sits down at the board.
+
+        When Lee arrived in the playing room, he looked serene, the burden of expectation lifted. Perhaps he would finally recover his composure, forget his surroundings, and simply play his best Go. One thing was certain: it was not in Lee\'s nature to surrender.
+
+        There were many fewer reporters in the press room this time. It seemed the media thought the interesting part was finished, and the match was headed for a final score of 5-0. But in a game of Go, although the information is open for all to see, often the results defy our expectations. Until the final stone is played, anything is possible.]RE[W+Resign]
+        ;B[pd]
+        ;W[dp]
+        ;B[cd]
+        ;W[qp]
+        ;B[op]
+        ;W[oq]
+        ;B[nq]
+        ;W[pq]
+        ;B[cn]
+        ;W[fq]
+        ;B[mp]C[For the fourth game, Lee took White. Up to move 11, the opening was the same as the second game. AlphaGo is an extremely consistent player, and once it thinks a move is good, its opinion will not change.
+        ]
+        ;W[po]LB[ed:B][qn:A]C[During the commentary for game 2, I mentioned that AlphaGo prefers to tenuki with 12 and approach at B. Previously, Lee chose to finish the joseki normally at A. White 12, however, is an interesting alternative! Perhaps it was a test: would AlphaGo still tenuki as in game 2?]
+        ;B[iq]C[This time, AlphaGo chose the ordinary extension. After this move, AlphaGo\'s win rate was 50.5%. Both players had 1 hour and 52 minutes apiece.]
+        ;W[ec]C[White played the usual corner approach.]
+        ;B[hd]
+        (;W[cg]C[Against Black\'s pincer, Lee counter-pincered to emphasize the left side. However, AlphaGo preferred the press as shown in the variation.]
+        ;B[ed]
+        ;W[cj]
+        ;B[dc]
+        ;W[bp]
+        ;B[nc]C[At this point, Lee had 1 hour and 40 minutes left, AlphaGo 1 hour and 47 minutes.]
+        ;W[qi]C[The opening had been a balanced one, and AlphaGo\'s win rate stood at 53%.]
+        ;B[ep]C[The better people got to know AlphaGo, the more started calling it by friendly nicknames, such as "Master A" in China and "Master Al" in Korea. Although such names mean little on their own, they represented a growing acceptance of AlphaGo as a partner and teacher, together with whom we could advance our understanding.
+
+        During this competition, "Master A" never ceased to surprise, playing at least one extraordinary new move in every game. This move was the first such display in game 4.
+
+        Theoretically, Black 23 is quite vulgar, as it induces White to strengthen the corner. However, since White\'s lower side is already solid, if this move helps Black on the outside, is it really as crude as it looks? See the variation.
+
+        One of the major ideas in Chinese philosophy, from kung fu to Taoism, is the notion that "formlessness defeats form." This is not to suggest that one should do nothing, but rather that one should be ready to make use of any resource at any moment. In other words, complete flexibility is the surest path to success. When one is not committed to any style, there are no weak points at which to aim. Naturally, reaching this state demands a strong foundation and a formidable repertoire. AlphaGo seemed to have attained this "formless" style already: simple, easy to understand, and totally unexploitable.]
+        (;W[eo]
+        ;B[dk]C[Lee chose the outside hane, and just as I was reading out the cut, AlphaGo changed course with the shoulder hit at 25. Lee cracked a smile, as if he were looking at a naughty child. AlphaGo was being mischievous indeed!]
+        (;W[fp]C[Coolly, Lee protected the corner with 26. Most players found this move too slow, and even AlphaGo thought White should respond with the crawl as shown in the variation. Nonetheless, I saw this move as a sign that Lee had finally found the confidence to play his own game, regardless of anyone\'s approval. This was the Lee Sedol I knew: the wolf that, starving in the winter winds, still waited for his prey to come closer, biding his time for the moment his intuition knew would come.]
+        ;B[ck]C[When Black blocked here, AlphaGo’s win rate was 55%.]
+        ;W[dj]
+        ;B[ej]
+        ;W[ei]
+        ;B[fi]C[Perhaps because it was playing Black, AlphaGo played very aggressively during this game. With the double hane at 29 and 31, it seemed as if Black was attempting to completely overwhelm White.]
+        ;W[eh]
+        ;B[fh]
+        (;W[bj]C[Even more shocking is that Lee submitted to it! Meek as a lamb, he let AlphaGo blockade the center and seal in White\'s group on the left side.
+
+        Sometimes to endure is difficult, sometimes it is irrational, and sometimes it is futile. Whatever it meant, Lee endured, and perhaps this was way of showing us his unwavering faith and unwillingness to surrender.
+
+        However, White did not need to suffer quite so badly. See the variation.]
+        ;B[fk]
+        ;W[fg]
+        ;B[gg]
+        ;W[ff]
+        ;B[gf]C[At this point, AlphaGo\'s win rate reached 60%.]
+        ;W[mc]C[After Black had constructed such a thick wall, it became urgent for White to invade the top. The attachment at 40 was a classic technique to do just that.]
+        ;B[md]C[At this point, Lee Sedol had 1 hour and 15 minutes left, AlphaGo 1 hour and 35 minutes.]
+        ;W[lc]
+        ;B[nb]
+        (;W[id]C[AlphaGo thought this move was problematic. In view of Black\'s thickness, White\'s most attractive option would have been to live on the spot, as shown in the variation.]
+        ;B[hc]
+        ;W[jg]
+        ;B[pj]C[Compared to the previous games, Lee appeared much more relaxed and focused. Gone were the sighs, and the shaking of the head. Instead, he wore a look of intense concentration, as if waiting for something to arrive.
+
+        White gracefully leapt out into the center, but Black initiated a magnificent leaning attack!]
+        ;W[pi]
+        ;B[oj]
+        ;W[oi]
+        ;B[ni]C[The greater the pressure became on White\'s top group, the more time Lee took to ponder each move. When Black played 51, Lee hesitated even longer. If Black dared to play so boldly, choosing the hane with only two stones to White\'s three, I could not imagine any move for White except the cut! Even AlphaGo thought cutting was the only move.]
+        (;W[nh]C[But Lee continued to endure! Against Black\'s hane, he haned in return.]
+        ;B[mh]
+        ;W[ng]C[Against the double hane, he extended!
+
+        "I can feel Lee\'s conviction," I wrote in my notebook, "waiting for the critical moment. But will that moment ever come?" As the game progressed, it seemed to everyone that Lee was once again on the verge of defeat.
+
+        At this point, Lee\'s clock had 51 minutes, AlphaGo\'s 1 hour and 28 minutes.]
+        ;B[mg]
+        ;W[mi]
+        ;B[nj]
+        ;W[mf]
+        ;B[li]C[When Black ataried at 59, White had the option of linking up the group on the top. See the variation.]
+        (;W[ne]
+        ;B[nd]
+        ;W[mj]C[Instead, however, Lee chose to pull out his center stone. With White\'s group now isolated and in grave peril, Lee\'s heart must have been overwhelmed with emotions. But perhaps he also sensed the long-awaited moment at hand.]
+        ;B[lf]C[Lee now had 42 minutes, AlphaGo 1 hour and 22 minutes.]
+        ;W[mk]
+        ;B[me]
+        ;W[nf]
+        ;B[lh]
+        ;W[qj]C[At this point, people suddenly began to congregate near the playing room. The rumor was spreading that the game was about to end, with AlphaGo victorious as expected. But Lee looked cool-headed as ever as he played the turn at 68. Was he really not afraid of dying?]
+        ;B[kk]C[AlphaGo continued striding forward with the knight\'s move, aiming to swallow the white group whole. Lee pondered deeply over his next move. If White was to have any chance, he would have to seize it now.
+
+        At this point, Lee had 34 minutes, AlphaGo 1 hour and 19 minutes.]
+        ;W[ik]
+        ;B[ji]C[When Black closed off the center with 71, Lee had 27 minutes, AlphaGo 1 hour and 17 minutes.]
+        ;W[gh]
+        ;B[hj]C[After ten minutes of thought, Lee played the cut. Right on schedule, one minute later, AlphaGo enclosed White\'s cutting stone. Lee sighed, and kept thinking.]
+        ;W[ge]
+        ;B[he]
+        ;W[fd]
+        ;B[fc]C[At move 77, Lee had only 11 minutes left. Moreover, AlphaGo’s win rate had climbed over 70%. It seemed the game was over.
+
+        In fact, Lee had just completed the last of the preparations for his final charge!]
+        ;W[ki]C[At last, Lee Sedol launched his attack. Like an earthquake, the wedge at 78 tore apart the cracks in Black\'s fortress! None of us had anticipated this. When Gu Li saw White 78 from his broadcasting studio in China, he shouted: "The divine move!" All of Lee\'s painstaking preparations were finally about to bear fruit.
+
+        Actually, Lee spent very little time on this move itself. Later, during the press conference, he told the assembled reporters that he had not spent much time calculating. He had simply played what felt right.
+
+        Without a doubt, this move is a spectacular flash of insight - but does it really work? See the variation for an explanation of White\'s plan and Black\'s best response.
+
+        Regardless, this move cast AlphaGo into complete confusion.]
+        (;B[jj]
+        ;W[lj]C[Move 78 might not really work, but AlphaGo was at a complete loss to deal with it. When Black pulled back, White blocked at 80, and Black could no longer kill the white stones unconditionally.]
+        ;B[kh]
+        ;W[jh]C[Everybody still thought AlphaGo was aiming for the ko shown in the variation, but this was not the case.]
+        (;B[ml]
+        ;W[nk]
+        ;B[ol]C[Inexplicably, AlphaGo began trying to extract the dead stones on the right side!]
+        ;W[ok]
+        ;B[pk]
+        ;W[pl]
+        ;B[qk]
+        ;W[nl]
+        ;B[kj]
+        ;W[ii]C[When White haned here, it was already difficult for Black to contain the white stones.
+
+        At this point, AlphaGo’s win rate was in free fall. When White played 92, it dropped all the way to 55%, a full 15 points lower than before! What was going on?!]
+        ;B[rk]
+        ;W[om]LB[rk:A][om:B]C[AlphaGo seemed to have gone crazy, and began thrashing around wildly. The exchange of A for B reinforced White\'s center with no compensation.]
+        ;B[pg]
+        ;W[ql]
+        ;B[cp]LB[ki:A]C[This wedge was completely beyond understanding! Aja Huang, who had been the picture of calmness since the beginning of the match, now looked at me as if to ask, "What\'s happening!?" I answered with a look that said, "I don\'t know."
+
+        Even now, we still do not know why AlphaGo lost its mind, playing senseless blunders one after another. Only one thing is certain: the original cause was the wedge at A, Lee Sedol\'s mystical "divine move." White 78 was incontrovertible proof of his determination to fight on, and his perseverance was rewarded with victory.]
+        ;W[co]
+        ;B[oe]
+        ;W[rl]
+        ;B[sk]
+        ;W[rj]
+        ;B[hg]C[Little by little, AlphaGo recovered its sanity, but too late to save the game. When Black played 103, AlphaGo’s win rate had fallen to 30%, the first time such low numbers had appeared since the match began.
+
+        At this point, Lee entered byo-yomi, but for the first time, he was seeing the light of victory.
+
+        The press room had been half-empty for some time, but now people began to pour in. Many reporters had already left, but when they heard that Lee Sedol might win, they turned around and came rushing back!]
+        ;W[ij]
+        ;B[km]
+        ;W[gi]
+        ;B[fj]
+        ;W[jl]
+        ;B[kl]
+        ;W[gl]
+        ;B[fl]
+        ;W[gm]
+        ;B[ch]
+        ;W[ee]
+        ;B[eb]
+        ;W[bg]
+        ;B[dg]
+        ;W[eg]
+        ;B[en]
+        ;W[fo]
+        ;B[df]
+        ;W[dh]
+        ;B[im]
+        ;W[hk]
+        ;B[bn]
+        ;W[if]
+        ;B[gd]
+        ;W[fe]
+        ;B[hf]
+        ;W[ih]
+        ;B[bh]
+        ;W[ci]
+        ;B[ho]
+        ;W[go]
+        ;B[or]
+        ;W[rg]C[Everyone was anxiously awaiting the news of Lee\'s victory. As the professional commentators grew more and more certain of the conclusion, the game continued to progress onscreen. Playing in byo-yomi, Lee continued to answer AlphaGo\'s every move with utmost caution.]
+        ;B[dn]
+        ;W[cq]
+        ;B[pr]
+        ;W[qr]
+        ;B[rf]
+        ;W[qg]
+        ;B[qf]
+        ;W[jc]
+        ;B[gr]
+        ;W[sf]
+        ;B[se]
+        ;W[sg]
+        ;B[rd]
+        ;W[bl]
+        ;B[bk]
+        ;W[ak]
+        ;B[cl]
+        ;W[hn]
+        ;B[in]
+        ;W[hp]
+        ;B[fr]
+        ;W[er]
+        ;B[es]
+        ;W[ds]
+        ;B[ah]
+        ;W[ai]
+        ;B[kd]
+        ;W[ie]
+        ;B[kc]
+        ;W[kb]
+        ;B[gk]
+        ;W[ib]
+        ;B[qh]
+        ;W[rh]
+        ;B[qs]
+        ;W[rs]
+        ;B[oh]
+        ;W[sl]
+        ;B[of]
+        ;W[sj]
+        ;B[ni]
+        ;W[nj]
+        ;B[oo]
+        ;W[jp]C[At move 180, AlphaGo finally resigned.
+
+        Lee Sedol entered the press room to thunderous applause. At long last, he could smile. It was a simple, modest smile, nothing world-changing - but then, aren\'t little moments like this the real source of joy in life?])
+        (;B[hh]C[Black should simply protect here.]
+        ;W[lg]
+        ;B[kg]
+        ;W[kf]
+        ;B[kj]
+        ;W[le]
+        ;B[ki]
+        ;W[lg]
+        ;B[ol]C[White can use the throw-in to connect in ko, but Black can save the four stones on the right with 12, and the game remains difficult for White.]))
+        (;B[kj]C[White’s plan is simple: If Black answers this way, White will use the aji of the surroundings to kill the three black stones.]
+        ;W[ii]
+        ;B[ij]
+        ;W[gi]
+        ;B[fj]
+        ;W[jh]
+        (;B[kh]C[If Black captures here, White\'s plan works - but what if Black had defended instead?]
+        ;W[hf]
+        ;B[hg]
+        ;W[if]C[Up to here, the three stones are captured, White is connected, and Black is lost.])
+        (;B[gj]LB[gj:A]C[We shortly discovered that move 78 does not actually work! When White ataris, Black need not capture, but can connect instead at A. Due to the shortage of liberties, the sequence in the previous diagram fails.]
+        ;W[jj]
+        ;B[jk]
+        ;W[hf]
+        ;B[hg]
+        ;W[if]
+        ;B[hi]C[White is obliterated.])))
+        (;W[nf]C[AlphaGo thinks White\'s best strategy is to connect up the top side.]
+        ;B[mj]C[Black would take the lone white stone.]
+        ;W[ld]
+        ;B[re]C[White saves everything, but Black retains a clear lead by defending the corner.]))
+        (;W[fd]
+        ;B[fc]
+        ;W[nj]C[AlphaGo thinks White should cut.]
+        ;B[qj]
+        ;W[nk]
+        ;B[ri]
+        ;W[rh]
+        ;B[rj]
+        ;W[nh]
+        ;B[mi]
+        ;W[mh]
+        ;B[li]
+        ;W[lh]
+        ;B[ki]
+        ;W[qg]
+        ;B[pm]C[The result is still a chaotic fight in the center.]))
+        (;W[ld]
+        ;B[me]
+        ;W[ib]C[AlphaGo thinks White should strive to make a base.]
+        ;B[gb]
+        ;W[id]
+        ;B[kf]
+        ;W[hc]
+        ;B[gd]
+        ;W[je]C[Now White is alive.]))
+        (;W[ek]C[AlphaGo thinks White should fight back with the atari and hane.]
+        ;B[fj]
+        ;W[bk]
+        ;B[el]
+        ;W[lq]
+        ;B[lp]
+        ;W[nr]
+        ;B[kq]
+        ;W[mq]
+        ;B[jn]
+        ;W[fd]
+        ;B[ee]
+        ;W[jc]LB[jc:14][fd:12][ee:13][fh:1][fj:3][bk:4][ek:2][el:5][jn:11][lp:7][kq:9][lq:6][mq:10][nr:8]C[Black captures 2 in a ladder, but White can use the ladder breaker at 6 to invade the bottom. After 11, the bottom side is settled, and White can make use of the aji at the top to launch an invasion with 12 and 14. This way leads to a complicated battle.]))
+        (;W[ck]TR[ep]C[AlphaGo thinks White should crawl with 2. Black will now set the marked stone into motion.]
+        ;B[fp]
+        ;W[eq]
+        ;B[do]
+        ;W[co]
+        ;B[dn]
+        ;W[gp]
+        ;B[fo]
+        ;W[hq]
+        ;B[ip]
+        ;W[go]
+        ;B[fn]
+        ;W[gn]
+        ;B[fm]
+        ;W[bn]C[Zhou Ruiyang showed a similar variation in his own livestream.]))
+        (;W[eq]
+        ;B[do]
+        ;W[cp]
+        ;B[dk]LB[do:3][cp:4][ep:1][eq:2]C[It is difficult to judge the pros and cons of exchanging 1 through 4, and professional commentators ventured a wide range of opinions.]
+        ;W[ck]
+        ;B[cl]C[AlphaGo was planning to sacrifice a stone on the left to squeeze White.]
+        ;W[dl]
+        ;B[el]
+        ;W[dm]
+        ;B[em]
+        ;W[cm]
+        ;B[bm]
+        ;W[bl]
+        ;B[dn]
+        ;W[cl]
+        ;B[gp]
+        ;W[fp]
+        ;B[go]C[Finally, Black encloses the corner. This sequence looks interesting for Black.]))
+        (;W[de]C[AlphaGo suggests pressing with the knight\'s move, leading to a fight on the left side.]
+        ;B[ce]
+        ;W[df]
+        ;B[cg]
+        ;W[dg]
+        ;B[ch]
+        ;W[dh]
+        ;B[di]
+        ;W[ei]
+        ;B[ej]
+        ;W[cf]
+        ;B[bf]
+        ;W[be]
+        ;B[bg]
+        ;W[cc]
+        ;B[bd]
+        ;W[dj]
+        ;B[ci]
+        ;W[fi]
+        ;B[fj]
+        ;W[gj]
+        ;B[gi]
+        ;W[fg]
+        ;B[hi]
+        ;W[gk]
+        ;B[fl]
+        ;W[dm]C[This by no means represents the best moves for both sides, but perhaps we can experiment with this strategy in future games.]))
+    </string>
+
+    <string name="sgf_website_example">
+        (;FF[4]SZ[9]C[A properties demonstration\n
+        B game-info demonstration\n
+        C visibility demonstration]\n
+        (;FF[4]AP[Primiview:3.1]GM[1]SZ[19]GN[Gametree 1: properties]US[Arno Hollosi]\n
+\n
+        (;B[pd]N[Moves, comments, annotations]\n
+        C[Nodename set to: \"Moves, comments, annotations\"];W[dp]GW[1]\n
+        C[Marked as \"Good for White\"];B[pp]GB[2]\n
+        C[Marked as \"Very good for Black\"];W[dc]GW[2]\n
+        C[Marked as \"Very good for White\"];B[pj]DM[1]\n
+        C[Marked as \"Even position\"];W[ci]UC[1]\n
+        C[Marked as \"Unclear position\"];B[jd]TE[1]\n
+        C[Marked as \"Tesuji\" or \"Good move\"];W[jp]BM[2]\n
+        C[Marked as \"Very bad move\"];B[gd]DO[]\n
+        C[Marked as \"Doubtful move\"];W[de]IT[]\n
+        C[Marked as \"Interesting move\"];B[jj];\n
+        C[White \"Pass\" move]W[];\n
+        C[Black \"Pass\" move]B[tt])\n
+\n
+        (;AB[dd][de][df][dg][do:gq]\n
+          AW[jd][je][jf][jg][kn:lq][pn:pq]\n
+        N[Setup]C[Black &amp; white stones at the top are added as single stones.\n
+\n
+        Black &amp; white stones at the bottom are added using compressed point lists.]\n
+        ;AE[ep][fp][kn][lo][lq][pn:pq]\n
+        C[AddEmpty\n
+\n
+        Black stones &amp; stones of left white group are erased in FF[3\\] way.\n
+\n
+        White stones at bottom right were erased using compressed point list.]\n
+        ;AB[pd]AW[pp]PL[B]C[Added two stones.\n
+\n
+        Node marked with \"Black to play\".];PL[W]\n
+        C[Node marked with \"White to play\"])\n
+\n
+        (;AB[dd][de][df][dg][dh][di][dj][nj][ni][nh][nf][ne][nd][ij][ii][ih][hq]\n
+        [gq][fq][eq][dr][ds][dq][dp][cp][bp][ap][iq][ir][is][bo][bn][an][ms][mr]\n
+        AW[pd][pe][pf][pg][ph][pi][pj][fd][fe][ff][fh][fi][fj][kh][ki][kj][os][or]\n
+        [oq][op][pp][qp][rp][sp][ro][rn][sn][nq][mq][lq][kq][kr][ks][fs][gs][gr]\n
+        [er]N[Markup]C[Position set up without compressed point lists.]\n
+\n
+        ;TR[dd][de][df][ed][ee][ef][fd:ff]\n
+         MA[dh][di][dj][ej][ei][eh][fh:fj]\n
+         CR[nd][ne][nf][od][oe][of][pd:pf]\n
+         SQ[nh][ni][nj][oh][oi][oj][ph:pj]\n
+         SL[ih][ii][ij][jj][ji][jh][kh:kj]\n
+         TW[pq:ss][so][lr:ns]\n
+         TB[aq:cs][er:hs][ao]\n
+        C[Markup at top partially using compressed point lists (for markup on white stones); listed clockwise, starting at upper left:\n
+        - TR (triangle)\n
+        - CR (circle)\n
+        - SQ (square)\n
+        - SL (selected points)\n
+        - MA (\'X\')\n
+\n
+        Markup at bottom: black &amp; white territory (using compressed point lists)]\n
+        ;LB[dc:1][fc:2][nc:3][pc:4][dj:a][fj:b][nj:c]\n
+        [pj:d][gs:ABCDEFGH][gr:ABCDEFG][gq:ABCDEF][gp:ABCDE][go:ABCD][gn:ABC][gm:AB]\n
+        [mm:12][mn:123][mo:1234][mp:12345][mq:123456][mr:1234567][ms:12345678]\n
+        C[Label (LB property)\n
+\n
+        Top: 8 single char labels (1-4, a-d)\n
+\n
+        Bottom: Labels up to 8 char length.]\n
+\n
+        ;DD[kq:os][dq:hs]\n
+        AR[aa:sc][sa:ac][aa:sa][aa:ac][cd:cj]\n
+          [gd:md][fh:ij][kj:nh]\n
+        LN[pj:pd][nf:ff][ih:fj][kh:nj]\n
+        C[Arrows, lines and dimmed points.])\n
+\n
+        (;B[qd]N[Style &amp; text type]\n
+        C[There are hard linebreaks &amp; soft linebreaks.\n
+        Soft linebreaks are linebreaks preceeded by \'\\\\\' like this one >o\\\n
+        k&lt;. Hard line breaks are all other linebreaks.\n
+        Soft linebreaks are converted to >nothing&lt;, i.e. removed.\n
+\n
+        Note that linebreaks are coded differently on different systems.\n
+\n
+        Examples (>ok\\&lt; shouldn\'t be split):\n
+\n
+        linebreak 1 \"\\\\n\": >o\\\n
+        k&lt;\n
+    linebreak 2 \"\\\\n\\\\r\": >o\\\n
+\n
+        k&lt;\n
+    linebreak 3 \"\\\\r\\\\n\": >o\\\n
+        k&lt;\n
+    linebreak 4 \"\\\\r\": >o\\\n
+        k&lt;]\n
+\n
+        (;W[dd]N[W d16]C[Variation C is better.](;B[pp]N[B q4])\n
+        (;B[dp]N[B d4])\n
+        (;B[pq]N[B q3])\n
+        (;B[oq]N[B p3])\n
+        )\n
+        (;W[dp]N[W d4])\n
+        (;W[pp]N[W q4])\n
+        (;W[cc]N[W c17])\n
+        (;W[cq]N[W c3])\n
+        (;W[qq]N[W r3])\n
+        )\n
+\n
+        (;B[qr]N[Time limits, captures &amp; move numbers]\n
+        BL[120.0]C[Black time left: 120 sec];W[rr]\n
+        WL[300]C[White time left: 300 sec];B[rq]\n
+        BL[105.6]OB[10]C[Black time left: 105.6 sec\n
+        Black stones left (in this byo-yomi period): 10];W[qq]\n
+        WL[200]OW[2]C[White time left: 200 sec\n
+        White stones left: 2];B[sr]\n
+        BL[87.00]OB[9]C[Black time left: 87 sec\n
+        Black stones left: 9];W[qs]\n
+        WL[13.20]OW[1]C[White time left: 13.2 sec\n
+        White stones left: 1];B[rs]\n
+        C[One white stone at s2 captured];W[ps];B[pr];W[or]\n
+        MN[2]C[Set move number to 2];B[os]\n
+        C[Two white stones captured\n
+        (at q1 &amp; r1)]\n
+        ;MN[112]W[pq]C[Set move number to 112];B[sq];W[rp];B[ps]\n
+        ;W[ns];B[ss];W[nr]\n
+        ;B[rr];W[sp];B[qs]C[Suicide move\n
+        (all B stones get captured)])\n
+        )\n
+\n
+        (;FF[4]AP[Primiview:3.1]GM[1]SZ[19]C[Gametree 2: game-info\n
+\n
+        Game-info properties are usually stored in the root node.\n
+        If games are merged into a single game-tree, they are stored in the node\\\n
+         where the game first becomes distinguishable from all other games in\\\n
+         the tree.]\n
+        ;B[pd]\n
+        (;PW[W. Hite]WR[6d]RO[2]RE[W+3.5]\n
+        PB[B. Lack]BR[5d]PC[London]EV[Go Congress]W[dp]\n
+        C[Game-info:\n
+        Black: B. Lack, 5d\n
+        White: W. Hite, 6d\n
+        Place: London\n
+        Event: Go Congress\n
+        Round: 2\n
+        Result: White wins by 3.5])\n
+        (;PW[T. Suji]WR[7d]RO[1]RE[W+Resign]\n
+        PB[B. Lack]BR[5d]PC[London]EV[Go Congress]W[cp]\n
+        C[Game-info:\n
+        Black: B. Lack, 5d\n
+        White: T. Suji, 7d\n
+        Place: London\n
+        Event: Go Congress\n
+        Round: 1\n
+        Result: White wins by resignation])\n
+        (;W[ep];B[pp]\n
+        (;PW[S. Abaki]WR[1d]RO[3]RE[B+63.5]\n
+        PB[B. Lack]BR[5d]PC[London]EV[Go Congress]W[ed]\n
+        C[Game-info:\n
+        Black: B. Lack, 5d\n
+        White: S. Abaki, 1d\n
+        Place: London\n
+        Event: Go Congress\n
+        Round: 3\n
+        Result: Balck wins by 63.5])\n
+        (;PW[A. Tari]WR[12k]KM[-59.5]RO[4]RE[B+R]\n
+        PB[B. Lack]BR[5d]PC[London]EV[Go Congress]W[cd]\n
+        C[Game-info:\n
+        Black: B. Lack, 5d\n
+        White: A. Tari, 12k\n
+        Place: London\n
+        Event: Go Congress\n
+        Round: 4\n
+        Komi: -59.5 points\n
+        Result: Black wins by resignation])\n
+        ))\n
+        (;GM[1]SZ[9]FF[4]\n
+          AB[ac:ic]AW[ae:ie]\n
+         ;DD[aa:bi][ca:ce]\n
+          VW[aa:bi][ca:ee][ge:ie][ga:ia][gc:ic][gb][ib]\n
+        ))\n
+    </string>
 </resources>

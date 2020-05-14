@@ -1,0 +1,551 @@
+/*
+ *    Copyright [2020] [w4v3]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ */
+
+package onion.w4v3xrmknycexlsd.lib.sgfcharm.view
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.*
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
+import android.text.Layout
+import android.text.StaticLayout
+import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.withTranslation
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.R
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.*
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
+import kotlin.math.*
+
+/**
+ * Draws the Board together with undo/redo buttons and additional informational text. It's a
+ * `TextView`, so the text it displays is styled according to the `TextView` attributes.
+ *
+ * The layout will be as follows: The grid is drawn with an additional padding to account for
+ * pieces at the borders of the board. Below the grid, there are undo and redo buttons, square
+ * shaped, in the size of half the space between two lines on the grid. Directly underneath, the
+ * text is drawn using the `android:text*` attributes.
+ *
+ * For best results, you should not set the height of the view to an absolute value, use
+ * `MATCH_PARENT` or `WRAP_CONTENT` instead. Otherwise, the view might be clipped.
+ *
+ * If you need more control, consider setting the [sgfDrawer] property to a custom implementation of
+ * [SgfDrawer], or making a custom view that implements [SgfView].
+ *
+ * @see SgfDrawer
+ *
+ * XML attributes:
+ * @property[blackColor] the color of black's pieces.
+ * @property[whiteColor] the color of white's pieces.
+ * @property[gridColor] the color of the grid.
+ * @property[markupColor] the color of the markup.
+ * @property[showText] whether or not to display information text.
+ */
+class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs),
+    SgfView {
+    // data properties
+    public override var pieces: List<Piece> = listOf()
+    public override var nodeInfos: List<NodeInfo> = listOf()
+    public override var markups: List<Markup> = listOf()
+    public override var lastMoveInfo: MoveInfo? = null
+
+    public override var gridColumns: Int = 19
+    public override var gridRows: Int = 19
+
+    // XML properties
+    @Status.Api
+    public var blackColor: Int =
+        DEFAULT_BLACK_COLOR
+
+    @Status.Api
+    public var whiteColor: Int =
+        DEFAULT_WHITE_COLOR
+
+    @Status.Api
+    public var gridColor: Int =
+        DEFAULT_GRID_COLOR
+
+    @Status.Api
+    public var markupColor: Int =
+        DEFAULT_MARKUP_COLOR
+
+    @Status.Api
+    public var showText: Boolean =
+        DEFAULT_SHOW_TEXT
+
+    // drawing properties
+    /**
+     * The paint used to draw the pieces.
+     *
+     * Note that the color will be set to [blackColor] or [whiteColor] before actually drawing a piece.
+     * */
+    @Status.Api
+    public val piecePaint: Paint =
+        Paint(Paint.ANTI_ALIAS_FLAG) // for pieces and the grid, to keep paint from TextView preserved
+
+    /** The paint used to draw the grid. */
+    @Status.Api
+    public val gridPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    // for piece outlines and markup
+    // only need to allocate one paint object this way
+    private val varPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val solidMarkupPaint: Paint
+        get() = varPaint.apply {
+            color = markupColor
+            style = Paint.Style.FILL_AND_STROKE
+            strokeWidth = gridSep * 0.1f
+        }
+    private val strokeMarkupPaint: Paint
+        get() = varPaint.apply {
+            color = markupColor
+            style = Paint.Style.STROKE
+            strokeWidth = gridSep * 0.1f
+        }
+
+    private var boardSize = 0 // width of the board
+    private var gridSep = 0 // distance between two lines on the grid
+    private var boardPadding = 0 // additional padding
+    private var pieceSize = 0f // radius of circle
+    private var buttonSize = 0 // side length of button
+    private var buttonSep = 0 // space between the buttons as well as above and below them
+    private lateinit var undoRect: Rect // rectangle representing the undo button
+    private lateinit var redoRect: Rect // rectangle representing the redo button
+    private var staticText: StaticLayout? = null // for multiline text
+
+    /**
+     * The [SgfDrawer] used to draw pieces and markup.
+     *
+     * Defaults to [DefaultSgfDrawer].
+     */
+    @Status.Beta
+    public var sgfDrawer: SgfDrawer = DefaultSgfDrawer()
+    public override var inputListener: SgfInputListener? = null
+
+    init {
+        setupAttributes(attrs)
+        gridPaint.color = gridColor
+        varPaint.color = markupColor
+    }
+
+    /**
+     * Draws the view.
+     *
+     * First, it draws the grid representing the board, then the [pieces] and [markups] using the
+     * [SgfDrawer], then undo and redo buttons, and finally, the text obtained from the [nodeInfos]
+     * using [SgfDrawer.makeInfoText].
+     */
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+
+        canvas?.apply {
+            drawGrid()
+            drawPieces()
+            drawMarkup()
+            drawButtons()
+            if (showText) drawText()
+        }
+    }
+
+    private fun Canvas.drawGrid() {
+        for (row in 1..gridRows) {
+            drawLine(
+                getXCoordinateFromBoard(1),
+                getYCoordinateFromBoard(row),
+                getXCoordinateFromBoard(gridColumns),
+                getYCoordinateFromBoard(row),
+                gridPaint
+            )
+        }
+
+        for (col in 1..gridColumns) {
+            drawLine(
+                getXCoordinateFromBoard(col),
+                getYCoordinateFromBoard(1),
+                getXCoordinateFromBoard(col),
+                getYCoordinateFromBoard(gridColumns),
+                gridPaint
+            )
+        }
+    }
+
+    private fun Canvas.drawPieces() = pieces.map { drawPiece(it) }
+
+    private fun Canvas.drawPiece(piece: Piece) {
+        val point = piece.stone.point
+        if (point !is SgfType.XYPoint) return
+
+        piecePaint.color = when (piece.color) {
+            SgfType.Color.Value.BLACK -> blackColor
+            SgfType.Color.Value.WHITE -> whiteColor
+        }
+
+        with(sgfDrawer) { // check if custom drawer absorbs it
+            if (drawPiece(
+                    piece,
+                    getXCoordinateFromBoard(point.x),
+                    getYCoordinateFromBoard(point.y),
+                    pieceSize * 2,
+                    piecePaint
+                )
+            )
+                return
+        }
+
+        drawCircle(
+            getXCoordinateFromBoard(point.x),
+            getYCoordinateFromBoard(point.y),
+            pieceSize,
+            piecePaint
+        )
+
+        // draw border
+        varPaint.apply {
+            color = Color.BLACK
+            style = Paint.Style.STROKE
+            strokeWidth = pieceSize * 0.15f
+        }
+        drawCircle(
+            getXCoordinateFromBoard(point.x),
+            getYCoordinateFromBoard(point.y),
+            pieceSize,
+            varPaint
+        )
+    }
+
+    private fun Canvas.drawMarkup() {
+        for (markup in markups) {
+            val from = markup.point as? SgfType.XYPoint ?: continue
+            val to = markup.to as? SgfType.XYPoint
+            val x = getXCoordinateFromBoard(from.x)
+            val y = getYCoordinateFromBoard(from.y)
+            val x2 = getXCoordinateFromBoard(to?.x ?: 0)
+            val y2 = getYCoordinateFromBoard(to?.y ?: 0)
+
+            val absorbed = with(sgfDrawer) {
+                drawMarkup(markup, x, y, x2, y2, pieceSize * 2, paint)
+            }
+            if (absorbed) continue
+
+            when (markup.type) {
+                MarkupType.VARIATION -> drawText(
+                    markup.label ?: "",
+                    x - markup.label.width(paint) / 2,
+                    y + markup.label.height(paint) / 2,
+                    varPaint.apply {
+                        color = markupColor
+                        style = paint.style
+                        textSize = paint.textSize
+                    }
+                )
+                MarkupType.ARROW -> drawArrow(x, y, x2, y2, gridSep / 2f, 35f, solidMarkupPaint)
+                MarkupType.CIRCLE -> drawCircle(x, y, pieceSize * 6 / 10, strokeMarkupPaint)
+                MarkupType.DIM -> drawRect(
+                    x - gridSep / 2,
+                    y - gridSep / 2,
+                    x + gridSep / 2,
+                    y + gridSep / 2,
+                    varPaint.apply {
+                        color = Color.argb(200, 255, 255, 255)
+                        style = Paint.Style.FILL_AND_STROKE
+                        strokeWidth = 0.05f * gridSep
+                    })
+                MarkupType.LABEL -> drawText(
+                    markup.label ?: "",
+                    x - markup.label.width(paint) / 2,
+                    y + markup.label.height(paint) / 2,
+                    paint
+                )
+                MarkupType.LINE -> drawLine(x, y, x2, y2, varPaint.apply {
+                    strokeWidth = gridSep * 0.1f
+                    style = Paint.Style.FILL
+                    color = markupColor
+                })
+                MarkupType.X -> {
+                    drawLine(
+                        x - gridSep * 0.25f,
+                        y - gridSep * 0.25f,
+                        x + gridSep * 0.25f,
+                        y + gridSep * 0.25f,
+                        strokeMarkupPaint
+                    )
+                    drawLine(
+                        x - gridSep * 0.25f,
+                        y + gridSep * 0.25f,
+                        x + gridSep * 0.25f,
+                        y - gridSep * 0.25f,
+                        strokeMarkupPaint
+                    )
+                }
+                MarkupType.SELECT -> drawCircle(x, y, pieceSize, strokeMarkupPaint)
+                MarkupType.SQUARE -> drawRect(
+                    x - gridSep * 0.25f,
+                    y - gridSep * 0.25f,
+                    x + gridSep * 0.25f,
+                    y + gridSep * 0.25f,
+                    strokeMarkupPaint
+                )
+                MarkupType.TRIANGLE -> drawTriangle(
+                    x.toInt(),
+                    y.toInt(),
+                    gridSep * 5 / 10,
+                    strokeMarkupPaint
+                )
+                MarkupType.VISIBLE -> {
+                }
+                MarkupType.BLACK_TERRITORY -> drawRect(
+                    x - gridSep * 0.25f,
+                    y - gridSep * 0.25f,
+                    x + gridSep * 0.25f,
+                    y + gridSep * 0.25f,
+                    piecePaint.apply { color = blackColor })
+                MarkupType.WHITE_TERRITORY -> drawRect(
+                    x - gridSep * 0.25f,
+                    y - gridSep * 0.25f,
+                    x + gridSep * 0.25f,
+                    y + gridSep * 0.25f,
+                    piecePaint.apply { color = whiteColor })
+            }
+        }
+
+        val visibles = markups.filter { it.type == MarkupType.VISIBLE }
+            .mapNotNull { it.point as? SgfType.XYPoint }
+            .map { (x, y) -> x to y }
+        if (visibles.isNotEmpty()) {
+            val board = (1..gridColumns).flatMap { x -> (1..gridRows).map { y -> x to y } }
+            (board.toSet().minus(visibles)).map { (xb, yb) ->
+                getXCoordinateFromBoard(xb).let { x ->
+                    getYCoordinateFromBoard(yb).let { y ->
+                        drawRect(
+                            x - gridSep / 2,
+                            y - gridSep / 2,
+                            x + gridSep / 2,
+                            y + gridSep / 2,
+                            varPaint.apply {
+                                color = this@GoSgfView.getBackgroundColor() ?: Color.WHITE
+                                style = Paint.Style.FILL_AND_STROKE
+                                strokeWidth = 0.05f * gridSep
+                            })
+                    }
+                }
+            }
+        }
+    }
+
+    // get the background actually in use by traversing up the view hierarchy
+    // this is why I love kotlin
+    private fun View.getBackgroundColor(): Int? =
+        (background as? ColorDrawable)?.color
+            ?: (parent as? View)?.getBackgroundColor()
+
+    private fun Canvas.drawButtons() {
+        val undo = ContextCompat.getDrawable(
+            context,
+            R.drawable.ic_undo_white_24dp
+        )
+        val redo = ContextCompat.getDrawable(
+            context,
+            R.drawable.ic_redo_black_24dp
+        )
+
+        drawRect(undoRect, piecePaint.apply { color = blackColor })
+        drawRect(redoRect, piecePaint.apply { color = whiteColor })
+
+        // draw borders
+        varPaint.apply {
+            color = Color.BLACK
+            style = Paint.Style.STROKE
+            strokeWidth = undoRect.width() * 0.07f
+        }
+
+        drawRect(undoRect, varPaint)
+        drawRect(redoRect, varPaint)
+
+        undo?.bounds = undoRect
+        redo?.bounds = redoRect
+
+        undo?.draw(this)
+        redo?.draw(this)
+    }
+
+    private fun Canvas.drawText() {
+        val text = sgfDrawer.makeInfoText(nodeInfos, lastMoveInfo)
+        staticText = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            StaticLayout.Builder.obtain(text, 0, text.length, paint, boardSize)
+                .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                .setLineSpacing(0f, 1.1f)
+                .setIncludePad(false)
+                .build()
+        } else {
+            @Suppress("DEPRECATION")
+            StaticLayout(
+                text,
+                paint,
+                boardSize,
+                Layout.Alignment.ALIGN_NORMAL,
+                1.1f,
+                0f,
+                false
+            )
+        }
+
+        withTranslation(
+            paddingLeft + boardPadding.toFloat(),
+            paddingTop + boardPadding.toFloat() + boardSize + buttonSep + buttonSize + buttonSep
+        ) {
+            staticText?.draw(this)
+        }
+
+        requestLayout() // dimensions might have changed
+    }
+
+    /**
+     * Measures the view by taking the minimum of the requested sizes, using this as the board width
+     * and then requesting a height, including the dimensions of the text currently displayed.
+     */
+    public override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+        // we try to fit the view into the smaller one of the requested dimensions
+        val w = min(
+            MeasureSpec.getSize(widthMeasureSpec),
+            MeasureSpec.getSize(heightMeasureSpec)
+        )
+        resetSizes(w)
+
+        // we request the optimal height arising from the given width
+        val h = View.resolveSizeAndState(calculateHeight(), heightMeasureSpec, 0)
+
+        setMeasuredDimension(w, h)
+    }
+
+    // recalculate layout quantities from new width
+    private fun resetSizes(w: Int) {
+        // board size leaves room for half a column on each side => 1 additional column in total
+        boardSize = (w - paddingLeft - paddingRight) / gridColumns * (gridColumns - 1)
+        gridSep = boardSize / (gridColumns - 1)
+        boardPadding = gridSep / 2
+        pieceSize = gridSep * 0.45f
+
+        buttonSize = boardSize / 8
+        buttonSep = max(gridSep / 2, buttonSize / 2)
+        undoRect = Rect().apply {
+            left += paddingLeft + boardPadding + (boardSize - buttonSep) / 2 - buttonSize
+            top += paddingTop + boardPadding + boardSize + buttonSep
+            right = left + buttonSize
+            bottom = top + buttonSize
+        }
+        redoRect = Rect().apply {
+            left = undoRect.right + buttonSep
+            top = undoRect.top
+            right = left + buttonSize
+            bottom = top + buttonSize
+        }
+    }
+
+    private fun calculateHeight() = paddingTop + boardPadding + boardSize + buttonSep +
+            buttonSize + buttonSep + (if (showText) staticText?.height ?: 0 else 0) + paddingBottom
+
+
+    /**
+     * Categorizes touch events into moves carried out, undo button and redo button, and triggers
+     * the corresponding event of the [inputListener].
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    public override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            val x = getXCoordinateFromScreen(event.x)
+            val y = getYCoordinateFromScreen(event.y)
+
+            if (round(x) >= 1 && round(x) <= gridColumns && round(y) >= 1 && round(y) <= gridRows) {
+                inputListener?.onMove(SgfType.XYMove(round(x).toInt(), round(y).toInt()))
+            } else if (redoRect.isIn(event.x, event.y)) {
+                inputListener?.onRedo()
+            } else if (undoRect.isIn(event.x, event.y)) {
+                inputListener?.onUndo()
+            }
+        }
+
+        return super.onTouchEvent(event)
+    }
+
+    private fun Rect.isIn(x: Float, y: Float) = x >= left && x <= right && y >= top && y <= bottom
+
+
+    // convert between coordinates on board and on screen
+    private val getXCoordinateFromBoard = { x: Int ->
+        paddingLeft + boardPadding.toFloat() +
+                (x - 1) * gridSep
+    }
+    private val getYCoordinateFromBoard = { x: Int ->
+        paddingTop + boardPadding.toFloat() +
+                (x - 1) * gridSep
+    }
+    private val getXCoordinateFromScreen = { x: Float ->
+        (x - paddingLeft - boardPadding.toFloat()) /
+                gridSep + 1
+    }
+    private val getYCoordinateFromScreen = { x: Float ->
+        (x - paddingTop - boardPadding.toFloat()) /
+                gridSep + 1
+    }
+
+    private fun setupAttributes(attrs: AttributeSet?) {
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.SgfView, 0, 0
+        ).apply {
+            try {
+                blackColor = getColor(
+                    R.styleable.SgfView_blackColor,
+                    DEFAULT_BLACK_COLOR
+                )
+                whiteColor = getColor(
+                    R.styleable.SgfView_whiteColor,
+                    DEFAULT_WHITE_COLOR
+                )
+                gridColor = getColor(
+                    R.styleable.SgfView_gridColor,
+                    DEFAULT_GRID_COLOR
+                )
+                markupColor = getColor(
+                    R.styleable.SgfView_markupColor,
+                    DEFAULT_MARKUP_COLOR
+                )
+                showText = getBoolean(
+                    R.styleable.SgfView_showText,
+                    DEFAULT_SHOW_TEXT
+                )
+            } finally {
+                recycle()
+            }
+        }
+    }
+
+    companion object {
+        private const val DEFAULT_BLACK_COLOR = Color.BLACK
+        private const val DEFAULT_WHITE_COLOR = Color.WHITE
+        private const val DEFAULT_GRID_COLOR = Color.LTGRAY
+        private const val DEFAULT_MARKUP_COLOR = Color.BLUE
+        private const val DEFAULT_SHOW_TEXT = true
+    }
+}
