@@ -13,9 +13,9 @@ to use it to define views for other games, as well. See [Customization](#customi
 
 [Installation](#installation)  
 [Basic Usage](#basic-usage)  
-[Customization](#customization)
-[Release notes](#release-notes)
-[Next up](#next-up)
+[Customization](#customization)  
+[Release notes](#release-notes)  
+[Next up](#next-up)  
 [License](#license)
 
 ## Installation
