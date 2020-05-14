@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
+        <onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.GoSgfView
             android:id="@+id/sgfview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

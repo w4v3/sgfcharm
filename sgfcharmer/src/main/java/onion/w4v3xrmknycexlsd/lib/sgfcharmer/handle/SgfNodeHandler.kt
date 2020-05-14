@@ -3,7 +3,7 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharmer.handle
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.Impl
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.parse.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.SgfInfoKeys
-import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.GoSgfView
 
 /** See [SgfNodeHandler.moveHandler]. */
 typealias SgfMoveHandler = (SgfState, SgfType.Color.Value, SgfType.Move) -> MoveInfo?
@@ -16,10 +16,10 @@ typealias SgfVariationsMarker = (SgfState, List<SgfType.Move?>) -> List<Markup>
  * This class processes [SgfNode]s given the current [SgfState] and modifies that state to include
  * the processed data.
  *
- * The [SgfTree] contains the incremental changes of the board from node to node, but the [SgfView]
+ * The [SgfTree] contains the incremental changes of the board from node to node, but the [GoSgfView]
  * should know about the current state of the whole board (and nothing more). Therefore, no [SgfTree]
  * types should appear anywhere higher up the flow from here; only [SgfData] may be used to communicate
- * with the [SgfView].
+ * with the [GoSgfView].
  *
  * To this end, this class consists purely of extension functions to [SgfState] which turn [SgfProperty]s
  * into [SgfData] and feed it back into the state. Most of the implementation is private, but you can
@@ -57,7 +57,7 @@ typealias SgfVariationsMarker = (SgfState, List<SgfType.Move?>) -> List<Markup>
  * also, removal of stones must be handled
  * - variations might be shown as markup on the board
  * - root properties can influence the further processing, and the board size must be communicated
- * to the [SgfView]
+ * to the [GoSgfView]
  * - inheritable markup properties must be remembered, so that they persist and can be undone
  * - some information, such as move numbers and prisoner counts, are not in the `sgf` file, but they
  * need to be retrieved and calculated somehow

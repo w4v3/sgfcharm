@@ -7,6 +7,13 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
 
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = '1.6'
+            freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
+        }
+    }
+
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
@@ -40,6 +47,15 @@ android {
         configuration {
             includes = ['dokka.md']
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 

@@ -1,13 +1,13 @@
 package onion.w4v3xrmknycexlsd.lib.sgfcharmer.handle
 
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.parse.SgfType.*
-import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.GoSgfView
 
 /**
- * Base class for all instructions understandable by [SgfView].
+ * Base class for all instructions understandable by [GoSgfView].
  *
  * This is to cast the semantics of the `sgf` format into the semantics of what actually
- * needs to be drawn in the end, which might be different. For example, the [SgfView] always
+ * needs to be drawn in the end, which might be different. For example, the [GoSgfView] always
  * needs a complete representation of the current board configuration, but each `sgf` node
  * contains only incremental changes to the board.
  */

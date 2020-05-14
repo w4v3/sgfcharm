@@ -3,10 +3,10 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharmer.handle
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.Impl
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.parse.SgfType
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.parse.not
-import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.GoSgfView
 
 /**
- * This class holds state relevant to the [SgfView].
+ * This class holds state relevant to the [GoSgfView].
  *
  * Although I believe that this class is fairly generally applicable, I would not recommend using
  * it directly. Instead, the [SgfNodeHandler] should define everything which is necessary to manipulate
@@ -145,7 +145,7 @@ class SgfState {
     public fun addInherits(inheritMarkups: List<Markup>): Boolean =
         inherited.last().addAll(inheritMarkups)
 
-    /** Adds the [info] to the [NodeInfo] communicated to the [SgfView]. */
+    /** Adds the [info] to the [NodeInfo] communicated to the [GoSgfView]. */
     public fun addNodeInfo(info: NodeInfo): Boolean =
         nodeInfo.add(info)
 

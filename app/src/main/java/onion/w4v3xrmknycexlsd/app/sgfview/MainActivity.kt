@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.SgfController
-import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
 
 class MainActivity : AppCompatActivity() {
     val ex1 = "(;FF[4]AP[Primiview:3.1]GM[1]SZ[19]GN[Gametree 1: properties]US[Arno Hollosi]C[日本語]\n" +

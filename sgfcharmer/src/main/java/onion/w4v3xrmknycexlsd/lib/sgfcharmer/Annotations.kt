@@ -2,25 +2,34 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharmer
 
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.parse.SgfType
 
-/** @suppress */
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER)
-@Retention(AnnotationRetention.SOURCE)
-@MustBeDocumented
-annotation class Api
-
-/** @suppress */
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER,
+@Target(
+    AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER,
     AnnotationTarget.PROPERTY
 )
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 @MustBeDocumented
-annotation class Impl
+/** Indicates the status of the implementation of the respective target. */
+internal annotation class Status {
+    /** Official and minimal API, should be safe to rely on. */
+    annotation class Api
 
-/** @suppress */
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER)
-@Retention(AnnotationRetention.SOURCE)
-@MustBeDocumented
-annotation class Util
+    /** Might change in the future, but I will try my best to keep changes compatible. */
+    annotation class Beta
+
+    /**
+     * A utility function without side effects which is not intended for public use,
+     * but you might still want to use it for custom purposes, at your own risk.
+     */
+    @RequiresOptIn(
+        level = RequiresOptIn.Level.WARNING,
+        message = "This exposes as implementation detail without side effects. Use at your own risk."
+    )
+    annotation class Util
+
+    /** An exposed implementation detail with side effects; use at your own risk. */
+    @RequiresOptIn(message = "This exposes as implementation detail with side effects. Use at your own risk.")
+    annotation class Impl
+}
 
 // info property value keys
 object SgfInfoKeys {

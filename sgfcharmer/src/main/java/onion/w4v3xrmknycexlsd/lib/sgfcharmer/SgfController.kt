@@ -4,10 +4,10 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharmer.handle.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.parse.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.ISgfView
 import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfInputListener
-import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.GoSgfView
 
 /**
- * Controls interaction between the [SgfView] and [SgfTree] objects.
+ * Controls interaction between the [GoSgfView] and [SgfTree] objects.
  *
  * The typical call would be `SgfController().load(someSgfString).into(someSgfView)`. This creates an
  * [SgfTree] from the given string and loads its current representation into the view. The controller
@@ -23,7 +23,7 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharmer.view.SgfView
  * If you want to change anything about the way the nodes are processed, you need to modify the
  * [sgfNodeHandler]. See [SgfNodeHandler] for more information.
  *
- * @property[sgfView] the [SgfView] to control
+ * @property[sgfView] the [GoSgfView] to control
  * @property[sgfNodeHandler] the [SgfNodeHandler] used to transform the state with the information from the nodes
  * @property[showVariations] whether or not to hint at the possible variations, overrides the settings
  * by the `sgf`; `null` not to override them (default)
