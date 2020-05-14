@@ -11,7 +11,30 @@ and the `GoSgfView` widget can only handle `SGF` files for the Go game. However,
 developed to be as widely applicable to the `SGF` format as possible, so that it should be easy
 to use it to define views for other games, as well. See [Customization](#customization) for details.
 
+[Installation](#installation)  
+[Basic Usage](#basic-usage)  
+[Customization](#customization)
+[Release notes](#release-notes)
+[Next up](#next-up)
+[License](#license)
+
 ## Installation
+
+**project `build.gradle`**
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+**module `build.gradle`**
+
+	dependencies {
+		implementation 'com.github.User:Repo:Tag'
+	}
+
 
 ## Basic Usage
 
@@ -28,7 +51,7 @@ SgfController().load(mySgfString).into(sgfview)
 ```
 where `mySgfString` is a string containing `SGF` data. The result looks like this:
 
-<img src="gosgfviewex1.png" width="200"/> <img src="gosgfviewex2.png" width="200"/> 
+<img src="gosgfviewex1.png" width="300"/> <img src="gosgfviewex2.png" width="300"/> 
 
 You get a view of the board and possibly markup from the file, with undo/redo buttons and additional
 text displayed underneath. When there is nothing to undo, the redo button shows the next node or
@@ -65,13 +88,13 @@ attributes can be used on it and have an effect on the info text displayed below
 
 In addition, the `GoSgfView` has the following `XML` attributes:
 
-    attribute     |                 description                  |   default  |   type
-------------------|----------------------------------------------|------------|-----------
-`app:blackColor`  | the color used to draw the black stones      | black      | `color`
-`app:whiteColor`  | the color used to draw the white stones      | white      | `color`
-`app:gridColor`   | the color used to draw the grid on the board | light gray | `color`
-`app:markupColor` | the color used to draw board markup          | blue       | `color`
-`app:showText`    | whether or not to show the information text  | true       | `boolean`
+   attribute     |                 description                  |   default  |   type
+-----------------|----------------------------------------------|------------|-----------
+`app:blackColor` | the color used to draw the black stones      | black      | `color`
+`app:whiteColor` | the color used to draw the white stones      | white      | `color`
+`app:gridColor`  | the color used to draw the grid on the board | light gray | `color`
+`app:markupColor`| the color used to draw board markup          | blue       | `color`
+`app:showText`   | whether or not to show the information text  | true       | `boolean`
 
 For a little more control, the class also exposes two `Paint` members:
 

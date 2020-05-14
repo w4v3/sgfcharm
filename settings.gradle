@@ -15,6 +15,6 @@
  *
  */
 
-rootProject.name='SgfView'
+rootProject.name='SgfCharm'
 include ':app'
 include ':sgfcharm'
