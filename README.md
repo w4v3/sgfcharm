@@ -15,10 +15,9 @@ to use it to define views for other games, as well. See [Customization](#customi
 [Basic Usage](#basic-usage)  
 [Customization](#customization)  
 [Release notes](#release-notes)  
-[Next up](#next-up)  
 [License](#license)
 
-[Documentation](doc/sgfcharm/index.md)
+[Documentation](https://w4v3.github.io/sgfcharm/sgfcharm/index.html)
 
 ## Installation
 
@@ -102,10 +101,10 @@ see [here](#custom-drawing) for details;
 * want to use it for a different game with different rules and possibly different parsing of point/move/
 stone types, or need to handle custom `SGF` properties outside of the standard, find out how to
 [implement a different game](#implementing-a-different-game);
-* just want to use the parsing and/or navigation facilities, read their [documentation](doc/sgfcharm/index.md).
+* just want to use the parsing and/or navigation facilities, read their [documentation](https://w4v3.github.io/sgfcharm/sgfcharm/index.html).
 
 In the following sections are a few "tutorials" showing examples of how to do these things. For more
-details, please always refer to the [documentation](doc/sgfcharm/index.md).
+details, please always refer to the [documentation](https://w4v3.github.io/sgfcharm/sgfcharm/index.html).
 
 ### Styling the `GoSgfView`
 
@@ -235,7 +234,7 @@ class MySgfView(context: Context) : View(context), SgfView {
 You should call the `SgfInputListener` when observing a touch event which is relevant to the navigation
 of the `SGF` file. In `onReceiveSgfData`, you will probably want to separate the data by its type
 and save them to variables; in this case, only pieces and board dimensions were read, but more types
-are available; see [the documentation](doc/sgfcharm/onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.md).
+are available; see [the documentation](https://w4v3.github.io/sgfcharm/sgfcharm/onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.md).
 
 ### Implementing a different game
 
@@ -333,7 +332,7 @@ as a point. A `Move` is assumed to be a compose type of `ChessStone` and `Stone`
 
 Note that `parseMove` opts in to the `Status.Util` annotation because it uses `parseCompose`, which
 is a utility function provided for these custom purposes but is not regarded part of the official API
-of this library. See the [documentation](doc/sgfcharm/onion.w4v3xrmknycexlsd.lib.sgfcharm/-status/index.md)
+of this library. See the [documentation](https://w4v3.github.io/sgfcharm/sgfcharm/onion.w4v3xrmknycexlsd.lib.sgfcharm/-status/index.html)
 of the annotations for more information.
 
 Now we only need to set the `coordinateParser` property of the `SgfParser` and the parser will give

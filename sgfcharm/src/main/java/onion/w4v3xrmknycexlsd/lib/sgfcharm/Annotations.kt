@@ -30,9 +30,11 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharm
  */
 public annotation class Status {
     /** Official and minimal API, should be safe to rely on. */
+    @MustBeDocumented
     public annotation class Api
 
     /** Might change in the future, but I will try my best to keep changes compatible. */
+    @MustBeDocumented
     public annotation class Beta
 
     /**
@@ -43,9 +45,11 @@ public annotation class Status {
         level = RequiresOptIn.Level.WARNING,
         message = "This exposes a utility function not part of the official SgfCharm API. Opt in to use at your own risk."
     )
+    @MustBeDocumented
     public annotation class Util
 
     /** An exposed implementation detail with side effects; use at your own risk. */
     @RequiresOptIn(message = "This exposes an implementation detail with side effects. Opt in to use at your own risk.")
-    annotation class Impl
+    @MustBeDocumented
+    public annotation class Impl
 }
