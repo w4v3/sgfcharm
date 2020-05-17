@@ -8,6 +8,7 @@ Possible values of the [Color](../index.md) type.
 
 ### Enum Values
 
+| Name | Summary |
+|---|---|
 | [BLACK](-b-l-a-c-k.md) | black color |
 | [WHITE](-w-h-i-t-e.md) | white color |
-

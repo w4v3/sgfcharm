@@ -8,5 +8,6 @@ Official and minimal API, should be safe to rely on.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Official and minimal API, should be safe to rely on.`Api()` |
-

@@ -8,9 +8,12 @@ Provides some extra information about the following game.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides some extra information about the following game.`GC(value: Text)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Text` |
-

@@ -8,9 +8,12 @@ Provides a name for the node.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides a name for the node.`N(value: SimpleText)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: SimpleText` |
-

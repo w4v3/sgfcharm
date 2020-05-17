@@ -8,9 +8,12 @@ Execute a black move.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Execute a black move.`B(value: Move)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Move` |
-

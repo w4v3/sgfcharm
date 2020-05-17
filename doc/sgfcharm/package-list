@@ -1,4 +1,4 @@
-$dokka.format:markdown
+$dokka.format:gfm
 $dokka.linkExtension:md
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm$getSgfController(android.os.Bundle, kotlin.String)onion.w4v3xrmknycexlsd.lib.sgfcharm/android.os.-bundle/get-sgf-controller.md
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm$putSgfController(android.os.Bundle, kotlin.String, onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController)onion.w4v3xrmknycexlsd.lib.sgfcharm/android.os.-bundle/put-sgf-controller.md

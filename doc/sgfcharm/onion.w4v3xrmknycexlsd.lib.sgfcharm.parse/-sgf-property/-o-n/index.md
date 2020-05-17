@@ -8,9 +8,12 @@ Provides some information about the opening played.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides some information about the opening played.`ON(value: SimpleText)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: SimpleText` |
-

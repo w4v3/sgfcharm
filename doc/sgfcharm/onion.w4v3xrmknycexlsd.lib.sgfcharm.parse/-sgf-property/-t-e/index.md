@@ -8,9 +8,12 @@ The played move is a tesuji (good move).
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | The played move is a tesuji (good move).`TE(value: Double)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Double` |
-

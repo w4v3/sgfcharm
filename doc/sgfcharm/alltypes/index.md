@@ -4,6 +4,8 @@ This is the SgfView library for rendering `sgf` files.
 
 ### All Types
 
+| Name | Summary |
+|---|---|
 |
 
 ##### [onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.BoardConfig](../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-board-config/index.md)

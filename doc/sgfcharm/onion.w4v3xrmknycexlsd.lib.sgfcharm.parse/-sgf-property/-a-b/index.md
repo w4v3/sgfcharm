@@ -8,9 +8,12 @@ Add black stones to the board.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Add black stones to the board.`AB(value: List<Stone> = List(mutableListOf()))` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: List<Stone>` |
-

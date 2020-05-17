@@ -13,9 +13,10 @@ contains only incremental changes to the board.
 
 ### Inheritors
 
+| Name | Summary |
+|---|---|
 | [BoardConfig](-board-config/index.md) | Communicates the current board dimensions.`data class BoardConfig : `[`SgfData`](./-sgf-data.md) |
 | [Markup](-markup/index.md) | Markup of nodes on the board.`data class Markup : `[`SgfData`](./-sgf-data.md) |
 | [MoveInfo](-move-info/index.md) | Information about the last move played.`data class MoveInfo : `[`SgfData`](./-sgf-data.md) |
 | [NodeInfo](-node-info/index.md) | A piece of information relating to the current node to be displayed in the text window.`data class NodeInfo : `[`SgfData`](./-sgf-data.md) |
 | [Piece](-piece/index.md) | A gaming piece.`data class Piece : `[`SgfData`](./-sgf-data.md) |
-

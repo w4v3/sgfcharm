@@ -10,6 +10,8 @@ This package contains the logic for rendering [SgfData](../onion.w4v3xrmknycexls
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [DefaultSgfDrawer](-default-sgf-drawer/index.md) | Default implementation of the [SgfDrawer](-sgf-drawer/index.md) interface, used by [GoSgfView](-go-sgf-view/index.md).`class DefaultSgfDrawer : `[`SgfDrawer`](-sgf-drawer/index.md) |
 | [GoSgfView](-go-sgf-view/index.md) | Draws the Board together with undo/redo buttons and additional informational text. It's a `TextView`, so the text it displays is styled according to the `TextView` attributes.`class GoSgfView : AppCompatTextView, `[`SgfView`](-sgf-view/index.md) |
 | [SgfDrawer](-sgf-drawer/index.md) | If there are some specific components for which you would like to change the way they are drawn, most prominently the board markup, the pieces and the info text, you can override the corresponding functions in this interface.`interface SgfDrawer` |
@@ -18,6 +20,7 @@ This package contains the logic for rendering [SgfData](../onion.w4v3xrmknycexls
 
 ### Extensions for External Classes
 
+| Name | Summary |
+|---|---|
 | [android.graphics.Canvas](android.graphics.-canvas/index.md) |  |
 | [kotlin.String](kotlin.-string/index.md) |  |
-

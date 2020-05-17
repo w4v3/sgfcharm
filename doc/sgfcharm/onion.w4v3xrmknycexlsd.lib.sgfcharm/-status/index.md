@@ -10,6 +10,8 @@ Any annotation declared for a class or property also holds for their descendants
 
 ### Annotations
 
+| Name | Summary |
+|---|---|
 | [Api](-api/index.md) | Official and minimal API, should be safe to rely on.`annotation class Api` |
 | [Beta](-beta/index.md) | Might change in the future, but I will try my best to keep changes compatible.`annotation class Beta` |
 | [Impl](-impl/index.md) | An exposed implementation detail with side effects; use at your own risk.`annotation class Impl` |
@@ -17,5 +19,6 @@ Any annotation declared for a class or property also holds for their descendants
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Indicates the status of the implementation of the respective target.`Status()` |
-

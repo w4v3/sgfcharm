@@ -8,9 +8,12 @@ Provides the time limits of the game.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides the time limits of the game.`TM(value: Real)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Real` |
-

@@ -11,6 +11,8 @@ so these wrapper classes might lead to performance and memory issues for large `
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Color](-color/index.md) | Color type in `sgf`.`data class Color : `[`SgfType`](./index.md) |
 | [Compose](-compose/index.md) | `Compose` data type in `sgf`, a pair of [SgfType](./index.md).`data class Compose<S : `[`SgfType`](./index.md)`, T : `[`SgfType`](./index.md)`> : `[`SgfType`](./index.md) |
 | [Double](-double/index.md) | Emphasis type in `sgf`.`data class Double : `[`SgfType`](./index.md) |
@@ -26,4 +28,3 @@ so these wrapper classes might lead to performance and memory issues for large `
 | [XYMove](-x-y-move/index.md) | This is analogous to [XYPoint](-x-y-point/index.md).`data class XYMove : Move` |
 | [XYPoint](-x-y-point/index.md) | A point at ([x](-x-y-point/x.md), [y](-x-y-point/y.md)), useful for Go and Chess, for example.`data class XYPoint : Point` |
 | [XYStone](-x-y-stone/index.md) | This is analogous to [XYPoint](-x-y-point/index.md).`data class XYStone : Stone` |
-

@@ -8,9 +8,12 @@ Selected points. Type of markup unknown
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Selected points. Type of markup unknown`SL(value: List<Point> = List(mutableListOf()))` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: List<Point>` |
-

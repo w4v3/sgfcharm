@@ -8,9 +8,12 @@ Marks the given points with a triangle.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Marks the given points with a triangle.`TR(value: List<Point> = List(mutableListOf()))` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: List<Point>` |
-

@@ -8,9 +8,12 @@ Provides the name and version number of the application used to create this game
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides the name and version number of the application used to create this gametree.`AP(value: Compose<SimpleText, SimpleText>)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Compose<SimpleText, SimpleText>` |
-

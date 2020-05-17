@@ -8,6 +8,8 @@ The possible values for board Markup.
 
 ### Enum Values
 
+| Name | Summary |
+|---|---|
 | [VARIATION](-v-a-r-i-a-t-i-o-n.md) | Labels the currently possible variations. |
 | [ARROW](-a-r-r-o-w.md) | Draws an arrow. |
 | [CIRCLE](-c-i-r-c-l-e.md) | Draws a circle. |
@@ -21,4 +23,3 @@ The possible values for board Markup.
 | [VISIBLE](-v-i-s-i-b-l-e.md) | Declares points as visible, rest becomes invisible. |
 | [BLACK_TERRITORY](-b-l-a-c-k_-t-e-r-r-i-t-o-r-y.md) | Marks black territory (Go). |
 | [WHITE_TERRITORY](-w-h-i-t-e_-t-e-r-r-i-t-o-r-y.md) | Marks white territory (Go). |
-

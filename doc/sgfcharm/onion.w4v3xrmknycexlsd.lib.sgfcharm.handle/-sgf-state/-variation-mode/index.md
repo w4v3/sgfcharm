@@ -8,6 +8,7 @@ How to display variations.
 
 ### Enum Values
 
+| Name | Summary |
+|---|---|
 | [SUCCESSORS](-s-u-c-c-e-s-s-o-r-s.md) | Show variations of successor nodes. |
 | [SIBLINGS](-s-i-b-l-i-n-g-s.md) | Show variations of current nodes. |
-

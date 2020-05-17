@@ -8,5 +8,6 @@ Might change in the future, but I will try my best to keep changes compatible.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Might change in the future, but I will try my best to keep changes compatible.`Beta()` |
-

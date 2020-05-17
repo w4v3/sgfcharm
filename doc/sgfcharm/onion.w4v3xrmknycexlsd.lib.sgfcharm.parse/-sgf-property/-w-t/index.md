@@ -8,9 +8,12 @@ Provide the name of the white team.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provide the name of the white team.`WT(value: SimpleText)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: SimpleText` |
-

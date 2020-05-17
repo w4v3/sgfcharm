@@ -10,6 +10,8 @@ This package contains the `sgf` parser and the library data models:
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [GoCoordinateParser](-go-coordinate-parser/index.md) | A coordinate parser for the Go game.`object GoCoordinateParser : CoordinateParser<XYPoint>` |
 | [SgfCollection](-sgf-collection.md) | Representation of the `sgf Collection`, which is a list of `GameTree`s.`typealias SgfCollection = `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`SgfTree`](-sgf-tree/index.md)`>` |
 | [SgfNavigator](-sgf-navigator/index.md) | This class offers the facilities to navigate through an `sgf GameTree` given by its constructor parameter. It calls the [SgfParser](-sgf-parser/index.md) to get the first [SgfTree](-sgf-tree/index.md) arising from the string, and provides functions to obtain the next and preceding nodes as well as to list and descend into possible variations.`class SgfNavigator` |
@@ -22,9 +24,12 @@ This package contains the `sgf` parser and the library data models:
 
 ### Extensions for External Classes
 
+| Name | Summary |
+|---|---|
 | [kotlin.String](kotlin.-string/index.md) |  |
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [not](not.md) | Switches this [Color.Value](-sgf-type/-color/-value/index.md) from black to white and vice versa.`operator fun Value?.not(): Value?` |
-

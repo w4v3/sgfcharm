@@ -8,9 +8,12 @@ Node is a 'hotspot', i.e. something interesting.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Node is a 'hotspot', i.e. something interesting.`HO(value: Double)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Double` |
-

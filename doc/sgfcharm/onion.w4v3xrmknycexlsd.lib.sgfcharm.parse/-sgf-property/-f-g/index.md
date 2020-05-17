@@ -8,9 +8,12 @@ The figure property is used to divide a game into different figures for printing
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | The figure property is used to divide a game into different figures for printing.`FG(value: Compose<Number, SimpleText>)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Compose<Number, SimpleText>` |
-

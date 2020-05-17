@@ -8,13 +8,18 @@ Color type in `sgf`.
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Value](-value/index.md) | Possible values of the [Color](./index.md) type.`enum class Value` |
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Color type in `sgf`.`Color(value: Value)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the [Color.Value](-value/index.md) value contained`val value: Value` |
-

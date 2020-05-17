@@ -8,10 +8,13 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Compose` data type in `sgf`, a pair of [SgfType](../index.md).`Compose(first: S, second: T)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [first](first.md) | the first component`val first: S` |
 | [second](second.md) | the second component`val second: T` |
-

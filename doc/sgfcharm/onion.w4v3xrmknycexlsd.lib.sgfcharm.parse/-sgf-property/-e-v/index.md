@@ -8,9 +8,12 @@ Provides the name of the event (e.g. tournament).
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides the name of the event (e.g. tournament).`EV(value: SimpleText)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: SimpleText` |
-

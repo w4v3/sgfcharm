@@ -8,9 +8,12 @@ Provides a comment text for the given node.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Provides a comment text for the given node.`C(value: Text)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Text` |
-

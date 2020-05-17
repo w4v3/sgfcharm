@@ -21,6 +21,8 @@ for the application name ([SgfInfoKeys.APN](-a-p-n.md)) and version ([SgfInfoKey
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [AN](-a-n.md) | String used by [DefaultSgfDrawer](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.md) to display the [SgfProperty.AN](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-n/index.md) property`var AN: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 | [APN](-a-p-n.md) | String used by [DefaultSgfDrawer](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.md) to display the application name part of the [SgfProperty.AP](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-p/index.md) property`var APN: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 | [APV](-a-p-v.md) | String used by [DefaultSgfDrawer](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.md) to display the application version part of the [SgfProperty.AP](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-p/index.md) property`var APV: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
@@ -63,4 +65,3 @@ for the application name ([SgfInfoKeys.APN](-a-p-n.md)) and version ([SgfInfoKey
 | [WL](-w-l.md) | String used by [DefaultSgfDrawer](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.md) to display the [SgfProperty.WL](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-l/index.md) property`var WL: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 | [WR](-w-r.md) | String used by [DefaultSgfDrawer](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.md) to display the [SgfProperty.WR](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-r/index.md) property`var WR: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 | [WT](-w-t.md) | String used by [DefaultSgfDrawer](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.md) to display the [SgfProperty.WT](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-t/index.md) property`var WT: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-

@@ -8,9 +8,12 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `List` and `Elist` data types in `sgf`, lists of [SgfType](../index.md).`List(elements: `[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)`<T>)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [elements](elements.md) | the list contained`val elements: `[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)`<T>` |
-

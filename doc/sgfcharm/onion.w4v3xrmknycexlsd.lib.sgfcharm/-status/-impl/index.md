@@ -8,5 +8,6 @@ An exposed implementation detail with side effects; use at your own risk.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | An exposed implementation detail with side effects; use at your own risk.`Impl()` |
-

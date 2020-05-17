@@ -8,9 +8,12 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Number` type in `sgf` holding integer values.`Number(number: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [number](number.md) | the integer value contained`val number: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-

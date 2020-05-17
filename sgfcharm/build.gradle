@@ -61,7 +61,7 @@ android {
     }
 
     dokka {
-        outputFormat = 'markdown'
+        outputFormat = 'gfm'
         outputDirectory = "doc"
 
         configuration {

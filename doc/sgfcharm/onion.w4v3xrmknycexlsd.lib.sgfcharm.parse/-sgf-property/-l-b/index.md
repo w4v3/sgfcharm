@@ -8,9 +8,12 @@ Writes the given text on the board at the point.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | Writes the given text on the board at the point.`LB(value: List<Compose<Point, SimpleText>> = List(mutableListOf()))` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [value](value.md) | the content of the property value, typed`val value: List<Compose<Point, SimpleText>>` |
-

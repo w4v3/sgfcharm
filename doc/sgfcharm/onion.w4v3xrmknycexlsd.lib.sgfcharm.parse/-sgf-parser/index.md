@@ -26,17 +26,24 @@ a possibility of implementing the [SgfParser.CoordinateParser](-coordinate-parse
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [CoordinateParser](-coordinate-parser/index.md) | The class to extend for parsing of the property values for the game-specific [Point](../-sgf-type/-point/index.md), [Move](../-sgf-type/-move/index.md) and [Stone](../-sgf-type/-stone/index.md) types.`abstract class CoordinateParser<T : Point>` |
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | initializes the parser with the given [SgfParser.CoordinateParser](-coordinate-parser/index.md)`SgfParser(coordinateParser: CoordinateParser<*> = GoCoordinateParser)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [coordinateParser](coordinate-parser.md) | the [SgfParser.CoordinateParser](-coordinate-parser/index.md) to be used for game-specific parsing; default is [GoCoordinateParser](../-go-coordinate-parser/index.md)`var coordinateParser: CoordinateParser<*>` |
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [parseSgfCollection](parse-sgf-collection.md) | Parses the [sgfString](parse-sgf-collection.md#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$parseSgfCollection(kotlin.String)/sgfString) representing an `sgf GameTree` into an [SgfCollection](../-sgf-collection.md) object.`fun parseSgfCollection(sgfString: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`SgfCollection`](../-sgf-collection.md) |
-
