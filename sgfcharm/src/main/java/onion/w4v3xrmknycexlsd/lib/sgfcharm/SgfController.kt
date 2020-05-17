@@ -138,16 +138,34 @@ public class SgfController(var showVariations: Boolean? = null) : SgfInputListen
  * Note that user placed stones not in the `SGF` file will not be stored; instead, the last state
  * from the `SGF` is put into the bundle.
  */
-fun Bundle.putSgfController(key: String?, controller: SgfController?) {
+@Status.Beta
+public fun Bundle.putSgfController(key: String?, controller: SgfController?) {
     putString("$key#sgfstring", controller?.navigator?.sgfString)
     putIntArray("$key#indices", controller?.navigator?.currentIndices)
-    controller?.showVariations?.let { putBoolean("$key#showvariations", it) }
+    putSerializable("$key#showvariations", Ternary[controller?.showVariations])
 }
 
 /** Retrieves a controller from [this] `Bundle` stored at the [key]. */
-fun Bundle.getSgfController(key: String?): SgfController? =
+@Status.Beta
+public fun Bundle.getSgfController(key: String?): SgfController? =
     getString("$key#sgfstring")?.let { sgfString ->
         getIntArray("$key#indices")?.let { indices ->
-            SgfController(getBoolean("$key#showvariations")).loadAtIndices(sgfString, indices)
+            SgfController((getSerializable("$key#showvariations") as? Ternary)?.value).loadAtIndices(
+                sgfString,
+                indices
+            )
         }
     }
+
+// all of this because Bundle.getBoolean returns false if the key doesn't exist instead of null
+private enum class Ternary(val value: Boolean?) {
+    TRUE(true),
+    FALSE(false),
+    NONE(null);
+
+    companion object {
+        private val map = values().associateBy(Ternary::value)
+        operator fun get(value: Boolean?) = map[value]
+    }
+}
+
