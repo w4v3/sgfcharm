@@ -33,7 +33,7 @@ to use it to define views for other games, as well. See [Customization](#customi
 **module `build.gradle`**
 
 	dependencies {
-        implementation 'com.github.w4v3:sgfcharm:v0.0.1'
+        implementation 'com.github.w4v3:sgfcharm:v0.1.0'
 	}
 
 
