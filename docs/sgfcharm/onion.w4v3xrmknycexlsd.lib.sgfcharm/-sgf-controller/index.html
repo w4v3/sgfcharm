@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfController - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm</a>&nbsp;/&nbsp;<a href="./index.html">SgfController</a><br/>
+<br/>
+<h1>SgfController</h1>
+<code><span class="keyword">class </span><span class="identifier">SgfController</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-input-listener/index.html"><span class="identifier">SgfInputListener</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/SgfController.kt#L49">(source)</a>
+<p>Controls interaction between the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<p>The typical call would be <code>SgfController().load(someSgfString).into(someSgfView)</code>. This creates an
+<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> from the given string and loads its current representation into the view. The controller
+handles the touch events from the view and supplies it with new data to display accordingly.</p>
+<p>For this task, the controller consists of three components:</p>
+<ul><li>an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-navigator/index.html">SgfNavigator</a> (private), which creates and holds the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> from the loaded string and
+from which it requests the next or previous node</li>
+<li>an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-state/index.html">SgfState</a> object (private), which holds the data to communicate to view, as well as their
+history to make undoing moves possible</li>
+<li>an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a>, which modifies the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-state/index.html">SgfState</a> object according to the current node</li>
+</ul>
+<p>If you want to change anything about the way the nodes are processed, you need to modify the
+<a href="sgf-node-handler.html">sgfNodeHandler</a>. See <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> for more information.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Controls interaction between the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<code><span class="identifier">SgfController</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$<init>(kotlin.Boolean)/showVariations">showVariations</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="sgf-node-handler.html">sgfNodeHandler</a></h4>
+</td>
+<td>
+<p>the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> used to transform the state with the information from the nodes</p>
+<code><span class="keyword">var </span><span class="identifier">sgfNodeHandler</span><span class="symbol">: </span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html"><span class="identifier">SgfNodeHandler</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sgf-view.html">sgfView</a></h4>
+</td>
+<td>
+<p>the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> to control</p>
+<code><span class="keyword">var </span><span class="identifier">sgfView</span><span class="symbol">: </span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html"><span class="identifier">SgfView</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="show-variations.html">showVariations</a></h4>
+</td>
+<td>
+<p>whether or not to hint at the possible variations, overrides the settings
+by the <code>sgf</code>; <code>null</code> not to override them (default)</p>
+<code><span class="keyword">var </span><span class="identifier">showVariations</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="into.html">into</a></h4>
+</td>
+<td>
+<p>Loads the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> into the <a href="into.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$into(onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView)/sgfView">sgfView</a> and subscribes to it as <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-input-listener/index.html">SgfInputListener</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">into</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$into(onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView)/sgfView">sgfView</span><span class="symbol">:</span>&nbsp;<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html"><span class="identifier">SgfView</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="load.html">load</a></h4>
+</td>
+<td>
+<p>Sets up parser and navigator for the <a href="load.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$load(kotlin.String)/sgfString">sgfString</a>, returning this <a href="./index.html">SgfController</a> for convenience.</p>
+<code><span class="keyword">fun </span><span class="identifier">load</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$load(kotlin.String)/sgfString">sgfString</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">SgfController</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-move.html">onMove</a></h4>
+</td>
+<td>
+<p>Finds out of there is a variation to play at move point, or otherwise simply places the piece.</p>
+<code><span class="keyword">fun </span><span class="identifier">onMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)/move">move</span><span class="symbol">:</span>&nbsp;<span class="identifier">Move</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-redo.html">onRedo</a></h4>
+</td>
+<td>
+<p>Redoes the last undone move, if any, or plays the main variation otherwise.</p>
+<code><span class="keyword">fun </span><span class="identifier">onRedo</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-undo.html">onUndo</a></h4>
+</td>
+<td>
+<p>Undoes the last move, regardless of whether it is part of the <code>sgf</code> or not.</p>
+<code><span class="keyword">fun </span><span class="identifier">onUndo</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

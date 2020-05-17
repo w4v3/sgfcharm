@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfParser.CoordinateParser.<init> - sgfcharm</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="../index.html">SgfParser</a>&nbsp;/&nbsp;<a href="index.html">CoordinateParser</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$&lt;init&gt;(kotlin.Function1((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Stone)))"></a>
+<code><span class="identifier">CoordinateParser</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$<init>(kotlin.Function1((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Stone)))/pointToStone">pointToStone</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Stone</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;{ _ -&gt; null }<span class="symbol">)</span></code>
+<p>The class to extend for parsing of the property values for the game-specific
+<a href="../../-sgf-type/-point/index.html">Point</a>, <a href="../../-sgf-type/-move/index.html">Move</a> and <a href="../../-sgf-type/-stone/index.html">Stone</a> types.</p>
+<p>For a specific game, you need to implement <a href="parse-point.html">parsePoint</a>, <a href="parse-move.html">parseMove</a> and <a href="parse-stone.html">parseStone</a>, as
+well as <a href="range-to.html">rangeTo</a> for the <code>Point</code> type to allow parsing compressed point lists. In addition,
+if the <code>Stone</code> and the <code>Point</code> type for the game are the same, you need to override the
+<a href="point-to-stone.html">pointToStone</a> property to specify how a point should be converted to a stone for allowing
+compressed lists for the <code>Stone</code> type as well.</p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - the type of <a href="../../-sgf-type/-point/index.html">Point</a></p>
+</BODY>
+</HTML>

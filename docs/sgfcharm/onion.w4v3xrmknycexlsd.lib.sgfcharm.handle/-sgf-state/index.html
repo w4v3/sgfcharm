@@ -1,0 +1,142 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfState - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="./index.html">SgfState</a><br/>
+<br/>
+<h1>SgfState</h1>
+<code><span class="keyword">class </span><span class="identifier">SgfState</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfState.kt#L40">(source)</a>
+<p>This class holds state relevant to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>Although I believe that this class is fairly generally applicable, I would not recommend using
+it directly. Instead, the <a href="../-sgf-node-handler/index.html">SgfNodeHandler</a> should define everything which is necessary to manipulate
+this object.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-variation-mode/index.html">VariationMode</a></h4>
+</td>
+<td>
+<p>How to display variations.</p>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">VariationMode</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class holds state relevant to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<code><span class="identifier">SgfState</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="current-pieces.html">currentPieces</a></h4>
+</td>
+<td>
+<p>gets the current configuration of the board as a list of <a href="../-piece/index.html">Piece</a>s</p>
+<code><span class="keyword">val </span><span class="identifier">currentPieces</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-piece/index.html"><span class="identifier">Piece</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="last-move-info.html">lastMoveInfo</a></h4>
+</td>
+<td>
+<p>the <a href="../-move-info/index.html">MoveInfo</a> object from the last move played</p>
+<code><span class="keyword">val </span><span class="identifier">lastMoveInfo</span><span class="symbol">: </span><a href="../-move-info/index.html"><span class="identifier">MoveInfo</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="num-cols.html">numCols</a></h4>
+</td>
+<td>
+<p>the number of columns of the board</p>
+<code><span class="keyword">var </span><span class="identifier">numCols</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="num-rows.html">numRows</a></h4>
+</td>
+<td>
+<p>the number of rows of the board</p>
+<code><span class="keyword">var </span><span class="identifier">numRows</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="show-variations.html">showVariations</a></h4>
+</td>
+<td>
+<p>whether or not to show variations according to the <code>sgf</code></p>
+<code><span class="keyword">var </span><span class="identifier">showVariations</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="variation-mode.html">variationMode</a></h4>
+</td>
+<td>
+<p>the <a href="-variation-mode/index.html">VariationMode</a> indicating how to display variations</p>
+<code><span class="keyword">var </span><span class="identifier">variationMode</span><span class="symbol">: </span><span class="identifier">VariationMode</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="add-inherits.html">addInherits</a></h4>
+</td>
+<td>
+<p>Adds the <a href="add-inherits.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addInherits(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup)))/inheritMarkups">inheritMarkups</a> to the current board.
+They will stay on the board until that setting is cleared.</p>
+<code><span class="keyword">fun </span><span class="identifier">addInherits</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addInherits(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup)))/inheritMarkups">inheritMarkups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-markup/index.html"><span class="identifier">Markup</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="add-markups.html">addMarkups</a></h4>
+</td>
+<td>
+<p>Adds the <a href="add-markups.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addMarkups(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup)))/markups">markups</a> to the current board.</p>
+<code><span class="keyword">fun </span><span class="identifier">addMarkups</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addMarkups(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup)))/markups">markups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-markup/index.html"><span class="identifier">Markup</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="add-node-info.html">addNodeInfo</a></h4>
+</td>
+<td>
+<p>Adds the <a href="add-node-info.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addNodeInfo(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)/info">info</a> to the <a href="../-node-info/index.html">NodeInfo</a> communicated to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">addNodeInfo</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addNodeInfo(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)/info">info</span><span class="symbol">:</span>&nbsp;<a href="../-node-info/index.html"><span class="identifier">NodeInfo</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="add-piece.html">addPiece</a></h4>
+</td>
+<td>
+<p>Adds the <a href="add-piece.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addPiece(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)/piece">piece</a> to the current board, potentially replacing pieces at the same point.</p>
+<code><span class="keyword">fun </span><span class="identifier">addPiece</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addPiece(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)/piece">piece</span><span class="symbol">:</span>&nbsp;<a href="../-piece/index.html"><span class="identifier">Piece</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="remove-piece.html">removePiece</a></h4>
+</td>
+<td>
+<p>Removes the <a href="remove-piece.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$removePiece(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)/piece">piece</a> from the current board.</p>
+<code><span class="keyword">fun </span><span class="identifier">removePiece</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$removePiece(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)/piece">piece</span><span class="symbol">:</span>&nbsp;<a href="../-piece/index.html"><span class="identifier">Piece</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

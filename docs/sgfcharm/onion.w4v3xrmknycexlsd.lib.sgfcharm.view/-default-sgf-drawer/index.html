@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>DefaultSgfDrawer - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="./index.html">DefaultSgfDrawer</a><br/>
+<br/>
+<h1>DefaultSgfDrawer</h1>
+<code><span class="keyword">class </span><span class="identifier">DefaultSgfDrawer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-sgf-drawer/index.html"><span class="identifier">SgfDrawer</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/DefaultSgfDrawer.kt#L33">(source)</a>
+<p>Default implementation of the <a href="../-sgf-drawer/index.html">SgfDrawer</a> interface, used by <a href="../-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>It only provides the handling of <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/index.html">NodeInfo</a>s via <a href="make-info-text.html">makeInfoText</a>, but does not
+influence the <a href="../-go-sgf-view/index.html">GoSgfView</a> otherwise.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Default implementation of the <a href="../-sgf-drawer/index.html">SgfDrawer</a> interface, used by <a href="../-go-sgf-view/index.html">GoSgfView</a>.</p>
+<code><span class="identifier">DefaultSgfDrawer</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="draw-markup.html">drawMarkup</a></h4>
+</td>
+<td>
+<p>Returns <code>false</code>.</p>
+<code><span class="keyword">fun </span><a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">.</span><span class="identifier">drawMarkup</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/markup">markup</span><span class="symbol">:</span>&nbsp;<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-markup/index.html"><span class="identifier">Markup</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/x">x</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/y">y</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/xTo">xTo</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/yTo">yTo</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/size">size</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawMarkup(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/paint">paint</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="draw-piece.html">drawPiece</a></h4>
+</td>
+<td>
+<p>Returns <code>false</code>.</p>
+<code><span class="keyword">fun </span><a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">.</span><span class="identifier">drawPiece</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawPiece(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/piece">piece</span><span class="symbol">:</span>&nbsp;<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-piece/index.html"><span class="identifier">Piece</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawPiece(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/x">x</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawPiece(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/y">y</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawPiece(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/size">size</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$drawPiece(android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)/paint">paint</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="make-info-text.html">makeInfoText</a></h4>
+</td>
+<td>
+<p>Simple default implementation to turn <a href="make-info-text.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$makeInfoText(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)), onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)/nodeInfos">nodeInfos</a> into a <code>SpannedString</code>; it prints some move
+information at the top and then each <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/index.html">NodeInfo</a> in the given order with the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/key.html">NodeInfo.key</a> in bold.</p>
+<code><span class="keyword">fun </span><span class="identifier">makeInfoText</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$makeInfoText(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)), onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)/nodeInfos">nodeInfos</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/index.html"><span class="identifier">NodeInfo</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer$makeInfoText(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)), onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)/lastMoveInfo">lastMoveInfo</span><span class="symbol">:</span>&nbsp;<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-move-info/index.html"><span class="identifier">MoveInfo</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfInputListener - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="./index.html">SgfInputListener</a><br/>
+<br/>
+<h1>SgfInputListener</h1>
+<code><span class="keyword">interface </span><span class="identifier">SgfInputListener</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfView.kt#L55">(source)</a>
+<p>Interface for communicating touch events from the view to the controller.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-move.html">onMove</a></h4>
+</td>
+<td>
+<p>Should be triggered when the user has input a <a href="on-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)/move">move</a>; transmits that move to the controller.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)/move">move</span><span class="symbol">:</span>&nbsp;<span class="identifier">Move</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-redo.html">onRedo</a></h4>
+</td>
+<td>
+<p>Should be triggered when the user has touched the redo button; navigates forward.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onRedo</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-undo.html">onUndo</a></h4>
+</td>
+<td>
+<p>Should be triggered when the user has touched the undo button; navigates back.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onUndo</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a></h4>
+</td>
+<td>
+<p>Controls interaction between the <a href="../-go-sgf-view/index.html">GoSgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<code><span class="keyword">class </span><span class="identifier">SgfController</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfInputListener</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

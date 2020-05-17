@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfData - sgfcharm</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="./-sgf-data.html">SgfData</a><br/>
+<br/>
+<h1>SgfData</h1>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfData</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfData.kt#L33">(source)</a>
+<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>This is to cast the semantics of the <code>sgf</code> format into the semantics of what actually
+needs to be drawn in the end, which might be different. For example, the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> always
+needs a complete representation of the current board configuration, but each <code>sgf</code> node
+contains only incremental changes to the board.</p>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-board-config/index.html">BoardConfig</a></h4>
+</td>
+<td>
+<p>Communicates the current board dimensions.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BoardConfig</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-markup/index.html">Markup</a></h4>
+</td>
+<td>
+<p>Markup of nodes on the board.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Markup</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-move-info/index.html">MoveInfo</a></h4>
+</td>
+<td>
+<p>Information about the last move played.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoveInfo</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-node-info/index.html">NodeInfo</a></h4>
+</td>
+<td>
+<p>A piece of information relating to the current node to be displayed in the text window.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NodeInfo</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-piece/index.html">Piece</a></h4>
+</td>
+<td>
+<p>A gaming piece.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Piece</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

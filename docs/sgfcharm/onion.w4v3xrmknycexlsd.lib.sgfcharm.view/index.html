@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>onion.w4v3xrmknycexlsd.lib.sgfcharm.view - sgfcharm</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="./index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a><br/>
+<br/>
+<h2>Package onion.w4v3xrmknycexlsd.lib.sgfcharm.view</h2>
+<p>This package contains the logic for rendering <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.html">SgfData</a> received from the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a>:</p>
+<ul><li>the <a href="-go-sgf-view/index.html">GoSgfView</a> can render the data into an interactive view, and forwards touch events to the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a></li>
+<li>the <a href="-sgf-view/index.html">SgfView</a> interface can be implemented by any view to be controllable by the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a></li>
+<li>the <a href="-sgf-drawer/index.html">SgfDrawer</a> interface can be implemented if only relatively minor changes to the <a href="-go-sgf-view/index.html">GoSgfView</a> drawing are required</li>
+</ul>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-default-sgf-drawer/index.html">DefaultSgfDrawer</a></h4>
+</td>
+<td>
+<p>Default implementation of the <a href="-sgf-drawer/index.html">SgfDrawer</a> interface, used by <a href="-go-sgf-view/index.html">GoSgfView</a>.</p>
+<code><span class="keyword">class </span><span class="identifier">DefaultSgfDrawer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-sgf-drawer/index.html"><span class="identifier">SgfDrawer</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-go-sgf-view/index.html">GoSgfView</a></h4>
+</td>
+<td>
+<p>Draws the Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+<code><span class="keyword">class </span><span class="identifier">GoSgfView</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatTextView</span><span class="symbol">, </span><a href="-sgf-view/index.html"><span class="identifier">SgfView</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-drawer/index.html">SgfDrawer</a></h4>
+</td>
+<td>
+<p>If there are some specific components for which you would like to change the way they are drawn,
+most prominently the board markup, the pieces and the info text, you can override the corresponding
+functions in this interface.</p>
+<code><span class="keyword">interface </span><span class="identifier">SgfDrawer</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-input-listener/index.html">SgfInputListener</a></h4>
+</td>
+<td>
+<p>Interface for communicating touch events from the view to the controller.</p>
+<code><span class="keyword">interface </span><span class="identifier">SgfInputListener</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-view/index.html">SgfView</a></h4>
+</td>
+<td>
+<p>If you want to use the <code>sgf</code> parsing and handling architecture provided by this library but make
+your own view with fundamental changes, you can make it implement this interface so that it can be
+controlled by the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a>.</p>
+<code><span class="keyword">interface </span><span class="identifier">SgfView</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="android.graphics.-canvas/index.html">android.graphics.Canvas</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="kotlin.-string/index.html">kotlin.String</a></h4>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

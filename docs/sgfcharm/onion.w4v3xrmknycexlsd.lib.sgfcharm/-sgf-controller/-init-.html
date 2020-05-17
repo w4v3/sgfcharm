@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfController.<init> - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm</a>&nbsp;/&nbsp;<a href="index.html">SgfController</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$&lt;init&gt;(kotlin.Boolean)"></a>
+<code><span class="identifier">SgfController</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$<init>(kotlin.Boolean)/showVariations">showVariations</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code>
+<p>Controls interaction between the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<p>The typical call would be <code>SgfController().load(someSgfString).into(someSgfView)</code>. This creates an
+<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> from the given string and loads its current representation into the view. The controller
+handles the touch events from the view and supplies it with new data to display accordingly.</p>
+<p>For this task, the controller consists of three components:</p>
+<ul><li>an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-navigator/index.html">SgfNavigator</a> (private), which creates and holds the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> from the loaded string and
+from which it requests the next or previous node</li>
+<li>an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-state/index.html">SgfState</a> object (private), which holds the data to communicate to view, as well as their
+history to make undoing moves possible</li>
+<li>an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a>, which modifies the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-state/index.html">SgfState</a> object according to the current node</li>
+</ul>
+<p>If you want to change anything about the way the nodes are processed, you need to modify the
+<a href="sgf-node-handler.html">sgfNodeHandler</a>. See <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> for more information.</p>
+</BODY>
+</HTML>

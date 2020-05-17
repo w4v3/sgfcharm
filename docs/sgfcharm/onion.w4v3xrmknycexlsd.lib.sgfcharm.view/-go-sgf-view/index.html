@@ -1,0 +1,156 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GoSgfView - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="./index.html">GoSgfView</a><br/>
+<br/>
+<h1>GoSgfView</h1>
+<code><span class="keyword">class </span><span class="identifier">GoSgfView</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatTextView</span><span class="symbol">, </span><a href="../-sgf-view/index.html"><span class="identifier">SgfView</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/GoSgfView.kt#L67">(source)</a>
+<p>Draws the Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+<p>The layout will be as follows: The grid is drawn with an additional padding to account for
+pieces at the borders of the board. Below the grid, there are undo and redo buttons, square
+shaped, in the size of half the space between two lines on the grid. Directly underneath, the
+text is drawn using the <code>android:text*</code> attributes.</p>
+<p>For best results, you should not set the height of the view to an absolute value, use
+<code>MATCH_PARENT</code> or <code>WRAP_CONTENT</code> instead. Otherwise, the view might be clipped.</p>
+<p>If you need more control, consider setting the <a href="sgf-drawer.html">sgfDrawer</a> property to a custom implementation of
+<a href="../-sgf-drawer/index.html">SgfDrawer</a>, or making a custom view that implements <a href="../-sgf-view/index.html">SgfView</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-sgf-drawer/index.html">SgfDrawer</a></p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Draws the Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+<code><span class="identifier">GoSgfView</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$<init>(android.content.Context, android.util.AttributeSet)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$<init>(android.content.Context, android.util.AttributeSet)/attrs">attrs</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/util/AttributeSet.html"><span class="identifier">AttributeSet</span></a><span class="symbol">?</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="black-color.html">blackColor</a></h4>
+</td>
+<td>
+<p>the color of black's pieces.</p>
+<code><span class="keyword">var </span><span class="identifier">blackColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="grid-color.html">gridColor</a></h4>
+</td>
+<td>
+<p>the color of the grid.</p>
+<code><span class="keyword">var </span><span class="identifier">gridColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="grid-paint.html">gridPaint</a></h4>
+</td>
+<td>
+<p>The paint used to draw the grid.</p>
+<code><span class="keyword">val </span><span class="identifier">gridPaint</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="markup-color.html">markupColor</a></h4>
+</td>
+<td>
+<p>the color of the markup.</p>
+<code><span class="keyword">var </span><span class="identifier">markupColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="piece-paint.html">piecePaint</a></h4>
+</td>
+<td>
+<p>The paint used to draw the pieces.</p>
+<code><span class="keyword">val </span><span class="identifier">piecePaint</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sgf-drawer.html">sgfDrawer</a></h4>
+</td>
+<td>
+<p>The <a href="../-sgf-drawer/index.html">SgfDrawer</a> used to draw pieces and markup.</p>
+<code><span class="keyword">var </span><span class="identifier">sgfDrawer</span><span class="symbol">: </span><a href="../-sgf-drawer/index.html"><span class="identifier">SgfDrawer</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="show-text.html">showText</a></h4>
+</td>
+<td>
+<p>whether or not to display information text.</p>
+<code><span class="keyword">var </span><span class="identifier">showText</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="white-color.html">whiteColor</a></h4>
+</td>
+<td>
+<p>the color of white's pieces.</p>
+<code><span class="keyword">var </span><span class="identifier">whiteColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-draw.html">onDraw</a></h4>
+</td>
+<td>
+<p>Draws the view.</p>
+<code><span class="keyword">fun </span><span class="identifier">onDraw</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$onDraw(android.graphics.Canvas)/canvas">canvas</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-measure.html">onMeasure</a></h4>
+</td>
+<td>
+<p>Measures the view by using the requested with and then requesting a height,
+including the dimensions of the text currently displayed.</p>
+<code><span class="keyword">fun </span><span class="identifier">onMeasure</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$onMeasure(kotlin.Int, kotlin.Int)/widthMeasureSpec">widthMeasureSpec</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$onMeasure(kotlin.Int, kotlin.Int)/heightMeasureSpec">heightMeasureSpec</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-receive-sgf-data.html">onReceiveSgfData</a></h4>
+</td>
+<td>
+<p>Called by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a> to transmit new <a href="../-sgf-view/on-receive-sgf-data.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$onReceiveSgfData(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfData)))/data">data</a> for the view to display.</p>
+<code><span class="keyword">fun </span><span class="identifier">onReceiveSgfData</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$onReceiveSgfData(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfData)))/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.html"><span class="identifier">SgfData</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-touch-event.html">onTouchEvent</a></h4>
+</td>
+<td>
+<p>Categorizes touch events (<code>ACTION_UP</code> only) into moves carried out, undo button and redo button,
+and triggers the corresponding event of the registered <a href="../-sgf-input-listener/index.html">SgfInputListener</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">onTouchEvent</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$onTouchEvent(android.view.MotionEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/MotionEvent.html"><span class="identifier">MotionEvent</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="register-input-listener.html">registerInputListener</a></h4>
+</td>
+<td>
+<p>Registers the <a href="../-sgf-view/register-input-listener.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$registerInputListener(onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener)/listener">listener</a> as <a href="../-sgf-input-listener/index.html">SgfInputListener</a> to trigger in response to touch events.</p>
+<code><span class="keyword">fun </span><span class="identifier">registerInputListener</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$registerInputListener(onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-input-listener/index.html"><span class="identifier">SgfInputListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfNavigator - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">SgfNavigator</a><br/>
+<br/>
+<h1>SgfNavigator</h1>
+<code><span class="keyword">class </span><span class="identifier">SgfNavigator</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfNavigator.kt#L36">(source)</a>
+<p>This class offers the facilities to navigate through an <code>sgf GameTree</code> given by its constructor parameter.
+It calls the <a href="../-sgf-parser/index.html">SgfParser</a> to get the first <a href="../-sgf-tree/index.html">SgfTree</a> arising from the string, and provides
+functions to obtain the next and preceding nodes as well as to list and descend into possible
+variations.</p>
+<p>The user can also navigate away from the tree by entering their own moves, in which case a new
+variation is created in which the user can move back and forth. Once the last user move is undone,
+the variation is deleted and <a href="next-node.html">nextNode</a> will return the primary variation of the actual tree.</p>
+<h3>Parameters</h3>
+<p><a name="sgfString"></a>
+<code>sgfString</code> - the string containing the <code>sgf GameTree</code> associated with this navigator</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>creates the <a href="../-sgf-tree/index.html">SgfTree</a> from the given string and initializes the navigator instance on it</p>
+<code><span class="identifier">SgfNavigator</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$<init>(kotlin.String)/sgfString">sgfString</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="make-move.html">makeMove</a></h4>
+</td>
+<td>
+<p>Carries out the <a href="make-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/move">move</a> in the tree.</p>
+<code><span class="keyword">fun </span><span class="identifier">makeMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/move">move</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-property/index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/variationNumber">variationNumber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-sgf-node.html"><span class="identifier">SgfNode</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="next-node.html">nextNode</a></h4>
+</td>
+<td>
+<p>Returns the next node of the current tree, or descends into the first variation if no next
+node exists in the current sequence, or returns null if already at the last node of the tree.</p>
+<code><span class="keyword">fun </span><span class="identifier">nextNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-sgf-node.html"><span class="identifier">SgfNode</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="previous-node.html">previousNode</a></h4>
+</td>
+<td>
+<p>Returns the previous node of the current tree, or ascends to the parent tree if no previous
+node exists in the current sequence, or returns null if already at the root node of the tree.</p>
+<code><span class="keyword">fun </span><span class="identifier">previousNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-sgf-node.html"><span class="identifier">SgfNode</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="variations.html">variations</a></h4>
+</td>
+<td>
+<p>Returns the currently possible variations.</p>
+<code><span class="keyword">fun </span><span class="identifier">variations</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$variations(kotlin.Boolean)/successors">successors</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

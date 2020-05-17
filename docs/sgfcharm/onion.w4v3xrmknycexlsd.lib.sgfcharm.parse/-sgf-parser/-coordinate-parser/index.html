@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfParser.CoordinateParser - sgfcharm</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="../index.html">SgfParser</a>&nbsp;/&nbsp;<a href="./index.html">CoordinateParser</a><br/>
+<br/>
+<h1>CoordinateParser</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Point</span><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L87">(source)</a>
+<p>The class to extend for parsing of the property values for the game-specific
+<a href="../../-sgf-type/-point/index.html">Point</a>, <a href="../../-sgf-type/-move/index.html">Move</a> and <a href="../../-sgf-type/-stone/index.html">Stone</a> types.</p>
+<p>For a specific game, you need to implement <a href="parse-point.html">parsePoint</a>, <a href="parse-move.html">parseMove</a> and <a href="parse-stone.html">parseStone</a>, as
+well as <a href="range-to.html">rangeTo</a> for the <code>Point</code> type to allow parsing compressed point lists. In addition,
+if the <code>Stone</code> and the <code>Point</code> type for the game are the same, you need to override the
+<a href="point-to-stone.html">pointToStone</a> property to specify how a point should be converted to a stone for allowing
+compressed lists for the <code>Stone</code> type as well.</p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - the type of <a href="../../-sgf-type/-point/index.html">Point</a></p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>The class to extend for parsing of the property values for the game-specific
+<a href="../../-sgf-type/-point/index.html">Point</a>, <a href="../../-sgf-type/-move/index.html">Move</a> and <a href="../../-sgf-type/-stone/index.html">Stone</a> types.</p>
+<code><span class="identifier">CoordinateParser</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$<init>(kotlin.Function1((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Stone)))/pointToStone">pointToStone</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Stone</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;{ _ -&gt; null }<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="point-to-stone.html">pointToStone</a></h4>
+</td>
+<td>
+<p>Casts the given <a href="../../-sgf-type/-point/index.html">Point</a> to the <a href="../../-sgf-type/-stone/index.html">Stone</a> type, or <code>null</code> if that's impossible.
+This should only be overriden by games in which <a href="../../-sgf-type/-point/index.html">Point</a> and <a href="../../-sgf-type/-stone/index.html">Stone</a> are the same.
+In this case, it should cast any castable <a href="../../-sgf-type/-point/index.html">Point</a> to the equivalent <a href="../../-sgf-type/-stone/index.html">Stone</a> and everything else
+to <code>null</code>. Typically, this is just the constructor of the <a href="../../-sgf-type/-stone/index.html">Stone</a> type you are using.
+The only purpose of this function is to enable compressed point lists for stones.</p>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">pointToStone</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Stone</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="parse-move.html">parseMove</a></h4>
+</td>
+<td>
+<p>Parses the <a href="parse-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)/from">from</a> string representing an <code>sgf Move</code> into an <a href="../../-sgf-type/-move/index.html">Move</a> object.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">parseMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Move</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parse-point.html">parsePoint</a></h4>
+</td>
+<td>
+<p>Parses the <a href="parse-point.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parsePoint(kotlin.String)/from">from</a> string representing an <code>sgf Point</code> into an <a href="../../-sgf-type/-point/index.html">Point</a> object.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">parsePoint</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parsePoint(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parse-point-list.html">parsePointList</a></h4>
+</td>
+<td>
+<p>Parses this string into a list of <a href="../../-sgf-type/-point/index.html">Point</a>s.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">parsePointList</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parsePointList(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parse-stone.html">parseStone</a></h4>
+</td>
+<td>
+<p>Parses the <a href="parse-stone.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseStone(kotlin.String)/from">from</a> string representing an <code>sgf Stone</code> into an <a href="../../-sgf-type/-stone/index.html">Stone</a> object.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">parseStone</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseStone(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Stone</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parse-stone-list.html">parseStoneList</a></h4>
+</td>
+<td>
+<p>Parses this string into a list of <a href="../../-sgf-type/-stone/index.html">Stone</a>s.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">parseStoneList</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseStoneList(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Stone</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="range-to.html">rangeTo</a></h4>
+</td>
+<td>
+<p>Returns a list of <a href="../../-sgf-type/-point/index.html">Point</a>s contained in a rectangle between <a href="range-to/-this-.html">this</a> upper left
+and the <a href="range-to.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$rangeTo(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T)/other">other</a> lower right <a href="../../-sgf-type/-point/index.html">Point</a>. Returns an empty list if that rectangle is
+empty, including the case where the other point lies to the left or above this point.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">T</span><span class="symbol">.</span><span class="identifier">rangeTo</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$rangeTo(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T)/other">other</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfType - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">SgfType</a><br/>
+<br/>
+<h1>SgfType</h1>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfType</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L297">(source)</a>
+<p>This is the base class for all <code>sgf</code> data types, for strong typing.</p>
+<p>Unfortunately, neither <code>inline sealed class</code> nor union data types are supported by Kotlin, yet,
+so these wrapper classes might lead to performance and memory issues for large <code>GameTree</code>s.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-color/index.html">Color</a></h4>
+</td>
+<td>
+<p>Color type in <code>sgf</code>.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Color</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-compose/index.html">Compose</a></h4>
+</td>
+<td>
+<p><code>Compose</code> data type in <code>sgf</code>, a pair of <a href="./index.html">SgfType</a>.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">S</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a><span class="symbol">, </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-double/index.html">Double</a></h4>
+</td>
+<td>
+<p>Emphasis type in <code>sgf</code>.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Double</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-list/index.html">List</a></h4>
+</td>
+<td>
+<p><code>List</code> and <code>Elist</code> data types in <code>sgf</code>, lists of <a href="./index.html">SgfType</a>.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a><span class="symbol">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterable/index.html"><span class="identifier">MutableIterable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-move/index.html">Move</a></h4>
+</td>
+<td>
+<p>Supertype for <code>sgf Move</code> types. Game-specific, but might contain a <a href="-point/index.html">Point</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Move</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-none.html">None</a></h4>
+</td>
+<td>
+<p><code>None</code> data type in <code>sgf</code>.</p>
+<code><span class="keyword">object </span><span class="identifier">None</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-number/index.html">Number</a></h4>
+</td>
+<td>
+<p><code>Number</code> type in <code>sgf</code> holding integer values.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Number</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-point/index.html">Point</a></h4>
+</td>
+<td>
+<p>Supertype for <code>sgf Point</code> types. Abstract, as these are game-specific.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Point</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-real/index.html">Real</a></h4>
+</td>
+<td>
+<p><code>Real</code> type in <code>sgf</code> holding floating point values.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Real</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-simple-text/index.html">SimpleText</a></h4>
+</td>
+<td>
+<p><code>SimpleText</code> type in <code>sgf</code> holding text without newlines.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SimpleText</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-stone/index.html">Stone</a></h4>
+</td>
+<td>
+<p>Supertype for <code>sgf Stone</code> types. Game-specific, but always contains a <a href="-point/index.html">Point</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Stone</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-text/index.html">Text</a></h4>
+</td>
+<td>
+<p><code>Text</code> type in <code>sgf</code> holding arbitrary text.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Text</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfType</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-x-y-move/index.html">XYMove</a></h4>
+</td>
+<td>
+<p>This is analogous to <a href="-x-y-point/index.html">XYPoint</a>.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">XYMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Move</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-x-y-point/index.html">XYPoint</a></h4>
+</td>
+<td>
+<p>A point at (<a href="-x-y-point/x.html">x</a>, <a href="-x-y-point/y.html">y</a>), useful for Go and Chess, for example.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">XYPoint</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Point</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-x-y-stone/index.html">XYStone</a></h4>
+</td>
+<td>
+<p>This is analogous to <a href="-x-y-point/index.html">XYPoint</a>.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">XYStone</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Stone</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

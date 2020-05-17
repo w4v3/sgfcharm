@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfTree - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">SgfTree</a><br/>
+<br/>
+<h1>SgfTree</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SgfTree</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L43">(source)</a>
+<p>Representation of the <code>sgf GameTree</code>, which consists of an <code>Sequence</code>, and zero or more children <code>GameTree</code>s.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Representation of the <code>sgf GameTree</code>, which consists of an <code>Sequence</code>, and zero or more children <code>GameTree</code>s.</p>
+<code><span class="identifier">SgfTree</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree, kotlin.collections.MutableList((kotlin.collections.MutableList((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType)))))), kotlin.collections.MutableList((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree)))/parent">parent</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfTree</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree, kotlin.collections.MutableList((kotlin.collections.MutableList((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType)))))), kotlin.collections.MutableList((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree)))/nodes">nodes</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-sequence.html"><span class="identifier">SgfSequence</span></a>&nbsp;<span class="symbol">=</span>&nbsp;mutableListOf()<span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree, kotlin.collections.MutableList((kotlin.collections.MutableList((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType)))))), kotlin.collections.MutableList((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree)))/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">SgfTree</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;mutableListOf()<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="children.html">children</a></h4>
+</td>
+<td>
+<p>the child <code>GameTree</code>s</p>
+<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">SgfTree</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="nodes.html">nodes</a></h4>
+</td>
+<td>
+<p>the nodes making up the <code>sgf Sequence</code> of the tree</p>
+<code><span class="keyword">val </span><span class="identifier">nodes</span><span class="symbol">: </span><a href="../-sgf-sequence.html"><span class="identifier">SgfSequence</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parent.html">parent</a></h4>
+</td>
+<td>
+<p>a reference to its parent tree for backtracking.</p>
+<code><span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">SgfTree</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

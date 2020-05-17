@@ -1,0 +1,579 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfProperty - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">SgfProperty</a><br/>
+<br/>
+<h1>SgfProperty</h1>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfProperty</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-sgf-type/index.html"><span class="identifier">SgfType</span></a><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L62">(source)</a>
+<p>Base class for all <code>sgf Property</code>s, with a subclass for each particular property.</p>
+<p>The documentation for each class includes just the first sentence of the <code>sgf</code> documentation.
+For more information, refer to the official <a href="https://www.red-bean.com/sgf/go.html">SGF documentation</a>.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-a-b/index.html">AB</a></h4>
+</td>
+<td>
+<p>Add black stones to the board.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AB</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Stone</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-a-e/index.html">AE</a></h4>
+</td>
+<td>
+<p>Clear the given points on the board.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-a-n/index.html">AN</a></h4>
+</td>
+<td>
+<p>Provides the name of the person who made the annotations.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AN</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-a-p/index.html">AP</a></h4>
+</td>
+<td>
+<p>Provides the name and version number of the application used to create this gametree.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AP</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">,</span>&nbsp;<span class="identifier">SimpleText</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-a-r/index.html">AR</a></h4>
+</td>
+<td>
+<p>Draw an arrow pointing FROM the first point TO the second point.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AR</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">,</span>&nbsp;<span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-a-w/index.html">AW</a></h4>
+</td>
+<td>
+<p>Add white stones to the board.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">AW</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Stone</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-b/index.html">B</a></h4>
+</td>
+<td>
+<p>Execute a black move.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">B</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-b-l/index.html">BL</a></h4>
+</td>
+<td>
+<p>Time left for black, after the move was made.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BL</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Real</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-b-m/index.html">BM</a></h4>
+</td>
+<td>
+<p>The played move is bad</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-b-r/index.html">BR</a></h4>
+</td>
+<td>
+<p>Provides the rank of the black player.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BR</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-b-t/index.html">BT</a></h4>
+</td>
+<td>
+<p>Provides the name of the black team.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-c/index.html">C</a></h4>
+</td>
+<td>
+<p>Provides a comment text for the given node.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Text</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-c-a/index.html">CA</a></h4>
+</td>
+<td>
+<p>Provides the used charset for SimpleText and Text type.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CA</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-c-p/index.html">CP</a></h4>
+</td>
+<td>
+<p>Any copyright information (e.g. for the annotations) should be included here.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CP</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-c-r/index.html">CR</a></h4>
+</td>
+<td>
+<p>Marks the given points with a circle.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CR</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-c-u-s-t-o-m/index.html">CUSTOM</a></h4>
+</td>
+<td>
+<p>This class is used for custom properties. It is composed of the identifier and the
+content of the value, both as strings inside <a href="../-sgf-type/-simple-text/index.html">SimpleText</a> and <a href="../-sgf-type/-text/index.html">Text</a> objects, respectively.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CUSTOM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">,</span>&nbsp;<span class="identifier">Text</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-d/index.html">DD</a></h4>
+</td>
+<td>
+<p>Dim (grey out) the given points.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DD</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-m/index.html">DM</a></h4>
+</td>
+<td>
+<p>The position is even.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-o.html">DO</a></h4>
+</td>
+<td>
+<p>The played move is doubtful</p>
+<code><span class="keyword">object </span><span class="identifier">DO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">None</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-t/index.html">DT</a></h4>
+</td>
+<td>
+<p>Provides the date when the game was played.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e-v/index.html">EV</a></h4>
+</td>
+<td>
+<p>Provides the name of the event (e.g. tournament).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EV</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f-f/index.html">FF</a></h4>
+</td>
+<td>
+<p>Defines the used file format.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">FF</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f-g/index.html">FG</a></h4>
+</td>
+<td>
+<p>The figure property is used to divide a game into different figures for printing.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">FG</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">,</span>&nbsp;<span class="identifier">SimpleText</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-g-b/index.html">GB</a></h4>
+</td>
+<td>
+<p>Something good for black.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GB</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-g-c/index.html">GC</a></h4>
+</td>
+<td>
+<p>Provides some extra information about the following game.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GC</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Text</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-g-m/index.html">GM</a></h4>
+</td>
+<td>
+<p>Defines the type of game.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-g-n/index.html">GN</a></h4>
+</td>
+<td>
+<p>Provides a name for the game. The name is used to</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GN</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-g-w/index.html">GW</a></h4>
+</td>
+<td>
+<p>Something good for white.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GW</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-h-a/index.html">HA</a></h4>
+</td>
+<td>
+<p>Defines the Number of handicap stones (&gt;=2).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">HA</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-h-o/index.html">HO</a></h4>
+</td>
+<td>
+<p>Node is a 'hotspot', i.e. something interesting.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">HO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-i-t.html">IT</a></h4>
+</td>
+<td>
+<p>The played move is interesting</p>
+<code><span class="keyword">object </span><span class="identifier">IT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">None</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-k-m/index.html">KM</a></h4>
+</td>
+<td>
+<p>Defines the komi.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">KM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Real</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-k-o.html">KO</a></h4>
+</td>
+<td>
+<p>Execute a given move, even if it's illegal.</p>
+<code><span class="keyword">object </span><span class="identifier">KO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">None</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-l-b/index.html">LB</a></h4>
+</td>
+<td>
+<p>Writes the given text on the board at the point.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">LB</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">,</span>&nbsp;<span class="identifier">SimpleText</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-l-n/index.html">LN</a></h4>
+</td>
+<td>
+<p>Applications should draw a simple line form one point to the other.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">LN</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">,</span>&nbsp;<span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-m-a/index.html">MA</a></h4>
+</td>
+<td>
+<p>Marks the given points with an 'X'.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MA</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-m-n/index.html">MN</a></h4>
+</td>
+<td>
+<p>Sets move number to the given value.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MN</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-n/index.html">N</a></h4>
+</td>
+<td>
+<p>Provides a name for the node.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">N</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-o-b/index.html">OB</a></h4>
+</td>
+<td>
+<p>Number of black moves left to play in this byo-yomi period.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">OB</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-o-n/index.html">ON</a></h4>
+</td>
+<td>
+<p>Provides some information about the opening played.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ON</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-o-t/index.html">OT</a></h4>
+</td>
+<td>
+<p>Describes the method used for overtime (byo-yomi).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">OT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-o-w/index.html">OW</a></h4>
+</td>
+<td>
+<p>Number of white moves left to play in this byo-yomi period.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">OW</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p-b/index.html">PB</a></h4>
+</td>
+<td>
+<p>Provides the name of the black player.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PB</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p-c/index.html">PC</a></h4>
+</td>
+<td>
+<p>Provides the place where the game was played.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PC</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p-l/index.html">PL</a></h4>
+</td>
+<td>
+<p>Tells whose turn it is to play.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PL</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Color</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p-m/index.html">PM</a></h4>
+</td>
+<td>
+<p>This property is used for printing.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p-w/index.html">PW</a></h4>
+</td>
+<td>
+<p>Provides the name of the white player.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PW</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-r-e/index.html">RE</a></h4>
+</td>
+<td>
+<p>Provides the result of the game.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">RE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-r-o/index.html">RO</a></h4>
+</td>
+<td>
+<p>Provides round-number and type of round.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">RO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-r-u/index.html">RU</a></h4>
+</td>
+<td>
+<p>Provides the used rules for this game.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">RU</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-l/index.html">SL</a></h4>
+</td>
+<td>
+<p>Selected points. Type of markup unknown</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SL</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-o/index.html">SO</a></h4>
+</td>
+<td>
+<p>Provides the name of the source (e.g. book, journal, ...).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SO</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-q/index.html">SQ</a></h4>
+</td>
+<td>
+<p>Marks the given points with a square.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SQ</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-t/index.html">ST</a></h4>
+</td>
+<td>
+<p>Defines how variations should be shown.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ST</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-z/index.html">SZ</a></h4>
+</td>
+<td>
+<p>Defines the size of the board.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SZ</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">,</span>&nbsp;<span class="identifier">Number</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-b/index.html">TB</a></h4>
+</td>
+<td>
+<p>Specifies the black territory or area.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TB</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-e/index.html">TE</a></h4>
+</td>
+<td>
+<p>The played move is a tesuji (good move).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-m/index.html">TM</a></h4>
+</td>
+<td>
+<p>Provides the time limits of the game.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TM</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Real</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-r/index.html">TR</a></h4>
+</td>
+<td>
+<p>Marks the given points with a triangle.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TR</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-w/index.html">TW</a></h4>
+</td>
+<td>
+<p>Specifies the white territory or area.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TW</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-u-c/index.html">UC</a></h4>
+</td>
+<td>
+<p>The position is unclear.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UC</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Double</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-u-s/index.html">US</a></h4>
+</td>
+<td>
+<p>Provides the name of the user (or program) who entered the game.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">US</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-v/index.html">V</a></h4>
+</td>
+<td>
+<p>Define a value for the node.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Real</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-v-w/index.html">VW</a></h4>
+</td>
+<td>
+<p>View only given points of the board.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">VW</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w/index.html">W</a></h4>
+</td>
+<td>
+<p>Execute a white move.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">W</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w-l/index.html">WL</a></h4>
+</td>
+<td>
+<p>Time left for white after the move was made.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">WL</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Real</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w-r/index.html">WR</a></h4>
+</td>
+<td>
+<p>Provides the rank of the white player.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">WR</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w-t/index.html">WT</a></h4>
+</td>
+<td>
+<p>Provide the name of the white team.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">WT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">SimpleText</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="value.html">value</a></h4>
+</td>
+<td>
+<p>the content of the property value, typed</p>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">value</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

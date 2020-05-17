@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfNodeHandler.variationsMarker - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="index.html">SgfNodeHandler</a>&nbsp;/&nbsp;<a href="./variations-marker.html">variationsMarker</a><br/>
+<br/>
+<h1>variationsMarker</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler$variationsMarker"></a>
+<code><span class="keyword">var </span><span class="identifier">variationsMarker</span><span class="symbol">: </span><a href="../-sgf-state/index.html"><span class="identifier">SgfState</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-markup/index.html"><span class="identifier">Markup</span></a><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfNodeHandler.kt#L255">(source)</a>
+<p>receives a list of variations given as <code>[SgfType.Move]?</code>s, where each
+entry corresponds to one variation <code>GameTree</code> in the order they appear in the <code>sgf</code> file.
+The respective entry is the first move in the first node of the variation, or <code>null</code> if there is
+no move in that node. The lambda returns a list of <a href="../-markup/index.html">Markup</a> representing the board markup to apply
+for each variation.</p>
+<p>By default, this is <a href="../-go-node-handler/variation-marker.html">GoNodeHandler.variationMarker</a>.</p>
+<p>The different types of properties are treated in different ways:</p>
+<ul><li>most of the annotation, markup and game info properties are simply wrapped up into the
+appropriate <a href="../-sgf-data.html">SgfData</a> structure</li>
+<li>move and setup properties are handled and remembered, as the user might want to go back;
+also, removal of stones must be handled by the <a href="move-handler.html">moveHandler</a></li>
+<li>variations might be shown as markup on the board</li>
+<li>changes to the board size are communicated directly to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a></li>
+<li>inheritable markup properties are be remembered, so that they persist and can be undone</li>
+</ul>
+<h3>Property</h3>
+<p><a name="variationsMarker"></a>
+<code>variationsMarker</code> - 
+<p>receives a list of variations given as <code>[SgfType.Move]?</code>s, where each
+entry corresponds to one variation <code>GameTree</code> in the order they appear in the <code>sgf</code> file.
+The respective entry is the first move in the first node of the variation, or <code>null</code> if there is
+no move in that node. The lambda returns a list of <a href="../-markup/index.html">Markup</a> representing the board markup to apply
+for each variation.</p>
+
+
+<p>By default, this is <a href="../-go-node-handler/variation-marker.html">GoNodeHandler.variationMarker</a>.</p>
+
+
+<p>The different types of properties are treated in different ways:</p>
+
+<ul><li>most of the annotation, markup and game info properties are simply wrapped up into the
+appropriate <a href="../-sgf-data.html">SgfData</a> structure</li>
+<li>move and setup properties are handled and remembered, as the user might want to go back;
+also, removal of stones must be handled by the <a href="move-handler.html">moveHandler</a></li>
+<li>variations might be shown as markup on the board</li>
+<li>changes to the board size are communicated directly to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a></li>
+<li>inheritable markup properties are be remembered, so that they persist and can be undone</li>
+</ul>
+</p>
+</BODY>
+</HTML>

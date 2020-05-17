@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfView - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="./index.html">SgfView</a><br/>
+<br/>
+<h1>SgfView</h1>
+<code><span class="keyword">interface </span><span class="identifier">SgfView</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfView.kt#L36">(source)</a>
+<p>If you want to use the <code>sgf</code> parsing and handling architecture provided by this library but make
+your own view with fundamental changes, you can make it implement this interface so that it can be
+controlled by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a>.</p>
+<p>If you only need to make adjustments to the way some components are drawn, consider implementing
+<a href="../-sgf-drawer/index.html">SgfDrawer</a> instead.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-sgf-input-listener/index.html">SgfInputListener</a></p>
+</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-receive-sgf-data.html">onReceiveSgfData</a></h4>
+</td>
+<td>
+<p>Called by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a> to transmit new <a href="on-receive-sgf-data.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$onReceiveSgfData(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfData)))/data">data</a> for the view to display.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onReceiveSgfData</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$onReceiveSgfData(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfData)))/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.html"><span class="identifier">SgfData</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="register-input-listener.html">registerInputListener</a></h4>
+</td>
+<td>
+<p>Registers the <a href="register-input-listener.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$registerInputListener(onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener)/listener">listener</a> as <a href="../-sgf-input-listener/index.html">SgfInputListener</a> to trigger in response to touch events.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerInputListener</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$registerInputListener(onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-input-listener/index.html"><span class="identifier">SgfInputListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-go-sgf-view/index.html">GoSgfView</a></h4>
+</td>
+<td>
+<p>Draws the Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+<code><span class="keyword">class </span><span class="identifier">GoSgfView</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatTextView</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">SgfView</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfParser.CoordinateParser.parseStoneList - sgfcharm</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="../index.html">SgfParser</a>&nbsp;/&nbsp;<a href="index.html">CoordinateParser</a>&nbsp;/&nbsp;<a href="./parse-stone-list.html">parseStoneList</a><br/>
+<br/>
+<h1>parseStoneList</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseStoneList(kotlin.String)"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">parseStoneList</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseStoneList(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Stone</span><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L144">(source)</a>
+<p>Parses this string into a list of <a href="../../-sgf-type/-stone/index.html">Stone</a>s.</p>
+<p>The string represents a single property value, i.e. <a href="#">...</a>. In case this contains a ':',
+a list containing all the <a href="../../-sgf-type/-stone/index.html">Stone</a>s in the compressed list must be returned,
+otherwise a list with a single element. Note that a compressed list might only be given
+if the <a href="../../-sgf-type/-stone/index.html">Stone</a> type is the same as <a href="../../-sgf-type/-point/index.html">Point</a> for that game.
+For invalid input, an empty list should be returned.</p>
+<p>The existing implementation of this should be enough for most purposes; it requires only
+the implementation of <a href="range-to.html">rangeTo</a> (or <a href="parse-point-list.html">parsePointList</a>) and <a href="point-to-stone.html">pointToStone</a>.</p>
+</BODY>
+</HTML>

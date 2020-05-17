@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfNavigator.makeMove - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="index.html">SgfNavigator</a>&nbsp;/&nbsp;<a href="./make-move.html">makeMove</a><br/>
+<br/>
+<h1>makeMove</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)"></a>
+<code><span class="keyword">fun </span><span class="identifier">makeMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/move">move</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-property/index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/variationNumber">variationNumber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-sgf-node.html"><span class="identifier">SgfNode</span></a><span class="symbol">?</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfNavigator.kt#L95">(source)</a>
+<p>Carries out the <a href="make-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/move">move</a> in the tree.</p>
+<p>There are three possible situations:</p>
+<ul><li>the next node in the tree has the <a href="make-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/move">move</a>: move to that node</li>
+<li>we are at the last node of the current sequence and there are variation trees, one of which
+contains the <a href="make-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/move">move</a>: move to the tree containing it</li>
+<li>neither of the above: the user is branching off, a new variation is created</li>
+</ul>
+<p>If <a href="make-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$makeMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)), kotlin.Int)/variationNumber">variationNumber</a> is not <code>null</code>, the navigator is forced to move to the variation with
+that index if it exists. This is useful for letting the user navigate to variations without
+moves in their root nodes, for example by displaying markup at custom places on the board.</p>
+</BODY>
+</HTML>

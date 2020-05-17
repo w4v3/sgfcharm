@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>onion.w4v3xrmknycexlsd.lib.sgfcharm.parse - sgfcharm</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="./index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a><br/>
+<br/>
+<h2>Package onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</h2>
+<p>This package contains the <code>sgf</code> parser and the library data models:</p>
+<ul><li>the <a href="-sgf-tree/index.html">SgfTree</a> is the internal representation of the SGF <code>GameTree</code>, with a strong type system</li>
+<li>the <a href="-sgf-parser/index.html">SgfParser</a> exposes the <a href="-sgf-parser/parse-sgf-collection.html">SgfParser.parseSgfCollection</a> function, which reads a string into a list of <a href="-sgf-tree/index.html">SgfTree</a>s</li>
+<li>the <a href="-sgf-navigator/index.html">SgfNavigator</a> exposes functions to navigate through the tree node by node</li>
+</ul>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-go-coordinate-parser/index.html">GoCoordinateParser</a></h4>
+</td>
+<td>
+<p>A coordinate parser for the Go game.</p>
+<code><span class="keyword">object </span><span class="identifier">GoCoordinateParser</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">XYPoint</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-collection.html">SgfCollection</a></h4>
+</td>
+<td>
+<p>Representation of the <code>sgf Collection</code>, which is a list of <code>GameTree</code>s.</p>
+<code><span class="keyword">typealias </span><span class="identifier">SgfCollection</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="-sgf-tree/index.html"><span class="identifier">SgfTree</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-navigator/index.html">SgfNavigator</a></h4>
+</td>
+<td>
+<p>This class offers the facilities to navigate through an <code>sgf GameTree</code> given by its constructor parameter.
+It calls the <a href="-sgf-parser/index.html">SgfParser</a> to get the first <a href="-sgf-tree/index.html">SgfTree</a> arising from the string, and provides
+functions to obtain the next and preceding nodes as well as to list and descend into possible
+variations.</p>
+<code><span class="keyword">class </span><span class="identifier">SgfNavigator</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-node.html">SgfNode</a></h4>
+</td>
+<td>
+<p>Representation of the <code>sgf Node</code>, which is a list of <code>Property</code>s.</p>
+<code><span class="keyword">typealias </span><span class="identifier">SgfNode</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="-sgf-property/index.html"><span class="identifier">SgfProperty</span></a><span class="symbol">&lt;</span><a href="-sgf-type/index.html"><span class="identifier">SgfType</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-parser/index.html">SgfParser</a></h4>
+</td>
+<td>
+<p>Parser for reading <code>sgf</code> strings into <a href="-sgf-collection.html">SgfCollection</a>s.</p>
+<code><span class="keyword">class </span><span class="identifier">SgfParser</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-property/index.html">SgfProperty</a></h4>
+</td>
+<td>
+<p>Base class for all <code>sgf Property</code>s, with a subclass for each particular property.</p>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfProperty</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-sgf-type/index.html"><span class="identifier">SgfType</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-sequence.html">SgfSequence</a></h4>
+</td>
+<td>
+<p>Representation of the <code>sgf Sequence</code>, which is a list of <code>Node</code>s.</p>
+<code><span class="keyword">typealias </span><span class="identifier">SgfSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="-sgf-node.html"><span class="identifier">SgfNode</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-tree/index.html">SgfTree</a></h4>
+</td>
+<td>
+<p>Representation of the <code>sgf GameTree</code>, which consists of an <code>Sequence</code>, and zero or more children <code>GameTree</code>s.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SgfTree</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sgf-type/index.html">SgfType</a></h4>
+</td>
+<td>
+<p>This is the base class for all <code>sgf</code> data types, for strong typing.</p>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfType</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="kotlin.-string/index.html">kotlin.String</a></h4>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="not.html">not</a></h4>
+</td>
+<td>
+<p>Switches this <a href="-sgf-type/-color/-value/index.html">Color.Value</a> from black to white and vice versa.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">Value</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">not</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Value</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

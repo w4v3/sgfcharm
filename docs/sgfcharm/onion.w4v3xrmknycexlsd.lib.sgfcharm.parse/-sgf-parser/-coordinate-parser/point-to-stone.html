@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfParser.CoordinateParser.pointToStone - sgfcharm</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="../index.html">SgfParser</a>&nbsp;/&nbsp;<a href="index.html">CoordinateParser</a>&nbsp;/&nbsp;<a href="./point-to-stone.html">pointToStone</a><br/>
+<br/>
+<h1>pointToStone</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$pointToStone"></a>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">pointToStone</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Stone</span><span class="symbol">?</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L87">(source)</a>
+<p>Casts the given <a href="../../-sgf-type/-point/index.html">Point</a> to the <a href="../../-sgf-type/-stone/index.html">Stone</a> type, or <code>null</code> if that's impossible.
+This should only be overriden by games in which <a href="../../-sgf-type/-point/index.html">Point</a> and <a href="../../-sgf-type/-stone/index.html">Stone</a> are the same.
+In this case, it should cast any castable <a href="../../-sgf-type/-point/index.html">Point</a> to the equivalent <a href="../../-sgf-type/-stone/index.html">Stone</a> and everything else
+to <code>null</code>. Typically, this is just the constructor of the <a href="../../-sgf-type/-stone/index.html">Stone</a> type you are using.
+The only purpose of this function is to enable compressed point lists for stones.</p>
+<h3>Property</h3>
+<p><a name="pointToStone"></a>
+<code>pointToStone</code> - Casts the given <a href="../../-sgf-type/-point/index.html">Point</a> to the <a href="../../-sgf-type/-stone/index.html">Stone</a> type, or <code>null</code> if that's impossible.
+This should only be overriden by games in which <a href="../../-sgf-type/-point/index.html">Point</a> and <a href="../../-sgf-type/-stone/index.html">Stone</a> are the same.
+In this case, it should cast any castable <a href="../../-sgf-type/-point/index.html">Point</a> to the equivalent <a href="../../-sgf-type/-stone/index.html">Stone</a> and everything else
+to <code>null</code>. Typically, this is just the constructor of the <a href="../../-sgf-type/-stone/index.html">Stone</a> type you are using.
+The only purpose of this function is to enable compressed point lists for stones.</p>
+</BODY>
+</HTML>

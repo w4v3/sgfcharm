@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>parseNumberOrComposeNumber - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="index.html">kotlin.String</a>&nbsp;/&nbsp;<a href="./parse-number-or-compose-number.html">parseNumberOrComposeNumber</a><br/>
+<br/>
+<h1>parseNumberOrComposeNumber</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse$parseNumberOrComposeNumber(kotlin.String)"></a>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">.</span><span class="identifier">parseNumberOrComposeNumber</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Compose</span><span class="symbol">&lt;</span><span class="identifier">Number</span><span class="symbol">,</span>&nbsp;<span class="identifier">Number</span><span class="symbol">&gt;</span><span class="symbol">?</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L406">(source)</a>
+<p>Parses this string given either as a single <code>sgf Number</code> or a composed <code>Number : Number</code>.</p>
+<p>In the former case, the returned object is <a href="../-sgf-type/-compose/index.html">Compose</a> with both components identical to the
+<code>Number</code>. This is for parsing the <code>SZ</code> property which determines the board size. As it might be
+subject to change, I do not recommend using it directly.</p>
+</BODY>
+</HTML>

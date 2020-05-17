@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GoSgfView.<init> - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="index.html">GoSgfView</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$&lt;init&gt;(android.content.Context, android.util.AttributeSet)"></a>
+<code><span class="identifier">GoSgfView</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$<init>(android.content.Context, android.util.AttributeSet)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView$<init>(android.content.Context, android.util.AttributeSet)/attrs">attrs</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/util/AttributeSet.html"><span class="identifier">AttributeSet</span></a><span class="symbol">?</span><span class="symbol">)</span></code>
+<p>Draws the Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+<p>The layout will be as follows: The grid is drawn with an additional padding to account for
+pieces at the borders of the board. Below the grid, there are undo and redo buttons, square
+shaped, in the size of half the space between two lines on the grid. Directly underneath, the
+text is drawn using the <code>android:text*</code> attributes.</p>
+<p>For best results, you should not set the height of the view to an absolute value, use
+<code>MATCH_PARENT</code> or <code>WRAP_CONTENT</code> instead. Otherwise, the view might be clipped.</p>
+<p>If you need more control, consider setting the <a href="sgf-drawer.html">sgfDrawer</a> property to a custom implementation of
+<a href="../-sgf-drawer/index.html">SgfDrawer</a>, or making a custom view that implements <a href="../-sgf-view/index.html">SgfView</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-sgf-drawer/index.html">SgfDrawer</a></p>
+</p>
+</BODY>
+</HTML>

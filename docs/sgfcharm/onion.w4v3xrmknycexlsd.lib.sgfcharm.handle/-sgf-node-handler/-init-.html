@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfNodeHandler.<init> - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="index.html">SgfNodeHandler</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler$&lt;init&gt;()"></a>
+<code><span class="identifier">SgfNodeHandler</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>This class processes <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-node.html">SgfNode</a>s given the current <a href="../-sgf-state/index.html">SgfState</a> and modifies that state to include
+the processed data.</p>
+<p>The <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> contains the incremental changes of the board from node to node, but the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>
+should know about the current state of the whole board (and nothing more). Therefore, no <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a>
+types should appear anywhere higher up the flow from here; only <a href="../-sgf-data.html">SgfData</a> may be used to communicate
+with the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>To this end, this class consists purely of extension functions to <a href="../-sgf-state/index.html">SgfState</a> which turn <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/index.html">SgfProperty</a>s
+into <a href="../-sgf-data.html">SgfData</a> and feed it back into the state. Most of the implementation is private, but you can
+supply some game specific operations (unstable):</p>
+</BODY>
+</HTML>
