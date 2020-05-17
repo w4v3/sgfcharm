@@ -61,8 +61,8 @@ android {
     }
 
     dokka {
-        outputFormat = 'gfm'
-        outputDirectory = "doc"
+        outputFormat = 'html'
+        outputDirectory = "docs"
 
         configuration {
             includes = ['dokka.md']
