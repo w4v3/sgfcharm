@@ -2,7 +2,7 @@
 
 # parseNumberOrComposeNumber
 
-`fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.parseNumberOrComposeNumber(): Compose<Number, Number>?`
+`fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.parseNumberOrComposeNumber(): Compose<Number, Number>?` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L406)
 
 Parses this string given either as a single `sgf Number` or a composed `Number : Number`.
 

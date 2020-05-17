@@ -2,7 +2,7 @@
 
 # lastMoveInfo
 
-`val lastMoveInfo: `[`MoveInfo`](../-move-info/index.md)`?`
+`val lastMoveInfo: `[`MoveInfo`](../-move-info/index.md)`?` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfState.kt#L112)
 
 the [MoveInfo](../-move-info/index.md) object from the last move played
 

@@ -2,7 +2,7 @@
 
 # SgfProperty
 
-`sealed class SgfProperty<out T : `[`SgfType`](../-sgf-type/index.md)`>`
+`sealed class SgfProperty<out T : `[`SgfType`](../-sgf-type/index.md)`>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L62)
 
 Base class for all `sgf Property`s, with a subclass for each particular property.
 
@@ -11,8 +11,6 @@ For more information, refer to the official [SGF documentation](https://www.red-
 
 ### Types
 
-| Name | Summary |
-|---|---|
 | [AB](-a-b/index.md) | Add black stones to the board.`data class AB : `[`SgfProperty`](./index.md)`<List<Stone>>` |
 | [AE](-a-e/index.md) | Clear the given points on the board.`data class AE : `[`SgfProperty`](./index.md)`<List<Point>>` |
 | [AN](-a-n/index.md) | Provides the name of the person who made the annotations.`data class AN : `[`SgfProperty`](./index.md)`<SimpleText>` |
@@ -84,6 +82,5 @@ For more information, refer to the official [SGF documentation](https://www.red-
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [value](value.md) | the content of the property value, typed`open val value: T` |
+

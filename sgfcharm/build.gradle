@@ -61,11 +61,17 @@ android {
     }
 
     dokka {
-        outputFormat = 'gfm'
+        outputFormat = 'markdown'
         outputDirectory = "doc"
 
         configuration {
             includes = ['dokka.md']
+
+            sourceLink {
+                path = "sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm"
+                url = "https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm"
+                lineSuffix = "#L"
+            }
         }
     }
 

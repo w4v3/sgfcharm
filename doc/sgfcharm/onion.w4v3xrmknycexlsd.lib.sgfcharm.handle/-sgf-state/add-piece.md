@@ -2,7 +2,7 @@
 
 # addPiece
 
-`fun addPiece(piece: `[`Piece`](../-piece/index.md)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`fun addPiece(piece: `[`Piece`](../-piece/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfState.kt#L166)
 
-Adds the [piece](add-piece.md#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addPiece(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)/piece) to the current board.
+Adds the [piece](add-piece.md#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addPiece(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)/piece) to the current board, potentially replacing pieces at the same point.
 

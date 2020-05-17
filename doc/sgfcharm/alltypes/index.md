@@ -4,8 +4,18 @@ This is the SgfView library for rendering `sgf` files.
 
 ### All Types
 
-| Name | Summary |
-|---|---|
+|
+
+##### [onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.BoardConfig](../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-board-config/index.md)
+
+Communicates the current board dimensions.
+
+
+| (extensions in package onion.w4v3xrmknycexlsd.lib.sgfcharm)
+
+##### [android.os.Bundle](../onion.w4v3xrmknycexlsd.lib.sgfcharm/android.os.-bundle/index.md)
+
+
 | (extensions in package onion.w4v3xrmknycexlsd.lib.sgfcharm.view)
 
 ##### [android.graphics.Canvas](../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/android.graphics.-canvas/index.md)
@@ -27,7 +37,7 @@ A coordinate parser for the Go game.
 
 |
 
-##### [onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.GoHandler](../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-go-handler/index.md)
+##### [onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.GoNodeHandler](../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-go-node-handler/index.md)
 
 An [SgfNodeHandler](../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.md) for Go.
 
@@ -162,7 +172,7 @@ the processed data.
 
 ##### [onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser](../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-parser/index.md)
 
-Parser object for reading `sgf` strings into [SgfCollection](../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-collection.md)s.
+Parser for reading `sgf` strings into [SgfCollection](../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-collection.md)s.
 
 
 |
@@ -213,8 +223,7 @@ See [SgfNodeHandler.variationsMarker](../onion.w4v3xrmknycexlsd.lib.sgfcharm.han
 
 If you want to use the `sgf` parsing and handling architecture provided by this library but make
 your own view with fundamental changes, you can make it implement this interface so that it can be
-controlled by the [SgfController](../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.md). You do not need to actually implement anything, just override
-the properties here and they will be populated by the [SgfController](../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.md).
+controlled by the [SgfController](../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.md).
 
 
 |

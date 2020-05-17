@@ -2,18 +2,15 @@
 
 # BR
 
-`data class BR : `[`SgfProperty`](../index.md)`<SimpleText>`
+`data class BR : `[`SgfProperty`](../index.md)`<SimpleText>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L187)
 
 Provides the rank of the black player.
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | Provides the rank of the black player.`BR(value: SimpleText)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [value](value.md) | the content of the property value, typed`val value: SimpleText` |
+

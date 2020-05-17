@@ -2,18 +2,15 @@
 
 # AB
 
-`data class AB : `[`SgfProperty`](../index.md)`<List<Stone>>`
+`data class AB : `[`SgfProperty`](../index.md)`<List<Stone>>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L77)
 
 Add black stones to the board.
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | Add black stones to the board.`AB(value: List<Stone> = List(mutableListOf()))` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [value](value.md) | the content of the property value, typed`val value: List<Stone>` |
+

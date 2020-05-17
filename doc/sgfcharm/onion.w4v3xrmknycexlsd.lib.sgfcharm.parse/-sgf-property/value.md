@@ -2,7 +2,7 @@
 
 # value
 
-`open val value: T`
+`open val value: T` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L62)
 
 the content of the property value, typed
 

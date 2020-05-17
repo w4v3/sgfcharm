@@ -2,7 +2,7 @@
 
 # makeInfoText
 
-`abstract fun makeInfoText(nodeInfos: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`NodeInfo`](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/index.md)`>, lastMoveInfo: `[`MoveInfo`](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-move-info/index.md)`?): `[`CharSequence`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html)
+`abstract fun makeInfoText(nodeInfos: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`NodeInfo`](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/index.md)`>, lastMoveInfo: `[`MoveInfo`](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-move-info/index.md)`?): `[`CharSequence`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html) [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfDrawer.kt#L88)
 
 Formats the [nodeInfos](make-info-text.md#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfDrawer$makeInfoText(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)), onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)/nodeInfos) and [lastMoveInfo](make-info-text.md#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfDrawer$makeInfoText(kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)), onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)/lastMoveInfo) into a string.
 

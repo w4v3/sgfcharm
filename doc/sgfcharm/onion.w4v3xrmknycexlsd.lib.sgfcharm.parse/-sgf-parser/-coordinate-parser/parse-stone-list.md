@@ -2,7 +2,7 @@
 
 # parseStoneList
 
-`open fun parseStoneList(from: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Stone>`
+`open fun parseStoneList(from: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Stone>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L144)
 
 Parses this string into a list of [Stone](../../-sgf-type/-stone/index.md)s.
 
@@ -13,5 +13,5 @@ if the [Stone](../../-sgf-type/-stone/index.md) type is the same as [Point](../.
 For invalid input, an empty list should be returned.
 
 The existing implementation of this should be enough for most purposes; it requires only
-the implementation of [parsePointList](parse-point-list.md) and [castToStone](cast-to-stone.md).
+the implementation of [rangeTo](range-to.md) (or [parsePointList](parse-point-list.md)) and [pointToStone](point-to-stone.md).
 

@@ -2,7 +2,7 @@
 
 # SIBLINGS
 
-`SIBLINGS`
+`SIBLINGS` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfState.kt#L95)
 
 Show variations of current nodes.
 

@@ -2,7 +2,7 @@
 
 # point
 
-`open val point: Point`
+`open val point: Point` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L331)
 
 the [Point](../-point/index.md) where to place the stone
 

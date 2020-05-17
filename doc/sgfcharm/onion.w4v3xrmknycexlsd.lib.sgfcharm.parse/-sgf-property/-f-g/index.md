@@ -2,18 +2,15 @@
 
 # FG
 
-`data class FG : `[`SgfProperty`](../index.md)`<Compose<Number, SimpleText>>`
+`data class FG : `[`SgfProperty`](../index.md)`<Compose<Number, SimpleText>>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L259)
 
 The figure property is used to divide a game into different figures for printing.
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | The figure property is used to divide a game into different figures for printing.`FG(value: Compose<Number, SimpleText>)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Compose<Number, SimpleText>` |
+

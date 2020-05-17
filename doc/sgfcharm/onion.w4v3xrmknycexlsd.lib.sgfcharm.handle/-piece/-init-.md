@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Piece(color: Value, stone: Stone)`
+`Piece(color: Value, stone: Stone?)`
 
 A gaming piece.
 

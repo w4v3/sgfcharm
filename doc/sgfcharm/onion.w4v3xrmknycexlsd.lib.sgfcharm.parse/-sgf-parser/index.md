@@ -2,9 +2,9 @@
 
 # SgfParser
 
-`object SgfParser`
+`class SgfParser` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L59)
 
-Parser object for reading `sgf` strings into [SgfCollection](../-sgf-collection.md)s.
+Parser for reading `sgf` strings into [SgfCollection](../-sgf-collection.md)s.
 
 It is very lenient, in that it will not throw errors for incorrect input, but it will try to
 parse it as good as it can. Of course, that means that for incorrect input, the results might be
@@ -26,18 +26,17 @@ a possibility of implementing the [SgfParser.CoordinateParser](-coordinate-parse
 
 ### Types
 
-| Name | Summary |
-|---|---|
-| [CoordinateParser](-coordinate-parser/index.md) | The interface to implement for parsing of the property values for the game-specific [Point](../-sgf-type/-point/index.md), [Move](../-sgf-type/-move/index.md) and [Stone](../-sgf-type/-stone/index.md) types.`interface CoordinateParser<T : Point>` |
+| [CoordinateParser](-coordinate-parser/index.md) | The class to extend for parsing of the property values for the game-specific [Point](../-sgf-type/-point/index.md), [Move](../-sgf-type/-move/index.md) and [Stone](../-sgf-type/-stone/index.md) types.`abstract class CoordinateParser<T : Point>` |
+
+### Constructors
+
+| [&lt;init&gt;](-init-.md) | initializes the parser with the given [SgfParser.CoordinateParser](-coordinate-parser/index.md)`SgfParser(coordinateParser: CoordinateParser<*> = GoCoordinateParser)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [coordinateParser](coordinate-parser.md) | the [SgfParser.CoordinateParser](-coordinate-parser/index.md) to be used for game-specific parsing; default is [GoCoordinateParser](../-go-coordinate-parser/index.md)`var coordinateParser: CoordinateParser<*>` |
 
 ### Functions
 
-| Name | Summary |
-|---|---|
 | [parseSgfCollection](parse-sgf-collection.md) | Parses the [sgfString](parse-sgf-collection.md#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$parseSgfCollection(kotlin.String)/sgfString) representing an `sgf GameTree` into an [SgfCollection](../-sgf-collection.md) object.`fun parseSgfCollection(sgfString: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`SgfCollection`](../-sgf-collection.md) |
+

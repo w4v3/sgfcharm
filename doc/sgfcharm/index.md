@@ -14,8 +14,6 @@ your reliance on the different components of the API.
 
 ### Packages
 
-| Name | Summary |
-|---|---|
 | [onion.w4v3xrmknycexlsd.lib.sgfcharm](onion.w4v3xrmknycexlsd.lib.sgfcharm/index.md) |  |
 | [onion.w4v3xrmknycexlsd.lib.sgfcharm.handle](onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/index.md) | This package may be seen as an extension to the [SgfController](onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.md), which makes use of these components: |
 | [onion.w4v3xrmknycexlsd.lib.sgfcharm.parse](onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/index.md) | This package contains the `sgf` parser and the library data models: |

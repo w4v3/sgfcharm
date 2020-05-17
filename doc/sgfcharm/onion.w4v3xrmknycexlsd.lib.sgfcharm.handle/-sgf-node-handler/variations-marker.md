@@ -2,7 +2,7 @@
 
 # variationsMarker
 
-`var variationsMarker: `[`SgfState`](../-sgf-state/index.md)`.(`[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Move?>) -> `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Markup`](../-markup/index.md)`>`
+`var variationsMarker: `[`SgfState`](../-sgf-state/index.md)`.(`[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Move?>) -> `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Markup`](../-markup/index.md)`>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfNodeHandler.kt#L255)
 
 receives a list of variations given as `[SgfType.Move]?`s, where each
 entry corresponds to one variation `GameTree` in the order they appear in the `sgf` file.
@@ -10,7 +10,7 @@ The respective entry is the first move in the first node of the variation, or `n
 no move in that node. The lambda returns a list of [Markup](../-markup/index.md) representing the board markup to apply
 for each variation.
 
-By default, this is [GoHandler.variationMarker](../-go-handler/variation-marker.md).
+By default, this is [GoNodeHandler.variationMarker](../-go-node-handler/variation-marker.md).
 
 The different types of properties are treated in different ways:
 
@@ -34,7 +34,7 @@ for each variation.
 
 
 
-By default, this is [GoHandler.variationMarker](../-go-handler/variation-marker.md).
+By default, this is [GoNodeHandler.variationMarker](../-go-node-handler/variation-marker.md).
 
 
 

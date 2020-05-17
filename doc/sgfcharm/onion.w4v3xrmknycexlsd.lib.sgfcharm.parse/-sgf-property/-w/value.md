@@ -2,7 +2,7 @@
 
 # value
 
-`val value: Move`
+`val value: Move` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L74)
 
 the content of the property value, typed
 

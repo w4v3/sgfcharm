@@ -2,7 +2,7 @@
 
 # first
 
-`val first: S`
+`val first: S` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L419)
 
 the first component
 

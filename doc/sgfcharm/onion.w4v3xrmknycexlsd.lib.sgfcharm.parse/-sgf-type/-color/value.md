@@ -2,7 +2,7 @@
 
 # value
 
-`val value: Value`
+`val value: Value` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L363)
 
 the [Color.Value](-value/index.md) value contained
 

@@ -2,19 +2,16 @@
 
 # Piece
 
-`data class Piece : `[`SgfData`](../-sgf-data.md)
+`data class Piece : `[`SgfData`](../-sgf-data.md) [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfData.kt#L41)
 
 A gaming piece.
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
-| [&lt;init&gt;](-init-.md) | A gaming piece.`Piece(color: Value, stone: Stone)` |
+| [&lt;init&gt;](-init-.md) | A gaming piece.`Piece(color: Value, stone: Stone?)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [color](color.md) | the color of this piece`val color: Value` |
-| [stone](stone.md) | the [Stone](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-stone/index.md) of this piece`val stone: Stone` |
+| [stone](stone.md) | the [Stone](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-stone/index.md) of this piece, or `null` to indicate a move without a stone`val stone: Stone?` |
+

@@ -2,7 +2,7 @@
 
 # customPropertyHandler
 
-`var customPropertyHandler: `[`SgfState`](../-sgf-state/index.md)`.(`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`var customPropertyHandler: `[`SgfState`](../-sgf-state/index.md)`.(`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfNodeHandler.kt#L252)
 
 receives the identifier and value of a custom property (see
 [SgfProperty.CUSTOM](../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-c-u-s-t-o-m/index.md)) along with the current [SgfState](../-sgf-state/index.md). You are free to do with it whatever

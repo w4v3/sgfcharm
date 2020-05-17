@@ -2,18 +2,15 @@
 
 # Number
 
-`data class Number : `[`SgfType`](../index.md)
+`data class Number : `[`SgfType`](../index.md) [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L379)
 
 `Number` type in `sgf` holding integer values.
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | `Number` type in `sgf` holding integer values.`Number(number: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [number](number.md) | the integer value contained`val number: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+

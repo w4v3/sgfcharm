@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`XYMove(x: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, y: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)``XYMove(point: XYPoint)`
+`XYMove(x: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, y: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)``XYMove(point: XYPoint?)`
 
 This is analogous to [XYPoint](../-x-y-point/index.md).
 

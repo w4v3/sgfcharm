@@ -201,8 +201,8 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
     /**
      * Draws the view.
      *
-     * First, it draws the grid representing the board, then the [pieces] and [markups] using the
-     * [SgfDrawer], then undo and redo buttons, and finally, the text obtained from the [nodeInfos]
+     * First, it draws the grid representing the board, then the [Piece] and [Markup] data using the
+     * [SgfDrawer], then undo and redo buttons, and finally, the text obtained from the [NodeInfo] data
      * using [SgfDrawer.makeInfoText].
      */
     override fun onDraw(canvas: Canvas?) {
@@ -535,7 +535,7 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
 
     /**
      * Categorizes touch events (`ACTION_UP` only) into moves carried out, undo button and redo button,
-     * and triggers the corresponding event of the [inputListener].
+     * and triggers the corresponding event of the registered [SgfInputListener].
      */
     @SuppressLint("ClickableViewAccessibility")
     public override fun onTouchEvent(event: MotionEvent?): Boolean {

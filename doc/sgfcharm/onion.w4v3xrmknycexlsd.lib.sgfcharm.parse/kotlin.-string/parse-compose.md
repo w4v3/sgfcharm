@@ -2,7 +2,7 @@
 
 # parseCompose
 
-`fun <S : `[`SgfType`](../-sgf-type/index.md)`, T : `[`SgfType`](../-sgf-type/index.md)`> `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.parseCompose(parseFst: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.() -> S?, parseSnd: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.() -> T?): Compose<S, T>?`
+`fun <S : `[`SgfType`](../-sgf-type/index.md)`, T : `[`SgfType`](../-sgf-type/index.md)`> `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.parseCompose(parseFst: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.() -> S?, parseSnd: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.() -> T?): Compose<S, T>?` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L387)
 
 Parses this string representing an [Compose](../-sgf-type/-compose/index.md) property value.
 

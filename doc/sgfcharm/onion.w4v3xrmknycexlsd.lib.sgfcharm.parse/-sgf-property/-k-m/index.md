@@ -2,18 +2,15 @@
 
 # KM
 
-`data class KM : `[`SgfProperty`](../index.md)`<Real>`
+`data class KM : `[`SgfProperty`](../index.md)`<Real>` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L273)
 
 Defines the komi.
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | Defines the komi.`KM(value: Real)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [value](value.md) | the content of the property value, typed`val value: Real` |
+

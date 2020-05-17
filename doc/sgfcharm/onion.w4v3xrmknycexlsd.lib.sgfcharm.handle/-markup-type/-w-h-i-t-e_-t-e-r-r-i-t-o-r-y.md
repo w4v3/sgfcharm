@@ -2,7 +2,7 @@
 
 # WHITE_TERRITORY
 
-`WHITE_TERRITORY`
+`WHITE_TERRITORY` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfData.kt#L109)
 
 Marks white territory (Go).
 

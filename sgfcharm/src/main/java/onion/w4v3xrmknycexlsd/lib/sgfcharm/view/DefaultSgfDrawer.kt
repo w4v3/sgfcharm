@@ -27,7 +27,7 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
 /**
  * Default implementation of the [SgfDrawer] interface, used by [GoSgfView].
  *
- * It only provides the handling of the [GoSgfView.nodeInfos] via [makeInfoText], but does not
+ * It only provides the handling of [NodeInfo]s via [makeInfoText], but does not
  * influence the [GoSgfView] otherwise.
  */
 class DefaultSgfDrawer : SgfDrawer {

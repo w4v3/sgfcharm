@@ -2,7 +2,7 @@
 
 # value
 
-`val value: SimpleText`
+`val value: SimpleText` [(source)](https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfTree.kt#L168)
 
 the content of the property value, typed
 

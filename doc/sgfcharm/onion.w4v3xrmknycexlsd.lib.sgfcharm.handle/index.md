@@ -11,9 +11,8 @@ each node of the [SgfTree](../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tre
 
 ### Types
 
-| Name | Summary |
-|---|---|
-| [GoHandler](-go-handler/index.md) | An [SgfNodeHandler](-sgf-node-handler/index.md) for Go.`object GoHandler` |
+| [BoardConfig](-board-config/index.md) | Communicates the current board dimensions.`data class BoardConfig : `[`SgfData`](-sgf-data.md) |
+| [GoNodeHandler](-go-node-handler/index.md) | An [SgfNodeHandler](-sgf-node-handler/index.md) for Go.`object GoNodeHandler` |
 | [Markup](-markup/index.md) | Markup of nodes on the board.`data class Markup : `[`SgfData`](-sgf-data.md) |
 | [MarkupType](-markup-type/index.md) | The possible values for board Markup.`enum class MarkupType` |
 | [MoveInfo](-move-info/index.md) | Information about the last move played.`data class MoveInfo : `[`SgfData`](-sgf-data.md) |
@@ -25,3 +24,4 @@ each node of the [SgfTree](../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tre
 | [SgfNodeHandler](-sgf-node-handler/index.md) | This class processes [SgfNode](../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-node.md)s given the current [SgfState](-sgf-state/index.md) and modifies that state to include the processed data.`class SgfNodeHandler` |
 | [SgfState](-sgf-state/index.md) | This class holds state relevant to the [GoSgfView](../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.md).`class SgfState` |
 | [SgfVariationsMarker](-sgf-variations-marker.md) | See [SgfNodeHandler.variationsMarker](-sgf-node-handler/variations-marker.md).`typealias SgfVariationsMarker = (`[`SgfState`](-sgf-state/index.md)`, `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<Move?>) -> `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Markup`](-markup/index.md)`>` |
+
