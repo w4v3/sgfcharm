@@ -38,28 +38,24 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView
  */
 @Status.Impl
 class SgfState {
+    // all the state bundled together
+    @Status.Impl
+    internal val data: List<SgfData>
+        get() = currentPieces + nodeInfo + markup + variationMarkup +
+                (inherited.lastOrNull() ?: emptyList()) +
+                BoardConfig(numCols, numRows) +
+                (lastMoveInfo?.let { listOf(it) } ?: emptyList())
+
     // this is a list containing for each node the incremental change of pieces on the board,
     // given as a pair of Change and the piece to be added or removed
     // only represents the current path in the tree
     private val incrementalPieces: MutableList<MutableList<Pair<Change, Piece>>> = mutableListOf()
 
-    // the [incrementalMoves] are transformed into the list of actual pieces
-    // later occurrences replace earlier ones
-    public val currentPieces: List<Piece>
-        get() =
-            incrementalPieces
-                .asSequence()
-                .flatten() // in which node the move was made does not matter
-                .let { flattenedPieces ->
-                    flattenedPieces.distinct()
-                        .map { move -> // for every unique move, find the last occurrence
-                            flattenedPieces
-                                .findLast { it.second == move.second }
-                        }
-                }
-                .filter { it?.first == Change.PLUS } // only include those with PLUS
-                .mapNotNull { it?.second }
-                .toList()
+    // changes to [incrementalPieces] and undoing change the current board, represented here:
+    private val _currentPieces = mutableListOf<Piece>()
+
+    @Status.Beta
+    public val currentPieces: List<Piece> = _currentPieces
 
     /** An incremental change to the board. */
     private enum class Change {
@@ -81,8 +77,12 @@ class SgfState {
     // for variation display
     @Status.Impl
     internal val variationMarkup: MutableList<Markup> = mutableListOf()
+
+    @Status.Beta
     public var showVariations: Boolean = true
         internal set
+
+    @Status.Beta
     public var variationMode: VariationMode = VariationMode.SUCCESSORS
         internal set
 
@@ -96,15 +96,21 @@ class SgfState {
     }
 
     // root properties
+    @Status.Beta
     public var numRows: Int = 19
         internal set
+
+    @Status.Beta
     public var numCols: Int = 19
         internal set
 
     // counters that are dragged along for undoing
     // only the last non empty one is transmitted
     private val moveInfo: MutableList<MoveInfo?> = mutableListOf()
-    public val lastMoveInfo: MoveInfo? get() = moveInfo.findLast { it != null }
+
+    @Status.Beta
+    public val lastMoveInfo: MoveInfo?
+        get() = moveInfo.findLast { it != null }
 
     @Status.Impl
     internal var colorJustSet: SgfType.Color.Value? = null
@@ -115,6 +121,12 @@ class SgfState {
 
     @Status.Impl
     internal var moveNumberJustSet: Int? = null
+        set(value) {
+            field = value
+            value?.let { // in case this came after a move property
+                moveInfo[moveInfo.lastIndex]?.moveNumber = it
+            }
+        }
 
     // for inherited properties
     @Status.Impl
@@ -136,29 +148,48 @@ class SgfState {
     // this is required to get the text information and color etc. back
     @Status.Impl
     internal fun stepBack() = repeat(2) {
-        incrementalPieces.removeAt(incrementalPieces.lastIndex)
+        // this must be traversed in reverse order because during insertion, PLUS -> MINUS leaves
+        // the piece gone and both changes inserted, while MINUS -> PLUS leads to insertion of PLUS only
+        incrementalPieces.removeAt(incrementalPieces.lastIndex).reversed().map {
+            when (it.first) {
+                Change.PLUS -> _currentPieces.remove(it.second)
+                Change.MINUS -> _currentPieces.add(it.second)
+            }
+        }
         moveInfo.removeAt(moveInfo.lastIndex)
         inherited.removeAt(inherited.lastIndex)
     }
 
     // for manipulation by custom handlers
-    /** Adds the [piece] to the current board. */
-    public fun addPiece(piece: Piece): Boolean =
+    /** Adds the [piece] to the current board, potentially replacing pieces at the same point. */
+    @Status.Beta
+    public fun addPiece(piece: Piece) {
         incrementalPieces.last().add(Change.PLUS to piece)
+        // other pieces at the same position must be replaced in [currentPieces], otherwise
+        // capture calculations would be inaccurate
+        removePieces(_currentPieces.filter { it.stone?.point == piece.stone?.point })
+        _currentPieces.add(piece)
+    }
 
     @Status.Impl
-    internal fun addPieces(pieces: List<Piece>) =
-        incrementalPieces.last().addAll(pieces.map { Change.PLUS to it })
+    internal fun addPieces(pieces: List<Piece>) = pieces.map { addPiece(it) }
 
     /** Removes the [piece] from the current board. */
-    public fun removePiece(piece: Piece): Boolean =
-        incrementalPieces.last().add(Change.MINUS to piece)
+    @Status.Beta
+    public fun removePiece(piece: Piece) {
+        // adds Change.MINUS piece only if the piece is currently on the board
+        // to accurately reflect the change in [incrementalPieces]
+        if (piece in _currentPieces) {
+            incrementalPieces.last().add(Change.MINUS to piece)
+            _currentPieces.remove(piece)
+        }
+    }
 
     @Status.Impl
-    internal fun removePieces(pieces: List<Piece>) =
-        incrementalPieces.last().addAll(pieces.map { Change.MINUS to it })
+    internal fun removePieces(pieces: List<Piece>) = pieces.map { removePiece(it) }
 
     /** Adds the [markups] to the current board. */
+    @Status.Beta
     public fun addMarkups(markups: List<Markup>): Boolean =
         markup.addAll(markups)
 
@@ -170,10 +201,12 @@ class SgfState {
      * Adds the [inheritMarkups] to the current board.
      * They will stay on the board until that setting is cleared.
      * */
+    @Status.Beta
     public fun addInherits(inheritMarkups: List<Markup>): Boolean =
         inherited.last().addAll(inheritMarkups)
 
     /** Adds the [info] to the [NodeInfo] communicated to the [GoSgfView]. */
+    @Status.Beta
     public fun addNodeInfo(info: NodeInfo): Boolean =
         nodeInfo.add(info)
 

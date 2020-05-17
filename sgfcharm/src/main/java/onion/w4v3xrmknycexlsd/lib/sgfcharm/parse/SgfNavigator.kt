@@ -33,8 +33,8 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
  * @constructor creates the [SgfTree] from the given string and initializes the navigator instance on it
  */
 @Status.Api
-class SgfNavigator(sgfString: String) {
-    private var currentTree: SgfTree? = SgfParser.parseSgfCollection(sgfString).getOrNull(0)
+class SgfNavigator(internal val sgfString: String) {
+    private var currentTree: SgfTree? = SgfParser().parseSgfCollection(sgfString).getOrNull(0)
     private var currentNodeIndex: Int = -1
 
     private var userBranch: Boolean = false // is the user currently branching off on their own?
@@ -89,10 +89,13 @@ class SgfNavigator(sgfString: String) {
      *
      * If [variationNumber] is not `null`, the navigator is forced to move to the variation with
      * that index if it exists. This is useful for letting the user navigate to variations without
-     * moves in their root nodes, for example by displaying markup at custom places on the board
+     * moves in their root nodes, for example by displaying markup at custom places on the board.
      */
     @Status.Api
-    public fun makeMove(move: SgfProperty<SgfType.Move>, variationNumber: Int? = null): SgfNode? {
+    public fun makeMove(
+        move: SgfProperty<SgfType.Move>,
+        variationNumber: Int? = null
+    ): SgfNode? {
         // we have to distinguish between the case where the user is playing on their own
         // (userBranch == true) and the one where a variation from the tree might have been selected
         if (!userBranch) {
@@ -109,11 +112,13 @@ class SgfNavigator(sgfString: String) {
                         currentNodeIndex = 0
                     }
                 } else { // no shown variation, but if not showing variations the user might have found one anyway
-                    val containingChildTree = currentTree?.children
-                        ?.find { it.nodes.getOrNull(0)?.contains(move) == true }
-                    if (containingChildTree != null) { // if successful, descent
-                        currentTree = containingChildTree
-                        currentNodeIndex = 0
+                    if (currentNodeIndex == currentTree?.nodes?.lastIndex) { // only makes sense if this is the last node
+                        val containingChildTree = currentTree?.children
+                            ?.find { it.nodes.getOrNull(0)?.contains(move) == true }
+                        if (containingChildTree != null) { // if successful, descent
+                            currentTree = containingChildTree
+                            currentNodeIndex = 0
+                        } else createUserBranch(move)
                     } else createUserBranch(move)
                 }
             }
@@ -174,25 +179,65 @@ class SgfNavigator(sgfString: String) {
      */
     @Status.Api
     public fun variations(successors: Boolean = true): List<SgfType.Move?> =
-        if (successors) {
-            // only makes sense if this is the last node of the current sequence
-            // and if there are children
-            takeIf { currentTree?.nodes?.getOrNull(currentNodeIndex + 1) == null }?.let {
-                currentTree?.children
-                    ?.map { child ->
-                        (child.nodes.getOrNull(0)
-                            ?.find { it is SgfProperty.B || it is SgfProperty.W }?.value as? SgfType.Move)
-                    }
-            } ?: emptyList()
-        } else {
-            // this must be the first node of the sequence
-            // and there must be other children in the parent
-            takeIf { currentNodeIndex == 0 }?.let {
-                currentTree?.parent?.children
-                    ?.map { child ->
-                        (child.nodes.getOrNull(0)
-                            ?.find { it is SgfProperty.B || it is SgfProperty.W }?.value as? SgfType.Move)
-                    }
-            } ?: emptyList()
+        when {
+            successors -> {
+                // only makes sense if this is the last node of the current sequence
+                // and if there are children
+                takeIf { currentTree?.nodes?.getOrNull(currentNodeIndex + 1) == null }?.let {
+                    currentTree?.children
+                        ?.map { child ->
+                            (child.nodes.getOrNull(0)
+                                ?.find { it is SgfProperty.B || it is SgfProperty.W }?.value as? SgfType.Move)
+                        }
+                } ?: emptyList()
+            }
+            userBranch -> emptyList() // if siblings mode and we have branched off, no variations should be shown
+            else -> {
+                // this must be the first node of the sequence
+                // and there must be other children in the parent
+                takeIf { currentNodeIndex == 0 }?.let {
+                    currentTree?.parent?.children
+                        ?.map { child ->
+                            (child.nodes.getOrNull(0)
+                                ?.find { it is SgfProperty.B || it is SgfProperty.W }?.value as? SgfType.Move)
+                        }
+                } ?: emptyList()
+            }
         }
+
+    // get current position as array where each element is the index of the subtree taken from the
+    // beginning, and the last element is the index of the current node
+    @Status.Impl
+    internal val currentIndices: IntArray
+        get() {
+            // user branch is ignored
+            var traverseTree = if (userBranch) currentTree?.parent else currentTree
+            val index =
+                mutableListOf(
+                    if (userBranch) currentTree?.parent?.nodes?.lastIndex ?: 0 else currentNodeIndex
+                )
+
+            while (traverseTree != null) {
+                traverseTree.parent?.children?.indexOf(traverseTree)?.let { index.add(it) }
+                traverseTree = traverseTree.parent
+            }
+
+            return index.toIntArray()
+        }
+
+    // reverse operation of [currentIndices]
+    @Status.Impl
+    internal fun goToIndices(indices: IntArray): List<SgfNode> {
+        val nodes = mutableListOf<SgfNode>()
+
+        for (i in indices.lastIndex downTo 1) {
+            currentTree?.nodes?.let { nodes.addAll(it) }
+            currentTree = currentTree?.children?.getOrNull(indices[i])
+        }
+
+        currentTree?.nodes?.take(indices[0] + 1)?.let { nodes.addAll(it) }
+        currentNodeIndex = indices[0]
+
+        return nodes
+    }
 }

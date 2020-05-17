@@ -30,7 +30,7 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.not
  * that might have been printed there already (i.e., those with moves).
  */
 @Status.Beta
-object GoHandler {
+object GoNodeHandler {
     private var board = listOf<Piece>()
     private val alreadyChecked = mutableListOf<Piece>()
 
@@ -43,16 +43,22 @@ object GoHandler {
         colorValue: SgfType.Color.Value,
         move: SgfType.Move
     ): MoveInfo? {
-
+        if (move !is SgfType.XYMove) return null
+        val point = move.point
         // first of all, SGF has this rule where e.g. B[tt] means pass for boards <= 19x19
         // which cannot be checked by the parser as it doesn't know about board sizes
         // so we do it here
-        if (numCols <= 19 && numRows <= 19 && move == SgfType.XYMove(20, 20)) return null
-        if (move !is SgfType.XYMove) return null
+        // if point is null this also means pass
+        if ((numCols <= 19 && numRows <= 19 && move == SgfType.XYMove(20, 20))
+            || point == null
+        ) return MoveInfo(
+            (lastMoveInfo?.moveNumber ?: 0) + 1,
+            Piece(colorValue, null),
+            lastMoveInfo?.prisoners ?: (0 to 0)
+        )
 
         // we need not check if there was a stone before; the move is always executed
         // so we carry it out first:
-        val point = move.point
         addPiece(Piece(colorValue, SgfType.XYStone(point)))
 
         // now we find the stones of the other player that have lost their liberties due to that point
@@ -178,7 +184,7 @@ object GoHandler {
         // line, equally spaced apart if possible
         val labeledVariations = variations
             .mapIndexed { idx, move ->
-                ('A'.toInt() + idx).toChar() to move
+                ('A'.toInt() + idx).toChar() to if (move?.point != null) move else null // pass nodes are marked like other non-move nodes
             }
 
         val variationMarkup = // move properties can be added directly

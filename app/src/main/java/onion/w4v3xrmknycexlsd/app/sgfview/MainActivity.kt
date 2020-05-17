@@ -21,19 +21,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.getSgfController
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.putSgfController
+
+const val SGFSAVE = "sgf"
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var controller: SgfController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val controller = SgfController()
-
-        controller.load("(;SZ[3])").into(sgfview)
+        controller =
+            savedInstanceState?.getSgfController(SGFSAVE) ?: SgfController().load("(;SZ[3])")
+        controller.into(sgfview)
 
         website_button.setOnClickListener { controller.load(resources.getString(R.string.sgf_website_example)) }
         alphago_button.setOnClickListener { controller.load(resources.getString(R.string.lee_sedol_vs_alpha_go)) }
         shuusaku_button.setOnClickListener { controller.load(resources.getString(R.string.ear_reddening_game)) }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSgfController(SGFSAVE, controller)
     }
 }

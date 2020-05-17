@@ -36,9 +36,9 @@ sealed class SgfData
  * A gaming piece.
  *
  * @property[color] the color of this piece
- * @property[stone] the [Stone] of this piece
+ * @property[stone] the [Stone] of this piece, or `null` to indicate a move without a stone
  */
-data class Piece(val color: Color.Value, val stone: Stone) : SgfData()
+data class Piece(val color: Color.Value, val stone: Stone?) : SgfData()
 
 /**
  * Information about the last move played.
@@ -120,3 +120,11 @@ enum class MarkupType {
  * @property[message] the variable part of the info
  */
 data class NodeInfo(val key: String? = null, val message: String? = null) : SgfData()
+
+/**
+ * Communicates the current board dimensions.
+ *
+ * @property[columns] number of columns on the board
+ * @property[rows] number of rows on the board
+ */
+data class BoardConfig(val columns: Int, val rows: Int) : SgfData()

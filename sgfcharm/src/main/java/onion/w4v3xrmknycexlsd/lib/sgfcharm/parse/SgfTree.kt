@@ -319,7 +319,7 @@ sealed class SgfType {
      *
      * @property[point] the target [Point] of the move
      */
-    data class XYMove(override val point: XYPoint) : Move(point) {
+    data class XYMove(override val point: XYPoint?) : Move(point) {
         constructor(x: Int, y: Int) : this(XYPoint(x, y))
     }
 

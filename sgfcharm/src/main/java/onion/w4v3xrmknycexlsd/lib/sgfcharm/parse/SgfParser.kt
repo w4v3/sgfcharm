@@ -30,7 +30,7 @@ import kotlin.collections.List as KList
 // everything in this file is public; the modifier is left out for readability
 
 /**
- * Parser object for reading `sgf` strings into [SgfCollection]s.
+ * Parser for reading `sgf` strings into [SgfCollection]s.
  *
  * It is very lenient, in that it will not throw errors for incorrect input, but it will try to
  * parse it as good as it can. Of course, that means that for incorrect input, the results might be
@@ -52,9 +52,11 @@ import kotlin.collections.List as KList
  *
  * @property[coordinateParser] the [SgfParser.CoordinateParser] to be used for game-specific parsing;
  * default is [GoCoordinateParser]
+ *
+ * @constructor initializes the parser with the given [SgfParser.CoordinateParser]
  */
 @Status.Api
-object SgfParser {
+class SgfParser(public var coordinateParser: CoordinateParser<*> = GoCoordinateParser) {
     private enum class ParseState {
         EXPECT_ANYTHING,
         PARSE_PROPIDENT,
@@ -64,35 +66,40 @@ object SgfParser {
 
     private var state: ParseState = ParseState.EXPECT_ANYTHING
 
-    public var coordinateParser: CoordinateParser<*> = GoCoordinateParser
-
     /**
-     * The interface to implement for parsing of the property values for the game-specific
+     * The class to extend for parsing of the property values for the game-specific
      * [Point], [Move] and [Stone] types.
      *
      * For a specific game, you need to implement [parsePoint], [parseMove] and [parseStone], as
      * well as [rangeTo] for the `Point` type to allow parsing compressed point lists. In addition,
-     * if the `Stone` and the `Point` type for the game are the same, you need to override [castToStone]
-     * to allow compressed lists for the `Stone` type as well.
-     *
-     * Alternatively, you can implement [parsePointList] and [parseStoneList] yourself if you need
-     * more control.
+     * if the `Stone` and the `Point` type for the game are the same, you need to override the
+     * [pointToStone] property to specify how a point should be converted to a stone for allowing
+     * compressed lists for the `Stone` type as well.
      *
      * @param[T] the type of [Point]
+     * @property[pointToStone] Casts the given [Point] to the [Stone] type, or `null` if that's impossible.
+     * This should only be overriden by games in which [Point] and [Stone] are the same.
+     * In this case, it should cast any castable [Point] to the equivalent [Stone] and everything else
+     * to `null`. Typically, this is just the constructor of the [Stone] type you are using.
+     * The only purpose of this function is to enable compressed point lists for stones.
      */
     @Status.Beta
-    public interface CoordinateParser<T : Point> {
+    public abstract class CoordinateParser<T : Point>(open val pointToStone: (T) -> Stone? = { _ -> null }) {
         /** Parses the [from] string representing an `sgf Point` into an [Point] object. */
         @Status.Beta
-        public fun parsePoint(from: String): T?
+        public abstract fun parsePoint(from: String): T?
 
         /** Parses the [from] string representing an `sgf Stone` into an [Stone] object. */
         @Status.Beta
-        public fun parseStone(from: String): Stone?
+        public abstract fun parseStone(from: String): Stone?
 
-        /** Parses the [from] string representing an `sgf Move` into an [Move] object. */
+        /**
+         * Parses the [from] string representing an `sgf Move` into an [Move] object.
+         *
+         * Should return `null` if the move is a pass or input is invalid (which will be treated as pass).
+         */
         @Status.Beta
-        public fun parseMove(from: String): Move?
+        public abstract fun parseMove(from: String): Move
 
         /**
          * Returns a list of [Point]s contained in a rectangle between [this] upper left
@@ -100,18 +107,7 @@ object SgfParser {
          * empty, including the case where the other point lies to the left or above this point.
          */
         @Status.Beta
-        public operator fun T.rangeTo(other: T): KList<T>
-
-        /**
-         * Casts the given [Point] to the [Stone] type, or `null` if that's impossible.
-         *
-         * This should only be overriden by games in which [Point] and [Stone] are
-         * the same. In this case, it should cast any [Stone] to the equivalent [Point]
-         * and everything else to `null`. The only purpose of this function is to enable compressed
-         * point lists for stones as well.
-         */
-        @Status.Beta
-        public fun castToStone(value: T): Stone? = null
+        public abstract operator fun T.rangeTo(other: T): KList<T>
 
         /**
          * Parses this string into a list of [Point]s.
@@ -123,8 +119,8 @@ object SgfParser {
          * The existing implementation of this should be enough for most purposes; it requires only
          * the implementation of [rangeTo].
          */
-        @Status.Beta
-        public fun parsePointList(from: String): KList<T> =
+        @Status.Util
+        public open fun parsePointList(from: String): KList<T> =
             if (from.contains(':')) { // compressed list
                 val (fst, snd) = from.split(':').map { parsePoint(it) }
                 fst?.let { snd?.let { (fst..snd) } } ?: emptyList()
@@ -142,13 +138,13 @@ object SgfParser {
          * For invalid input, an empty list should be returned.
          *
          * The existing implementation of this should be enough for most purposes; it requires only
-         * the implementation of [parsePointList] and [castToStone].
+         * the implementation of [rangeTo] (or [parsePointList]) and [pointToStone].
          */
-        @Status.Beta
-        public fun parseStoneList(from: String): KList<Stone> =
+        @Status.Util
+        public open fun parseStoneList(from: String): KList<Stone> =
             if (from.contains(':')) { // compressed list
                 val (fst, snd) = from.split(':').map { parsePoint(it) }
-                fst?.let { snd?.let { (fst..snd).mapNotNull { castToStone(it) } } } ?: emptyList()
+                fst?.let { snd?.let { (fst..snd).mapNotNull { pointToStone(it) } } } ?: emptyList()
             } else {
                 (parseStone(from))?.let { listOf(it) } ?: emptyList()
             }
@@ -239,10 +235,10 @@ object SgfParser {
         property: SgfProperty<SgfType>?
     ): SgfProperty<SgfType>? {
         return when (propIdent) {
-            "B" -> (coordinateParser.parseMove(propValue))?.let { B(it) }
+            "B" -> B((coordinateParser.parseMove(propValue)))
             "KO" -> KO
             "MN" -> propValue.parseNumber()?.let { MN(it) }
-            "W" -> (coordinateParser.parseMove(propValue))?.let { W(it) }
+            "W" -> W((coordinateParser.parseMove(propValue)))
             "AB" -> (property as? AB ?: AB())
                 .apply { value.elements.addAll(coordinateParser.parseStoneList(propValue)) }
             "AE" -> (property as? AE ?: AE())

@@ -8,7 +8,7 @@ property from the `SGF` to a proper type, allowing type-safe and idiomatic handl
 
 Only the `FF[4]` standard of the `SGF` specification (i.e., the current one) is implemented so far,
 and the `GoSgfView` widget can only handle `SGF` files for the Go game. However, the library was
-developed to be as widely applicable to the `SGF` format as possible, so that it should be easy
+developed to be as widely applicable to the `SGF` specification as possible, so that it should be easy
 to use it to define views for other games, as well. See [Customization](#customization) for details.
 
 [Installation](#installation)  
@@ -17,6 +17,8 @@ to use it to define views for other games, as well. See [Customization](#customi
 [Release notes](#release-notes)  
 [Next up](#next-up)  
 [License](#license)
+
+[Documentation](doc/sgfcharm/index.md)
 
 ## Installation
 
@@ -59,6 +61,30 @@ first variation, if any. You can also interact freely with the board by placing 
 checks for captures, but it does not check for illegal moves. For example, placing a stone onto an
 existing one and suicide are both allowed. This is in accordance with the `SGF` specification of a
 `Move`, but I might change this behavior in the future (or at least provide an option to turn it off).
+
+The view does not retain its state upon configuration changes. Instead, you can put and get the state
+of the controller into the respective bundles using `Bundle.putSgfController` and `Bundle.getSgfController`,
+and load it into the view after retrieving it, like so:
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    lateinit var controller: SgfController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        controller =
+            savedInstanceState?.getSgfController("sgf") ?: SgfController().load(mySgfString)
+        controller.into(sgfview)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSgfController("sgf", controller)
+    }
+}
+```
+Note that this does not save stones placed by the user if they were not part of the `SGF` file.
 
 Have a look at the [app module](app) for a slightly more sophisticated example, or at the next section
 for an in-depth explanation of the available features.
@@ -188,19 +214,28 @@ In this case, you will have to make your own `View` and have it implement the `S
 A minimal implementation looks like this:
 ```kotlin
 class MySgfView(context: Context) : View(context), SgfView {
-    override var inputListener: SgfInputListener? = null
-    override var pieces: List<Piece> = listOf()
-    override var nodeInfos: List<NodeInfo> = listOf()
-    override var markups: List<Markup> = listOf()
-    override var lastMoveInfo: MoveInfo? = null
-    override var gridColumns: Int = 0
-    override var gridRows: Int = 0
+    private var inputListener: SgfInputListener? = null
+    
+    override fun registerInputListener(listener: InputListener) { inputListener = listener }
+
+    private var pieces: List<Piece> = listOf()
+    private var gridColumns: Int = 0
+    private var gridRows: Int = 0
+   
+    override fun onReceiveSgfData(data: List<SgfData>) {
+        pieces = data.filterIsInstance<Piece>()
+        data.find { it is BoardConfig }?.let { col, row ->
+            gridColumns = col
+            gridRows = row
+        }
+        invalidate()
+    }
 }
 ```
-You do not need to set the properties of the interface in any way; this is done by the `SgfController`.
-Your view only needs to implement the logic to display the information contained in those properties;
-have a close look at the documentation to find out about it. In particular, you need to call the
-`inputListener` when observing a touch event which is relevant to the navigation of the `SGF` file.
+You should call the `SgfInputListener` when observing a touch event which is relevant to the navigation
+of the `SGF` file. In `onReceiveSgfData`, you will probably want to separate the data by its type
+and save them to variables; in this case, only pieces and board dimensions were read, but more types
+are available; see [the documentation](doc/sgfcharm/onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.md).
 
 ### Implementing a different game
 
@@ -249,9 +284,9 @@ data class ChessMove(
 As you can see, we define a `ChessStone` type that extens `SgfType.Stone` and overrides its `point`
 property. A `ChessMove` then consists of a stone (with its current position) and a point where to move to.
 Now we can tell the `SgfParser` how to parse a property value that represents each of these types.
-This is done by implementing the `CoordinateParser` interface:
+This is done by extending the `CoordinateParser` class:
 ```kotlin
-class ChessCoordinateParser : SgfParser.CoordinateParser<SgfType.XYPoint> {
+class ChessCoordinateParser : SgfParser.CoordinateParser<SgfType.XYPoint>() {
     override fun parsePoint(from: String): SgfType.XYPoint? =
         GoCoordinateParser.parsePoint(from)
 
@@ -438,6 +473,17 @@ properties, though)
 
 ## Release notes
 
+### 2020-05-17 version 0.1.0
+
+Improved performance and UI—definitely usable by now. Changes:
+
+* implemented fully functional siblings variation mode
+* current board state is cached alongside the history, allowing both fast forward and backward navigation
+* save and restore possibility implemented for `SgfController`
+* board configuration changes within one `SGF` file are possible (although illegal in `SGF`)
+* scroll motions not intercepted any more
+* `GoSgfView` now tries to fill the requested width instead of the smaller dimension
+
 ### 2020-05-14 version 0.0.1
 
 Initial release! Not yet thoroughly tested, but working so far. Features:
@@ -445,12 +491,6 @@ Initial release! Not yet thoroughly tested, but working so far. Features:
 * a `GoSgfView` to display `SGF` files for the Go game
 * a highly customizable parsing library for `SGF` files
 * an `SgfView` interface, allowing custom drawing while taking advantage of the existing parsing and navigation facilities
-
-## Next up
-
-* [ ] save and restore the view state on configuration changes
-* [ ] cache the current board state and use coroutines for better performance
-* [ ] deal with changes of board size without glitching
 
 ## License
 

@@ -19,7 +19,10 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharm.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.text.Layout
@@ -34,7 +37,8 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.R
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
-import kotlin.math.*
+import kotlin.math.max
+import kotlin.math.round
 
 /**
  * Draws the Board together with undo/redo buttons and additional informational text. It's a
@@ -60,16 +64,56 @@ import kotlin.math.*
  * @property[markupColor] the color of the markup.
  * @property[showText] whether or not to display information text.
  */
-class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs),
+public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs),
     SgfView {
     // data properties
-    public override var pieces: List<Piece> = listOf()
-    public override var nodeInfos: List<NodeInfo> = listOf()
-    public override var markups: List<Markup> = listOf()
-    public override var lastMoveInfo: MoveInfo? = null
+    /** The current [Piece]s on the board. */
+    private var pieces: List<Piece> = listOf()
 
-    public override var gridColumns: Int = 19
-    public override var gridRows: Int = 19
+    /** The [NodeInfo]s from the current node. */
+    private var nodeInfos: List<NodeInfo> = listOf()
+
+    /** The current board [Markup]s. */
+    private var markups: List<Markup> = listOf()
+
+    /** The [MoveInfo] object from the last move. */
+    private var lastMoveInfo: MoveInfo? = null
+
+    /** The number of columns of the board.. */
+    private var gridColumns: Int = 19
+
+    /** The number of rows of the board. */
+    private var gridRows: Int = 19
+
+    override fun onReceiveSgfData(data: List<SgfData>) {
+        val tmpPieces = mutableListOf<Piece>()
+        val tmpNodeInfos = mutableListOf<NodeInfo>()
+        val tmpMarkups = mutableListOf<Markup>()
+        lastMoveInfo = null
+        val oldCols = gridColumns // saving for recalculating layout afterwards
+
+        for (d in data) {
+            when (d) {
+                is Piece -> tmpPieces.add(d)
+                is NodeInfo -> tmpNodeInfos.add(d)
+                is Markup -> tmpMarkups.add(d)
+                is MoveInfo -> lastMoveInfo = d
+                is BoardConfig -> d.let { gridColumns = it.columns; gridRows = it.rows }
+            }
+        }
+
+        pieces = tmpPieces
+        nodeInfos = tmpNodeInfos
+        markups = tmpMarkups
+
+        // adapt sizes if board spec has changed to prevent glitching
+        boardSize = (boardSize * oldCols * (gridColumns - 1)) / ((oldCols - 1) * gridColumns)
+        gridSep = boardSize / (gridColumns - 1)
+        boardPadding = gridSep / 2
+        pieceSize = gridSep * 0.45f
+
+        invalidate()
+    }
 
     // XML properties
     @Status.Api
@@ -127,7 +171,8 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
     private var boardPadding = 0 // additional padding
     private var pieceSize = 0f // radius of circle
     private var buttonSize = 0 // side length of button
-    private var buttonSep = 0 // space between the buttons as well as above and below them
+    private var aboveButtonSep = 0 // space between grid and buttons
+    private var belowButtonSep = 0 // space between buttons and text
     private lateinit var undoRect: Rect // rectangle representing the undo button
     private lateinit var redoRect: Rect // rectangle representing the redo button
     private var staticText: StaticLayout? = null // for multiline text
@@ -139,7 +184,13 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
      */
     @Status.Beta
     public var sgfDrawer: SgfDrawer = DefaultSgfDrawer()
-    public override var inputListener: SgfInputListener? = null
+
+    /** The [SgfInputListener] to trigger in response to touch events. */
+    private var inputListener: SgfInputListener? = null
+
+    override fun registerInputListener(listener: SgfInputListener) {
+        inputListener = listener
+    }
 
     init {
         setupAttributes(attrs)
@@ -157,7 +208,7 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        canvas?.apply {
+        canvas?.run {
             drawGrid()
             drawPieces()
             drawMarkup()
@@ -191,7 +242,7 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
     private fun Canvas.drawPieces() = pieces.map { drawPiece(it) }
 
     private fun Canvas.drawPiece(piece: Piece) {
-        val point = piece.stone.point
+        val point = piece.stone?.point
         if (point !is SgfType.XYPoint) return
 
         piecePaint.color = when (piece.color) {
@@ -269,12 +320,26 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
                         style = Paint.Style.FILL_AND_STROKE
                         strokeWidth = 0.05f * gridSep
                     })
-                MarkupType.LABEL -> drawText(
-                    markup.label ?: "",
-                    x - markup.label.width(paint) / 2,
-                    y + markup.label.height(paint) / 2,
-                    paint
-                )
+                MarkupType.LABEL -> {
+                    val wd = markup.label.width(paint)
+                    val ht = markup.label.height(paint)
+                    drawRect(
+                        x - wd / 2,
+                        y - ht / 2,
+                        x + wd / 2,
+                        y + ht / 2,
+                        varPaint.apply {
+                            color = this@GoSgfView.getBackgroundColor() ?: Color.WHITE
+                            style = Paint.Style.FILL_AND_STROKE
+                            strokeWidth = 0.05f * gridSep
+                        })
+                    drawText(
+                        markup.label ?: "",
+                        x - wd / 2,
+                        y + ht / 2,
+                        paint
+                    )
+                }
                 MarkupType.LINE -> drawLine(x, y, x2, y2, varPaint.apply {
                     strokeWidth = gridSep * 0.1f
                     style = Paint.Style.FILL
@@ -410,7 +475,7 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
 
         withTranslation(
             paddingLeft + boardPadding.toFloat(),
-            paddingTop + boardPadding.toFloat() + boardSize + buttonSep + buttonSize + buttonSep
+            paddingTop + boardPadding.toFloat() + boardSize + aboveButtonSep + buttonSize + belowButtonSep
         ) {
             staticText?.draw(this)
         }
@@ -419,17 +484,14 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
     }
 
     /**
-     * Measures the view by taking the minimum of the requested sizes, using this as the board width
-     * and then requesting a height, including the dimensions of the text currently displayed.
+     * Measures the view by using the requested with and then requesting a height,
+     * including the dimensions of the text currently displayed.
      */
     public override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         // we try to fit the view into the smaller one of the requested dimensions
-        val w = min(
-            MeasureSpec.getSize(widthMeasureSpec),
-            MeasureSpec.getSize(heightMeasureSpec)
-        )
+        val w = MeasureSpec.getSize(widthMeasureSpec)
         resetSizes(w)
 
         // we request the optimal height arising from the given width
@@ -446,11 +508,15 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
         boardPadding = gridSep / 2
         pieceSize = gridSep * 0.45f
 
-        buttonSize = boardSize / 8
-        buttonSep = max(gridSep / 2, buttonSize / 2)
+        buttonSize = w / 8 // should be invariant wrt col and row count
+        // ideally this is also invariant but stone size depends on col/row count, so we need to choose
+        // at least gridSep / 2 to avoid overlaps with stones
+        aboveButtonSep = max(gridSep / 2 * 11 / 10, buttonSize / 2)
+        val buttonSep = buttonSize / 2 // space between the buttons
+        belowButtonSep = buttonSep
         undoRect = Rect().apply {
             left += paddingLeft + boardPadding + (boardSize - buttonSep) / 2 - buttonSize
-            top += paddingTop + boardPadding + boardSize + buttonSep
+            top += paddingTop + boardPadding + boardSize + aboveButtonSep
             right = left + buttonSize
             bottom = top + buttonSize
         }
@@ -462,17 +528,18 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
         }
     }
 
-    private fun calculateHeight() = paddingTop + boardPadding + boardSize + buttonSep +
-            buttonSize + buttonSep + (if (showText) staticText?.height ?: 0 else 0) + paddingBottom
+    private fun calculateHeight() = paddingTop + boardPadding + boardSize + aboveButtonSep +
+            buttonSize + belowButtonSep + (if (showText) staticText?.height
+        ?: 0 else 0) + paddingBottom
 
 
     /**
-     * Categorizes touch events into moves carried out, undo button and redo button, and triggers
-     * the corresponding event of the [inputListener].
+     * Categorizes touch events (`ACTION_UP` only) into moves carried out, undo button and redo button,
+     * and triggers the corresponding event of the [inputListener].
      */
     @SuppressLint("ClickableViewAccessibility")
     public override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (event?.action == MotionEvent.ACTION_DOWN) {
+        if (event?.action == MotionEvent.ACTION_UP) {
             val x = getXCoordinateFromScreen(event.x)
             val y = getYCoordinateFromScreen(event.y)
 
@@ -483,7 +550,9 @@ class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
             } else if (undoRect.isIn(event.x, event.y)) {
                 inputListener?.onUndo()
             }
-        }
+
+            return true
+        } else if (event?.action == MotionEvent.ACTION_DOWN) return true
 
         return super.onTouchEvent(event)
     }

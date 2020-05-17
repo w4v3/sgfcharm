@@ -21,7 +21,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.text.SpannableStringBuilder
 import androidx.core.text.bold
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
 
@@ -63,10 +62,12 @@ class DefaultSgfDrawer : SgfDrawer {
     ): CharSequence =
         SpannableStringBuilder().apply {
             lastMoveInfo?.let {
+                it.lastPlaced.stone // pass move
+                    ?: bold { append("#${it.lastPlaced.color} #${it.moveNumber} pass\n") }
                 (it.lastPlaced.stone as? SgfType.XYStone)?.let { stone ->
                     bold { append("${it.lastPlaced.color} #${it.moveNumber} @ ${stone.point.x}-${stone.point.y}\n") }
-                    append("# prisoners black ${it.prisoners.first} white ${it.prisoners.second}\n\n")
                 }
+                append("# prisoners black ${it.prisoners.first} white ${it.prisoners.second}\n\n")
             }
 
             nodeInfos.map {

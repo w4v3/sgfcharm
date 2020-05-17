@@ -50,7 +50,10 @@ typealias SgfVariationsMarker = (SgfState, List<SgfType.Move?>) -> List<Markup>
  * it from the previous one. You also need to increase move count and prisoner counts in the [MoveInfo]
  * object you return, for which you may want to use the info provided by [SgfState.lastMoveInfo].
  *
- * By default, this is [GoHandler.moveHandler].
+ * In case of a pass, you should still return a [MoveInfo] instance, but with [Piece.stone] of [MoveInfo.lastPlaced]
+ * set to `null`.
+ *
+ * By default, this is [GoNodeHandler.moveHandler].
  *
  * @property[customPropertyHandler] receives the identifier and value of a custom property (see
  * [SgfProperty.CUSTOM]) along with the current [SgfState]. You are free to do with it whatever
@@ -65,7 +68,7 @@ typealias SgfVariationsMarker = (SgfState, List<SgfType.Move?>) -> List<Markup>
  * no move in that node. The lambda returns a list of [Markup] representing the board markup to apply
  * for each variation.
  *
- * By default, this is [GoHandler.variationMarker].
+ * By default, this is [GoNodeHandler.variationMarker].
  *
  * The different types of properties are treated in different ways:
  * - most of the annotation, markup and game info properties are simply wrapped up into the
@@ -181,7 +184,7 @@ class SgfNodeHandler {
         val board = currentPieces
         removePieces(
             points.flatMap { point ->
-                board.filter { it.stone.point == point }
+                board.filter { it.stone?.point == point }
             }
         )
     }
@@ -243,12 +246,12 @@ class SgfNodeHandler {
 
     @Status.Beta
     public var moveHandler: SgfState.(SgfType.Color.Value, SgfType.Move) -> MoveInfo? =
-        GoHandler.moveHandler
+        GoNodeHandler.moveHandler
 
     @Status.Beta
     public var customPropertyHandler: SgfState.(String, String) -> Unit = { _, _ -> }
 
     @Status.Beta
     public var variationsMarker: SgfState.(List<SgfType.Move?>) -> List<Markup> =
-        GoHandler.variationMarker
+        GoNodeHandler.variationMarker
 }

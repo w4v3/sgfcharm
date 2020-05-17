@@ -14,9 +14,9 @@
  *    limitations under the License.
  *
  */
-
 package onion.w4v3xrmknycexlsd.lib.sgfcharm
 
+import android.os.Bundle
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView
@@ -49,23 +49,33 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView
 public class SgfController(var showVariations: Boolean? = null) : SgfInputListener {
     public var sgfView: SgfView? = null
         set(sgfView) {
-            sgfView?.inputListener = this
+            sgfView?.registerInputListener(this)
             field = sgfView
-            navigator?.nextNode()?.process()
+            state?.loadIntoView()
         }
 
     public var sgfNodeHandler: SgfNodeHandler = SgfNodeHandler()
-    private var navigator: SgfNavigator? = null
+    internal var navigator: SgfNavigator? = null
     private var state: SgfState? = null
 
     /** Sets up parser and navigator for the [sgfString], returning this [SgfController] for convenience. */
     @Status.Api
-    public fun load(sgfString: String): SgfController {
+    public fun load(sgfString: String): SgfController = loadAtIndices(sgfString)
+
+    @Status.Impl
+    internal fun loadAtIndices(
+        sgfString: String,
+        indices: IntArray = listOf(0).toIntArray()
+    ): SgfController {
         navigator =
             SgfNavigator(sgfString)
         state = SgfState()
+
+        navigator?.goToIndices(indices)?.forEach { it.process() }
+
         // in case the view was assigned already, we should update it
-        sgfView?.let { navigator?.nextNode()?.process() }
+        state?.loadIntoView()
+
         return this
     }
 
@@ -76,23 +86,11 @@ public class SgfController(var showVariations: Boolean? = null) : SgfInputListen
     }
 
     // loading the [state] into the view
-    private fun SgfState.load() {
-        sgfView?.apply {
-            pieces = this@load.currentPieces
-            nodeInfos = this@load.nodeInfo
-            markups =
-                this@load.markup + this@load.variationMarkup + (this@load.inherited.lastOrNull()
-                    ?: emptyList())
-            gridRows = this@load.numRows
-            gridColumns = this@load.numCols
-            lastMoveInfo = this@load.lastMoveInfo
-
-            invalidate()
-        }
-    }
+    private fun SgfState.loadIntoView() = sgfView?.onReceiveSgfData(data)
 
     // processes this node using the handler, and then determining which variations to show
-    private fun SgfNode.process() {
+    // returning the transformed state
+    private fun SgfNode.process(): SgfState? {
         with(sgfNodeHandler) {
             state?.processNode(this@process)
             if (showVariations ?: (state?.showVariations == true)) {
@@ -103,27 +101,53 @@ public class SgfController(var showVariations: Boolean? = null) : SgfInputListen
                     }
             }
         }
-        state?.load()
+        return state
     }
 
     /** Finds out of there is a variation to play at move point, or otherwise simply places the piece. */
     public override fun onMove(move: SgfType.Move): Unit =
         state?.let { state ->
+            val variationNumber =
+                state.variationMarkup.indexOfFirst { it.point == move.point }.takeIf { it >= 0 }
+            // if the user has tapped a sibling variation, we undo the last move before proceeding
+            if (state.variationMode == SgfState.VariationMode.SIBLINGS && variationNumber != null && showVariations ?: (state.showVariations))
+                onUndo()
             navigator?.makeMove(
                 when (state.nextColor) {
                     SgfType.Color.Value.BLACK -> SgfProperty.B(move)
                     SgfType.Color.Value.WHITE -> SgfProperty.W(move)
-                }, state.variationMarkup.indexOfFirst { it.point == move.point }.takeIf { it >= 0 })
-                ?.process()
+                }, variationNumber
+            )
+                ?.process()?.loadIntoView()
         } ?: Unit
 
     /** Redoes the last undone move, if any, or plays the main variation otherwise. */
-    public override fun onRedo(): Unit = navigator?.nextNode()?.process() ?: Unit
+    public override fun onRedo(): Unit = navigator?.nextNode()?.process()?.loadIntoView() ?: Unit
 
     /** Undoes the last move, regardless of whether it is part of the `sgf` or not. */
     public override fun onUndo(): Unit =
         navigator?.previousNode()?.let { node ->
             state?.stepBack()
-            node.process()
+            node.process()?.loadIntoView()
         } ?: Unit
 }
+
+/**
+ * Puts the current state of the [controller] into [this] `Bundle` with the [key].
+ *
+ * Note that user placed stones not in the `SGF` file will not be stored; instead, the last state
+ * from the `SGF` is put into the bundle.
+ */
+fun Bundle.putSgfController(key: String?, controller: SgfController?) {
+    putString("$key#sgfstring", controller?.navigator?.sgfString)
+    putIntArray("$key#indices", controller?.navigator?.currentIndices)
+    controller?.showVariations?.let { putBoolean("$key#showvariations", it) }
+}
+
+/** Retrieves a controller from [this] `Bundle` stored at the [key]. */
+fun Bundle.getSgfController(key: String?): SgfController? =
+    getString("$key#sgfstring")?.let { sgfString ->
+        getIntArray("$key#indices")?.let { indices ->
+            SgfController(getBoolean("$key#showvariations")).loadAtIndices(sgfString, indices)
+        }
+    }

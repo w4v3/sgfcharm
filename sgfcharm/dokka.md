@@ -25,7 +25,7 @@ This package contains the logic for rendering [SgfData] received from the [SgfCo
 This package contains the `sgf` parser and the library data models:
 
 * the [SgfTree] is the internal representation of the SGF `GameTree`, with a strong type system
-* the [SgfParser] object exposes the [SgfParser.parseSgfCollection] function, which reads a string into a list of [SgfTree]s
+* the [SgfParser] exposes the [SgfParser.parseSgfCollection] function, which reads a string into a list of [SgfTree]s
 * the [SgfNavigator] exposes functions to navigate through the tree node by node
 
 # Package onion.w4v3xrmknycexlsd.lib.sgfcharm.handle
