@@ -1,5 +1,5 @@
 /*
- *    Copyright [2020] [w4v3]
+ *    Copyright 2020 w4v3
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ class SgfState {
     @Status.Impl
     internal val data: List<SgfData>
         get() = currentPieces + nodeInfo + markup + variationMarkup +
-                (inherited.lastOrNull() ?: emptyList()) +
+                (inherited.findLast { it.isNotEmpty() }?.filterNotNull() ?: emptyList()) +
                 BoardConfig(numCols, numRows) +
                 (lastMoveInfo?.let { listOf(it) } ?: emptyList())
 
@@ -128,9 +128,9 @@ class SgfState {
             }
         }
 
-    // for inherited properties
+    // for inherited properties, contains list with null if settings were cleared
     @Status.Impl
-    internal val inherited: MutableList<MutableList<Markup>> = mutableListOf()
+    internal val inherited: MutableList<MutableList<Markup?>> = mutableListOf()
 
     @Status.Impl
     internal fun initStep() {
@@ -199,10 +199,10 @@ class SgfState {
 
     /**
      * Adds the [inheritMarkups] to the current board.
-     * They will stay on the board until that setting is cleared.
+     * They will stay on the board until that setting is cleared by adding a `listOf(null)`.
      * */
     @Status.Beta
-    public fun addInherits(inheritMarkups: List<Markup>): Boolean =
+    public fun addInherits(inheritMarkups: List<Markup?>): Boolean =
         inherited.last().addAll(inheritMarkups)
 
     /** Adds the [info] to the [NodeInfo] communicated to the [GoSgfView]. */

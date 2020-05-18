@@ -1,5 +1,5 @@
 /*
- *    Copyright [2020] [w4v3]
+ *    Copyright 2020 w4v3
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.round
 
 /**
@@ -63,6 +64,7 @@ import kotlin.math.round
  * @property[gridColor] the color of the grid.
  * @property[markupColor] the color of the markup.
  * @property[showText] whether or not to display information text.
+ * @property[showButtons] whether or not to display undo/redo buttons
  */
 public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs),
     SgfView {
@@ -79,41 +81,19 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
     /** The [MoveInfo] object from the last move. */
     private var lastMoveInfo: MoveInfo? = null
 
-    /** The number of columns of the board.. */
+    /** The number of columns of the currently visible board.. */
     private var gridColumns: Int = 19
 
-    /** The number of rows of the board. */
+    /** The number of rows of the currently visible board. */
     private var gridRows: Int = 19
 
-    override fun onReceiveSgfData(data: List<SgfData>) {
-        val tmpPieces = mutableListOf<Piece>()
-        val tmpNodeInfos = mutableListOf<NodeInfo>()
-        val tmpMarkups = mutableListOf<Markup>()
-        lastMoveInfo = null
-        val oldCols = gridColumns // saving for recalculating layout afterwards
+    // the true values, irrespective of which part is shown
+    private var trueColumns = 19
+    private var trueRows = 19
 
-        for (d in data) {
-            when (d) {
-                is Piece -> tmpPieces.add(d)
-                is NodeInfo -> tmpNodeInfos.add(d)
-                is Markup -> tmpMarkups.add(d)
-                is MoveInfo -> lastMoveInfo = d
-                is BoardConfig -> d.let { gridColumns = it.columns; gridRows = it.rows }
-            }
-        }
-
-        pieces = tmpPieces
-        nodeInfos = tmpNodeInfos
-        markups = tmpMarkups
-
-        // adapt sizes if board spec has changed to prevent glitching
-        boardSize = (boardSize * oldCols * (gridColumns - 1)) / ((oldCols - 1) * gridColumns)
-        gridSep = boardSize / (gridColumns - 1)
-        boardPadding = gridSep / 2
-        pieceSize = gridSep * 0.45f
-
-        invalidate()
-    }
+    // for partial displays, we keep track of which part is actually displayed
+    // in terms of coordinates
+    private val onDisplay = Rect(1, 1, gridColumns, gridRows)
 
     // XML properties
     @Status.Api
@@ -135,6 +115,10 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
     @Status.Api
     public var showText: Boolean =
         DEFAULT_SHOW_TEXT
+
+    @Status.Api
+    public var showButtons: Boolean =
+        DEFAULT_SHOW_BUTTONS
 
     // drawing properties
     /**
@@ -166,7 +150,8 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
             strokeWidth = gridSep * 0.1f
         }
 
-    private var boardSize = 0 // width of the board
+    private var boardWidth = 0 // width of the board
+    private var boardHeight = 0 // height of the board
     private var gridSep = 0 // distance between two lines on the grid
     private var boardPadding = 0 // additional padding
     private var pieceSize = 0f // radius of circle
@@ -198,6 +183,55 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
         varPaint.color = markupColor
     }
 
+    override fun onReceiveSgfData(data: List<SgfData>) {
+        val tmpPieces = mutableListOf<Piece>()
+        val tmpNodeInfos = mutableListOf<NodeInfo>()
+        val tmpMarkups = mutableListOf<Markup>()
+        lastMoveInfo = null
+        val oldCols = gridColumns // saving for recalculating layout afterwards
+
+        for (d in data) {
+            when (d) {
+                is Piece -> tmpPieces.add(d)
+                is NodeInfo -> tmpNodeInfos.add(d)
+                is Markup -> tmpMarkups.add(d)
+                is MoveInfo -> lastMoveInfo = d
+                is BoardConfig -> d.let { trueColumns = it.columns; trueRows = it.rows }
+            }
+        }
+
+        pieces = tmpPieces
+        nodeInfos = tmpNodeInfos
+        markups = tmpMarkups
+
+        // determining which part of the board is visible
+        // by looking which parts are just marked up as visible
+        // and taking one more step into that direction for "fade out" grid effect
+        // but still within the actual board size
+        markups.filter { it.type == MarkupType.VISIBLE }
+            .mapNotNull { it.point as? SgfType.XYPoint }
+            .let {
+                onDisplay.apply {
+                    left = it.minBy { it.x }?.x ?: 1
+                    top = it.minBy { it.y }?.y ?: 1
+                    right = it.maxBy { it.x }?.x ?: trueColumns
+                    bottom = it.maxBy { it.y }?.y ?: trueRows
+                }
+            }
+
+        gridColumns = onDisplay.right - onDisplay.left + 1
+        gridRows = onDisplay.bottom - onDisplay.top + 1
+
+        // adapt sizes if board spec has changed to prevent glitching
+        boardWidth = (boardWidth * oldCols * (gridColumns - 1)) / ((oldCols - 1) * gridColumns)
+        gridSep = boardWidth / (gridColumns - 1)
+        boardHeight = gridSep * (gridRows - 1)
+        boardPadding = gridSep / 2
+        pieceSize = gridSep * 0.45f
+
+        invalidate()
+    }
+
     /**
      * Draws the view.
      *
@@ -212,28 +246,33 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
             drawGrid()
             drawPieces()
             drawMarkup()
-            drawButtons()
+            if (showButtons) drawButtons()
             if (showText) drawText()
         }
     }
 
     private fun Canvas.drawGrid() {
-        for (row in 1..gridRows) {
+        val fromx = max(onDisplay.left - 1, 1)
+        val tox = min(onDisplay.right + 1, trueColumns)
+        val fromy = max(onDisplay.top - 1, 1)
+        val toy = min(onDisplay.bottom + 1, trueRows)
+
+        for (row in onDisplay.top..onDisplay.bottom) {
             drawLine(
-                getXCoordinateFromBoard(1),
+                getXCoordinateFromBoard(fromx),
                 getYCoordinateFromBoard(row),
-                getXCoordinateFromBoard(gridColumns),
+                getXCoordinateFromBoard(tox),
                 getYCoordinateFromBoard(row),
                 gridPaint
             )
         }
 
-        for (col in 1..gridColumns) {
+        for (col in onDisplay.left..onDisplay.right) {
             drawLine(
                 getXCoordinateFromBoard(col),
-                getYCoordinateFromBoard(1),
+                getYCoordinateFromBoard(fromy),
                 getXCoordinateFromBoard(col),
-                getYCoordinateFromBoard(gridColumns),
+                getYCoordinateFromBoard(toy),
                 gridPaint
             )
         }
@@ -270,17 +309,19 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
         )
 
         // draw border
-        varPaint.apply {
-            color = Color.BLACK
-            style = Paint.Style.STROKE
-            strokeWidth = pieceSize * 0.15f
+        if (whiteColor == Color.WHITE) {
+            varPaint.apply {
+                color = Color.BLACK
+                style = Paint.Style.STROKE
+                strokeWidth = pieceSize * 0.15f
+            }
+            drawCircle(
+                getXCoordinateFromBoard(point.x),
+                getYCoordinateFromBoard(point.y),
+                pieceSize,
+                varPaint
+            )
         }
-        drawCircle(
-            getXCoordinateFromBoard(point.x),
-            getYCoordinateFromBoard(point.y),
-            pieceSize,
-            varPaint
-        )
     }
 
     private fun Canvas.drawMarkup() {
@@ -396,7 +437,8 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
             .mapNotNull { it.point as? SgfType.XYPoint }
             .map { (x, y) -> x to y }
         if (visibles.isNotEmpty()) {
-            val board = (1..gridColumns).flatMap { x -> (1..gridRows).map { y -> x to y } }
+            val board =
+                (1..trueColumns).flatMap { x -> (1..trueRows).map { y -> x to y } }
             (board.toSet().minus(visibles)).map { (xb, yb) ->
                 getXCoordinateFromBoard(xb).let { x ->
                     getYCoordinateFromBoard(yb).let { y ->
@@ -407,8 +449,7 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
                             y + gridSep / 2,
                             varPaint.apply {
                                 color = this@GoSgfView.getBackgroundColor() ?: Color.WHITE
-                                style = Paint.Style.FILL_AND_STROKE
-                                strokeWidth = 0.05f * gridSep
+                                style = Paint.Style.FILL
                             })
                     }
                 }
@@ -436,14 +477,17 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
         drawRect(redoRect, piecePaint.apply { color = whiteColor })
 
         // draw borders
-        varPaint.apply {
-            color = Color.BLACK
-            style = Paint.Style.STROKE
-            strokeWidth = undoRect.width() * 0.07f
-        }
+        if (whiteColor == Color.WHITE) {
+            varPaint.apply {
+                color = Color.BLACK
+                style = Paint.Style.STROKE
+                strokeWidth = undoRect.width() * 0.07f
+            }
 
-        drawRect(undoRect, varPaint)
-        drawRect(redoRect, varPaint)
+            drawRect(undoRect, varPaint)
+            drawRect(redoRect, varPaint)
+
+        }
 
         undo?.bounds = undoRect
         redo?.bounds = redoRect
@@ -455,7 +499,7 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
     private fun Canvas.drawText() {
         val text = sgfDrawer.makeInfoText(nodeInfos, lastMoveInfo)
         staticText = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            StaticLayout.Builder.obtain(text, 0, text.length, paint, boardSize)
+            StaticLayout.Builder.obtain(text, 0, text.length, paint, boardWidth)
                 .setAlignment(Layout.Alignment.ALIGN_NORMAL)
                 .setLineSpacing(0f, 1.1f)
                 .setIncludePad(false)
@@ -465,7 +509,7 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
             StaticLayout(
                 text,
                 paint,
-                boardSize,
+                boardWidth,
                 Layout.Alignment.ALIGN_NORMAL,
                 1.1f,
                 0f,
@@ -475,7 +519,7 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
 
         withTranslation(
             paddingLeft + boardPadding.toFloat(),
-            paddingTop + boardPadding.toFloat() + boardSize + aboveButtonSep + buttonSize + belowButtonSep
+            paddingTop + boardPadding.toFloat() + boardHeight + (if (showButtons) aboveButtonSep + buttonSize else 0) + belowButtonSep
         ) {
             staticText?.draw(this)
         }
@@ -503,8 +547,9 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
     // recalculate layout quantities from new width
     private fun resetSizes(w: Int) {
         // board size leaves room for half a column on each side => 1 additional column in total
-        boardSize = (w - paddingLeft - paddingRight) / gridColumns * (gridColumns - 1)
-        gridSep = boardSize / (gridColumns - 1)
+        boardWidth = (w - paddingLeft - paddingRight) / gridColumns * (gridColumns - 1)
+        gridSep = boardWidth / (gridColumns - 1)
+        boardHeight = gridSep * (gridRows - 1)
         boardPadding = gridSep / 2
         pieceSize = gridSep * 0.45f
 
@@ -515,8 +560,8 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
         val buttonSep = buttonSize / 2 // space between the buttons
         belowButtonSep = buttonSep
         undoRect = Rect().apply {
-            left += paddingLeft + boardPadding + (boardSize - buttonSep) / 2 - buttonSize
-            top += paddingTop + boardPadding + boardSize + aboveButtonSep
+            left += paddingLeft + boardPadding + (boardWidth - buttonSep) / 2 - buttonSize
+            top += paddingTop + boardPadding + boardHeight + aboveButtonSep
             right = left + buttonSize
             bottom = top + buttonSize
         }
@@ -528,10 +573,10 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
         }
     }
 
-    private fun calculateHeight() = paddingTop + boardPadding + boardSize + aboveButtonSep +
-            buttonSize + belowButtonSep + (if (showText) staticText?.height
-        ?: 0 else 0) + paddingBottom
-
+    private fun calculateHeight() =
+        paddingTop + boardPadding + boardHeight + (if (showButtons) aboveButtonSep +
+                buttonSize else 0) + belowButtonSep + (if (showText) staticText?.height
+            ?: 0 else 0) + paddingBottom
 
     /**
      * Categorizes touch events (`ACTION_UP` only) into moves carried out, undo button and redo button,
@@ -543,11 +588,14 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
             val x = getXCoordinateFromScreen(event.x)
             val y = getYCoordinateFromScreen(event.y)
 
-            if (round(x) >= 1 && round(x) <= gridColumns && round(y) >= 1 && round(y) <= gridRows) {
+            if (
+                round(x) >= onDisplay.left && round(x) <= onDisplay.right &&
+                round(y) >= onDisplay.top && round(y) <= onDisplay.bottom
+            ) {
                 inputListener?.onMove(SgfType.XYMove(round(x).toInt(), round(y).toInt()))
-            } else if (redoRect.isIn(event.x, event.y)) {
+            } else if (showButtons && redoRect.isIn(event.x, event.y)) {
                 inputListener?.onRedo()
-            } else if (undoRect.isIn(event.x, event.y)) {
+            } else if (showButtons && undoRect.isIn(event.x, event.y)) {
                 inputListener?.onUndo()
             }
 
@@ -561,21 +609,21 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
 
 
     // convert between coordinates on board and on screen
-    private val getXCoordinateFromBoard = { x: Int ->
+    private val getXCoordinateFromBoard = { col: Int ->
         paddingLeft + boardPadding.toFloat() +
-                (x - 1) * gridSep
+                (col - onDisplay.left) * gridSep
     }
-    private val getYCoordinateFromBoard = { x: Int ->
+    private val getYCoordinateFromBoard = { row: Int ->
         paddingTop + boardPadding.toFloat() +
-                (x - 1) * gridSep
+                (row - onDisplay.top) * gridSep
     }
     private val getXCoordinateFromScreen = { x: Float ->
         (x - paddingLeft - boardPadding.toFloat()) /
-                gridSep + 1
+                gridSep + onDisplay.left
     }
-    private val getYCoordinateFromScreen = { x: Float ->
-        (x - paddingTop - boardPadding.toFloat()) /
-                gridSep + 1
+    private val getYCoordinateFromScreen = { y: Float ->
+        (y - paddingTop - boardPadding.toFloat()) /
+                gridSep + onDisplay.top
     }
 
     private fun setupAttributes(attrs: AttributeSet?) {
@@ -604,6 +652,10 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
                     R.styleable.SgfView_showText,
                     DEFAULT_SHOW_TEXT
                 )
+                showButtons = getBoolean(
+                    R.styleable.SgfView_showButtons,
+                    DEFAULT_SHOW_BUTTONS
+                )
             } finally {
                 recycle()
             }
@@ -616,5 +668,6 @@ public class GoSgfView(context: Context, attrs: AttributeSet?) : AppCompatTextVi
         private const val DEFAULT_GRID_COLOR = Color.LTGRAY
         private const val DEFAULT_MARKUP_COLOR = Color.BLUE
         private const val DEFAULT_SHOW_TEXT = true
+        private const val DEFAULT_SHOW_BUTTONS = true
     }
 }

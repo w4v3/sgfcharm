@@ -9,7 +9,7 @@
 <br/>
 <h1>SgfController</h1>
 <code><span class="identifier">@Api</span> <span class="keyword">class </span><span class="identifier">SgfController</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-input-listener/index.html"><span class="identifier">SgfInputListener</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/SgfController.kt#L49">(source)</a>
-<p>Controls interaction between the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<p>Controls interaction between an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
 <p>The typical call would be <code>SgfController().load(someSgfString).into(someSgfView)</code>. This creates an
 <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> from the given string and loads its current representation into the view. The controller
 handles the touch events from the view and supplies it with new data to display accordingly.</p>
@@ -22,6 +22,19 @@ history to make undoing moves possible</li>
 </ul>
 <p>If you want to change anything about the way the nodes are processed, you need to modify the
 <a href="sgf-node-handler.html">sgfNodeHandler</a>. See <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> for more information.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-interaction-mode/index.html">InteractionMode</a></h4>
+</td>
+<td>
+<p>How the user can interact with the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> controlled by this <a href="./index.html">SgfController</a>.</p>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">InteractionMode</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -30,14 +43,22 @@ history to make undoing moves possible</li>
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<p>Controls interaction between the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
-<code><span class="identifier">SgfController</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$<init>(kotlin.Boolean)/showVariations">showVariations</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span></code></td>
+<p>Controls interaction between an <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<code><span class="identifier">SgfController</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$<init>(kotlin.Boolean, onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController.InteractionMode)/showVariations">showVariations</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController$<init>(kotlin.Boolean, onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController.InteractionMode)/interactionMode">interactionMode</span><span class="symbol">:</span>&nbsp;<span class="identifier">InteractionMode</span>&nbsp;<span class="symbol">=</span>&nbsp;InteractionMode.FREE_PLAY<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
 <h3>Properties</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<h4><a href="interaction-mode.html">interactionMode</a></h4>
+</td>
+<td>
+<p>specifies how the user can interact with the controlled <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>, one of <a href="-interaction-mode/index.html">InteractionMode</a></p>
+<code><span class="keyword">var </span><span class="identifier">interactionMode</span><span class="symbol">: </span><span class="identifier">InteractionMode</span></code></td>
+</tr>
 <tr>
 <td>
 <h4><a href="sgf-node-handler.html">sgfNodeHandler</a></h4>
@@ -51,7 +72,7 @@ history to make undoing moves possible</li>
 <h4><a href="sgf-view.html">sgfView</a></h4>
 </td>
 <td>
-<p>the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> to control</p>
+<p>the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> to control</p>
 <code><span class="keyword">var </span><span class="identifier">sgfView</span><span class="symbol">: </span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html"><span class="identifier">SgfView</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>

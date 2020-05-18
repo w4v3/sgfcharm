@@ -1,5 +1,5 @@
 /*
- *    Copyright [2020] [w4v3]
+ *    Copyright 2020 w4v3
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -31,7 +31,11 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
  * influence the [GoSgfView] otherwise.
  */
 class DefaultSgfDrawer : SgfDrawer {
-    /** Returns `false`. */
+    /**
+     * Returns `false`, leading to the default behavior: A circle of the appropriate color, with size
+     * slightly less than the distance between two grid lines. A border is drawn iff the white color
+     * is `Color.WHITE`.
+     */
     public override fun Canvas.drawPiece(
         piece: Piece,
         x: Float,
@@ -41,7 +45,7 @@ class DefaultSgfDrawer : SgfDrawer {
     ): Boolean =
         false
 
-    /** Returns `false`. */
+    /** Returns `false`, leading to the default behavior. */
     public override fun Canvas.drawMarkup(
         markup: Markup,
         x: Float,

@@ -1,5 +1,5 @@
 /*
- *    Copyright [2020] [w4v3]
+ *    Copyright 2020 w4v3
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -35,7 +35,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         controller =
-            savedInstanceState?.getSgfController(SGFSAVE) ?: SgfController().load("(;SZ[3])")
+            savedInstanceState?.getSgfController(SGFSAVE) ?: SgfController(
+                showVariations = true,
+                interactionMode = SgfController.InteractionMode.COUNTERMOVE
+            ).load("(;SZ[3])")
         controller.into(sgfview)
 
         website_button.setOnClickListener { controller.load(resources.getString(R.string.sgf_website_example)) }

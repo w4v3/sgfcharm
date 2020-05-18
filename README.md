@@ -120,16 +120,27 @@ In addition, the `GoSgfView` has the following `XML` attributes:
 `app:gridColor`  | the color used to draw the grid on the board | light gray | `color`
 `app:markupColor`| the color used to draw board markup          | blue       | `color`
 `app:showText`   | whether or not to show the information text  | true       | `boolean`
+`app:showButtons`| whether or not to show the undo/redo buttons | true       | `boolean`
 
 For a little more control, the class also exposes two `Paint` members:
 
 * `piecePaint` used for drawing the stones (but the color will be set according to `blackColor` and `whiteColor`)
 * `gridPaint` used for drawing the grid
 
-Finally, `SgfController` offers the possibility to switch the display of variations on the board on
-or off, via its `showVariations` property which can also be used in the constructor. Note that the `SGF`
-file might also switch this on or off, but the `showVariations` property overrides this (except if
-it is set to `null`, which is the default).
+Finally, `SgfController` offers the possibility to customize interaction with the view via two of its
+properties (which can also be used as constructor parameters):
+
+* `showVariations` can be used to switch the display of variations on the board on or off; note that
+the `SGF` file might also switch this on or off, but the `showVariations` property overrides this
+(except if it is set to `null`, which is the default).
+* `interactionMode` is by default `InteractionMode.FREE_PLAY`, meaning that the user can place stones
+on the board freely (with the `SGF` display advancing if they have hit the next node or a variation);
+it can be `InteractionMode.COUNTERMOVE` to make the view "play back" with the next move in the `SGF`
+file if the user has played a move from the file; or `InteractionMode.DISABLE` to disallow placing stones
+
+The functionality of the buttons is independent of this setting. Thus, if you just want to display
+a figure for a single board position, you might use `SgfController(interactionMode = SgfController.InteractionMode.DISABLE`
+together with `app:showButtons="false"` in the `XML` file.
 
 ### Custom drawing
 
@@ -472,6 +483,18 @@ properties, though)
 
 ## Release notes
 
+### 2020-05-18 version 0.2.0
+
+Added new functionality:
+
+* changing the way of interaction with the view using `SgfController.interactionMode`, including the
+possibility of instant countermoves from the view upon user input
+* deactivate the display of the undo/redo buttons
+* board is now expanded to fill the screen if parts of it are specified to be invisible via the `VW` property
+from the `SGF` specification
+
+Fixed inherited property bug.
+
 ### 2020-05-17 version 0.1.0
 
 Improved performance and UI—definitely usable by now. Changes:
@@ -493,7 +516,7 @@ Initial release! Not yet thoroughly tested, but working so far. Features:
 
 ## License
 
-    Copyright [2020] [w4v3]
+    Copyright 2020 w4v3
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

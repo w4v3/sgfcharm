@@ -1,5 +1,5 @@
 /*
- *    Copyright [2020] [w4v3]
+ *    Copyright 2020 w4v3
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -239,7 +239,8 @@ class SgfNodeHandler {
         })
 
     private fun SgfState.addPointInherits(type: MarkupType, values: SgfType.List<SgfType.Point>) =
-        addInherits(values.map { Markup(type, it) })
+        if (values.elements.isNotEmpty()) addInherits(values.map { Markup(type, it) })
+        else addInherits(listOf(null))
 
     private fun SgfState.addNodeInfo(key: String? = null, message: String? = null) =
         addNodeInfo(NodeInfo(key, message))
