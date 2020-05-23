@@ -8,7 +8,7 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="./index.html">SgfInputListener</a><br/>
 <br/>
 <h1>SgfInputListener</h1>
-<code><span class="keyword">interface </span><span class="identifier">SgfInputListener</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfView.kt#L55">(source)</a>
+<code><span class="keyword">interface </span><span class="identifier">SgfInputListener</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfViewAdapter.kt#L63">(source)</a>
 <p>Interface for communicating touch events from the view to the controller.</p>
 <h3>Functions</h3>
 <table>
@@ -18,8 +18,8 @@
 <h4><a href="on-move.html">onMove</a></h4>
 </td>
 <td>
-<p>Should be triggered when the user has input a <a href="on-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)/move">move</a>; transmits that move to the controller.</p>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move)/move">move</span><span class="symbol">:</span>&nbsp;<span class="identifier">Move</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Should be triggered when the user has input a <a href="on-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, kotlin.Int)/move">move</a>; transmits that move to the controller.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, kotlin.Int)/move">move</span><span class="symbol">:</span>&nbsp;<span class="identifier">Move</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener$onMove(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, kotlin.Int)/variationIndex">variationIndex</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -47,7 +47,7 @@
 <h4><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a></h4>
 </td>
 <td>
-<p>Controls interaction between an <a href="../-sgf-view/index.html">SgfView</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<p>Controls interaction between an <a href="../-sgf-view-adapter/index.html">SgfViewAdapter</a> and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
 <code><span class="keyword">class </span><span class="identifier">SgfController</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfInputListener</span></a></code></td>
 </tr>
 </tbody>

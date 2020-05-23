@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfView.<init> - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="index.html">SgfView</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$&lt;init&gt;(android.content.Context, android.util.AttributeSet)"></a>
+<code><span class="identifier">SgfView</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$<init>(android.content.Context, android.util.AttributeSet)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView$<init>(android.content.Context, android.util.AttributeSet)/attrs">attrs</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/util/AttributeSet.html"><span class="identifier">AttributeSet</span></a><span class="symbol">?</span><span class="symbol">)</span></code>
+<p>Draws an interactive Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+<p>The layout will be as follows: The grid is drawn with an additional padding to account for
+pieces at the borders of the board. Below the grid, there are undo and redo buttons, square
+shaped, in the size of half the space between two lines on the grid. Directly underneath, the
+text is drawn using the <code>android:text*</code> attributes.</p>
+<p>For best results, you should not set the height of the view to an absolute value, use
+<code>MATCH_PARENT</code> or <code>WRAP_CONTENT</code> instead. Otherwise, the view might be clipped.</p>
+<p>If you need more control, you have the following options:</p>
+<ul><li>change the way markup is drawn using <a href="use-markup-drawer.html">useMarkupDrawer</a></li>
+<li>change the way the informational text is created from the supplied data with <a href="use-info-text-maker.html">useInfoTextMaker</a></li>
+<li>change the way pieces are drawn or implement piece drawing for a game other than Go using
+<a href="use-piece-drawer.html">usePieceDrawer</a></li>
+<li>change the way the board is drawn or implement a board for a game other than Go using <a href="use-board.html">useBoard</a></li>
+<li>for even more freedom, make a custom view that implements <a href="../-sgf-view-adapter/index.html">SgfViewAdapter</a>.</li>
+</ul>
+<p>You can use this view to implement any kind of board game you wish, but there are some limitations
+for games with unusual boards:</p>
+<ul><li>expansion of the board to only the visible parts when the <code>VW</code> property is used is only supported
+if the game uses <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/index.html">XYPoint</a> as its <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-point/index.html">SgfType.Point</a> implementation; otherwise the whole board will
+be visible all the time</li>
+<li>pieces and board tiles are assumed to have equal width and height, with the value returned by
+<a href="../-sgf-board/tile-size.html">SgfBoard.tileSize</a>; if you need pieces with other side ratios, you need to handle that in the
+<a href="../-sgf-piece-drawer.html">SgfPieceDrawer</a> manually and the <code>VW</code> property will only cover a square portion of the tile</li>
+</ul>
+<p><strong>See Also</strong><br/>
+<p><a href="../-sgf-board/index.html">SgfBoard</a></p>
+</p>
+</BODY>
+</HTML>

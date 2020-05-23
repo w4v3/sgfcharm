@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfBoard.setBoard - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="index.html">SgfBoard</a>&nbsp;/&nbsp;<a href="./set-board.html">setBoard</a><br/>
+<br/>
+<h1>setBoard</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)"></a>
+<code><span class="identifier">@Beta</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setBoard</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/toDisplay">toDisplay</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Rect.html"><span class="identifier">Rect</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/width">width</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfBoard.kt#L61">(source)</a>
+<p>Initialize the board dimensions to the requested <a href="set-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/width">width</a>, where <a href="set-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/toDisplay">toDisplay</a> should consist of
+the borders of the currently visible board in terms of board coordinates.</p>
+<p>Note that this might only be a part of the total board if the <code>VW</code> property was used to make
+some points invisible. For example, <code>toDisplay = Rect(2, 3, 8, 8)</code> would mean to draw the board
+from <code>(2, 3)</code> to <code>(8, 8)</code>.</p>
+</BODY>
+</HTML>

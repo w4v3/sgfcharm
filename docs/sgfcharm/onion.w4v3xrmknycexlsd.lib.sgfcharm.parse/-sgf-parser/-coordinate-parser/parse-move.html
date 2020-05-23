@@ -9,8 +9,9 @@
 <br/>
 <h1>parseMove</h1>
 <a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)"></a>
-<code><span class="identifier">@Beta</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">parseMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Move</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L102">(source)</a>
+<code><span class="identifier">@Beta</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">parseMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Move</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L107">(source)</a>
 <p>Parses the <a href="parse-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)/from">from</a> string representing an <code>sgf Move</code> into an <a href="../../-sgf-type/-move/index.html">Move</a> object.</p>
-<p>Should return <code>null</code> if the move is a pass or input is invalid (which will be treated as pass).</p>
+<p>The returned <a href="../../-sgf-type/-move/point.html">Move.point</a> should be <code>null</code> if the move is a pass or input is invalid
+(which will be treated as pass).</p>
 </BODY>
 </HTML>

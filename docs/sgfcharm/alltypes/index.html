@@ -5,14 +5,10 @@
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<p>This is the SgfView library for rendering <code>sgf</code> files.</p>
+<p>This is the SgfView library for rendering <code>SGF</code> files.</p>
 <h3>All Types</h3>
 <table>
 <tbody>
-<tr>
-<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-board-config/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.BoardConfig</a></h5>
-<p>Communicates the current board dimensions.</p>
-</tr>
 <tr>
  (extensions in package onion.w4v3xrmknycexlsd.lib.sgfcharm)
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/android.os.-bundle/index.html">android.os.Bundle</a></h5>
@@ -22,21 +18,20 @@
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/android.graphics.-canvas/index.html">android.graphics.Canvas</a></h5>
 </tr>
 <tr>
-<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.component.DefaultSgfDrawer</a></h5>
-<p>Default implementation of the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-drawer/index.html">SgfDrawer</a> interface, used by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-game-config/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.GameConfig</a></h5>
+<p>Communicates the current game configuration.</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-game-id/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.GameId</a></h5>
+<p>Some possible values of the <code>GM</code> property in FF<a href="#">4</a> for identifying the current game type.</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-board/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoBoard</a></h5>
+<p>Default implementation of the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-board/index.html">SgfBoard</a> used by the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> for the game Go, based on <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/index.html">XYPoint</a>s and <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-move/index.html">XYMove</a>s.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-go-coordinate-parser/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser</a></h5>
 <p>A coordinate parser for the Go game.</p>
-</tr>
-<tr>
-<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-go-node-handler/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.nodehandlers.GoNodeHandler</a></h5>
-<p>An <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> for Go.</p>
-</tr>
-<tr>
-<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView</a></h5>
-<p>Draws the Board together with undo/redo buttons and additional informational text. It's a
-<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-markup/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup</a></h5>
@@ -59,49 +54,54 @@
 <p>A gaming piece.</p>
 </tr>
 <tr>
+ (extensions in package onion.w4v3xrmknycexlsd.lib.sgfcharm.view)
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/android.graphics.-rect/index.html">android.graphics.Rect</a></h5>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-board/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard</a></h5>
+<p>This interface represents a board for a specific game for interaction with the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
+</tr>
+<tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-collection.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfCollection</a></h5>
-<p>Representation of the <code>sgf Collection</code>, which is a list of <code>GameTree</code>s.</p>
+<p>Representation of the <code>SGF Collection</code>, which is a list of <code>GameTree</code>s.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController</a></h5>
-<p>Controls interaction between an <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> and <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
+<p>Controls interaction between an <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view-adapter/index.html">SgfViewAdapter</a> and <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> objects.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-custom-property-handler.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfCustomPropertyHandler</a></h5>
-<p>See <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/custom-property-handler.html">SgfNodeHandler.customPropertyHandler</a>.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-data.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfData</a></h5>
-<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
-</tr>
-<tr>
-<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-drawer/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.component.SgfDrawer</a></h5>
-<p>If there are some specific components for which you would like to change the way they are drawn,
-most prominently the board markup, the pieces and the info text, you can override the corresponding
-functions in this interface.</p>
+<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-info-keys/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfInfoKeys</a></h5>
 <p>This object holds string literals to be used as <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/key.html">NodeInfo.key</a>s.</p>
 </tr>
 <tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-info-text-maker.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInfoTextMaker</a></h5>
+</tr>
+<tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-input-listener/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener</a></h5>
 <p>Interface for communicating touch events from the view to the controller.</p>
 </tr>
 <tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-markup-drawer.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfMarkupDrawer</a></h5>
+</tr>
+<tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-move-handler.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfMoveHandler</a></h5>
-<p>See <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/move-handler.html">SgfNodeHandler.moveHandler</a>.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-navigator/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator</a></h5>
-<p>This class offers the facilities to navigate through an <code>sgf GameTree</code> given by its constructor parameter.
-It calls the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-parser/index.html">SgfParser</a> to get the first <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> arising from the string, and provides
-functions to obtain the next and preceding nodes as well as to list and descend into possible
-variations.</p>
+<p>This class offers the facilities to navigate through an <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> given by its constructor parameter.
+It provides functions to obtain the next and preceding nodes as well as to list and descend into
+possible variations.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-node.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNode</a></h5>
-<p>Representation of the <code>sgf Node</code>, which is a list of <code>Property</code>s.</p>
+<p>Representation of the <code>SGF Node</code>, which is a list of <code>Property</code>s.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler</a></h5>
@@ -110,35 +110,39 @@ the processed data.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-parser/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser</a></h5>
-<p>Parser for reading <code>sgf</code> strings into <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-collection.html">SgfCollection</a>s.</p>
+<p>Parser for reading <code>SGF</code> strings into <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-collection.html">SgfCollection</a>s.</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-piece-drawer.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfPieceDrawer</a></h5>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty</a></h5>
-<p>Base class for all <code>sgf Property</code>s, with a subclass for each particular property.</p>
+<p>Base class for all <code>SGF Property</code>s, with a subclass for each particular property.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-sequence.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfSequence</a></h5>
-<p>Representation of the <code>sgf Sequence</code>, which is a list of <code>Node</code>s.</p>
+<p>Representation of the <code>SGF Sequence</code>, which is a list of <code>Node</code>s.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-state/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState</a></h5>
-<p>This class holds state relevant to the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>This class holds state relevant to the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree</a></h5>
-<p>Representation of the <code>sgf GameTree</code>, which consists of an <code>Sequence</code>, and zero or more children <code>GameTree</code>s.</p>
+<p>Representation of the <code>SGF GameTree</code>, which consists of an <code>Sequence</code>, and zero or more children <code>GameTree</code>s.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType</a></h5>
-<p>This is the base class for all <code>sgf</code> data types, for strong typing.</p>
-</tr>
-<tr>
-<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-variations-marker.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfVariationsMarker</a></h5>
-<p>See <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/variations-marker.html">SgfNodeHandler.variationsMarker</a>.</p>
+<p>This is the base class for all <code>SGF</code> data types, for strong typing.</p>
 </tr>
 <tr>
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView</a></h5>
-<p>If you want to use the <code>sgf</code> parsing and handling architecture provided by this library but make
+<p>Draws an interactive Board together with undo/redo buttons and additional informational text. It's a
+<code>TextView</code>, so the text it displays is styled according to the <code>TextView</code> attributes.</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view-adapter/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfViewAdapter</a></h5>
+<p>If you want to use the <code>SGF</code> parsing and handling architecture provided by this library but make
 your own view with fundamental changes, you can make it implement this interface so that it can be
 controlled by the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a>.</p>
 </tr>
@@ -153,6 +157,22 @@ controlled by the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controlle
 <tr>
  (extensions in package onion.w4v3xrmknycexlsd.lib.sgfcharm.view)
 <h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/kotlin.-string/index.html">kotlin.String</a></h5>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-variation-data/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.VariationData</a></h5>
+<p>Information about currently possible variations (successors or siblings depending on <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a> configuration).</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-move/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYMove</a></h5>
+<p>This is analogous to <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/index.html">XYPoint</a>.</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYPoint</a></h5>
+<p>A point at (<a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/x.html">x</a>, <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/y.html">y</a>), useful for Go and Chess, for example.</p>
+</tr>
+<tr>
+<h5><a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-stone/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYStone</a></h5>
+<p>This is analogous to <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/index.html">XYPoint</a>.</p>
 </tr>
 </tbody>
 </table>

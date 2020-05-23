@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfNodeHandler.useMoveHandler - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="index.html">SgfNodeHandler</a>&nbsp;/&nbsp;<a href="./use-move-handler.html">useMoveHandler</a><br/>
+<br/>
+<h1>useMoveHandler</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useMoveHandler(kotlin.Int, kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color.Value, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)))"></a>
+<code><span class="identifier">@Beta</span> <span class="keyword">fun </span><span class="identifier">useMoveHandler</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useMoveHandler(kotlin.Int, kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color.Value, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)))/gameId">gameId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useMoveHandler(kotlin.Int, kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color.Value, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)))/moveHandler">moveHandler</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-move-handler.html"><span class="identifier">SgfMoveHandler</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfNodeHandler.kt#L236">(source)</a>
+<p>Makes the <a href="index.html">SgfNodeHandler</a> use the provided <a href="use-move-handler.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useMoveHandler(kotlin.Int, kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color.Value, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)))/moveHandler">moveHandler</a> to handle move properties for
+the game with the given <a href="use-move-handler.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useMoveHandler(kotlin.Int, kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color.Value, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)))/gameId">gameId</a>. The <a href="use-move-handler.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useMoveHandler(kotlin.Int, kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color.Value, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Move, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.MoveInfo)))/moveHandler">moveHandler</a> modifies the given state by executing
+the given move of the given color, returning a <a href="../-move-info/index.html">MoveInfo</a> object reflecting the <strong>change</strong>
+introduced by the executed move or <code>null</code> if the move was invalid.</p>
+<p>When implementing this function, it is your responsibility to make <a href="../-sgf-state/add-piece.html">SgfState.addPiece</a> and
+<a href="../-sgf-state/remove-piece.html">SgfState.removePiece</a> calls on the <a href="../-sgf-state/index.html">SgfState</a> object passed. Note that if the move involves
+moving a piece from one position to another, you must add it to the final position and remove
+it from the previous one. The <a href="../-move-info/move-number.html">MoveInfo.moveNumber</a> should indicate as how many moves this move should
+count (usually 1), and <a href="../-move-info/prisoners.html">MoveInfo.prisoners</a> should reflect the change of black and white prisoners
+(or "scores"), respectively.</p>
+<p>In case of a pass, you should still return a <a href="../-move-info/index.html">MoveInfo</a> instance, but with <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-move/point.html">SgfType.Move.point</a>
+of <a href="../-move-info/last-played.html">MoveInfo.lastPlayed</a> set to <code>null</code>.</p>
+<p>By default, the <a href="../-go-move-handler.html">GoMoveHandler</a> is used.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm/-game-id/index.html">GameId</a></p>
+</p>
+</BODY>
+</HTML>

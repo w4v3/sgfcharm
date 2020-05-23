@@ -8,9 +8,9 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm</a>&nbsp;/&nbsp;<a href="./index.html">SgfInfoKeys</a><br/>
 <br/>
 <h1>SgfInfoKeys</h1>
-<code><span class="identifier">@Beta</span> <span class="keyword">object </span><span class="identifier">SgfInfoKeys</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/SgfInfoKeys.kt#L43">(source)</a>
+<code><span class="identifier">@Beta</span> <span class="keyword">object </span><span class="identifier">SgfInfoKeys</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/Constants.kt#L43">(source)</a>
 <p>This object holds string literals to be used as <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-node-info/key.html">NodeInfo.key</a>s.</p>
-<p>They are used by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> and understood by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a>. You might of course
+<p>They are used by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a> and understood by the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a>. You might of course
 change their values to display node information differently in the view.</p>
 <p>The naming convention used here is as follows: Every property turned into a NodeInfo has a corresponding
 key here with the name of that property as identifier. As an exception, the properties taking
@@ -28,7 +28,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-a-n.html">AN</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-n/index.html">SgfProperty.AN</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-n/index.html">SgfProperty.AN</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">AN</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -36,7 +36,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-a-p-n.html">APN</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the application name part of the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-p/index.html">SgfProperty.AP</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the application name part of the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-p/index.html">SgfProperty.AP</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">APN</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -44,7 +44,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-a-p-v.html">APV</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the application version part of the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-p/index.html">SgfProperty.AP</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the application version part of the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-a-p/index.html">SgfProperty.AP</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">APV</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -52,7 +52,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-b-l.html">BL</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-l/index.html">SgfProperty.BL</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-l/index.html">SgfProperty.BL</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">BL</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -60,7 +60,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-b-m.html">BM</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-m/index.html">SgfProperty.BM</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-m/index.html">SgfProperty.BM</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">BM</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-b-r.html">BR</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-r/index.html">SgfProperty.BR</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-r/index.html">SgfProperty.BR</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">BR</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -76,7 +76,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-b-t.html">BT</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-t/index.html">SgfProperty.BT</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-b-t/index.html">SgfProperty.BT</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">BT</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -84,7 +84,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-c.html">C</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-c/index.html">SgfProperty.C</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-c/index.html">SgfProperty.C</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">C</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -92,7 +92,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-c-p.html">CP</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-c-p/index.html">SgfProperty.CP</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-c-p/index.html">SgfProperty.CP</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">CP</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -100,7 +100,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-d-m.html">DM</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-d-m/index.html">SgfProperty.DM</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-d-m/index.html">SgfProperty.DM</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">DM</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -108,7 +108,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-d-o.html">DO</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-d-o.html">SgfProperty.DO</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-d-o/index.html">SgfProperty.DO</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">DO</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -116,7 +116,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-d-t.html">DT</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-d-t/index.html">SgfProperty.DT</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-d-t/index.html">SgfProperty.DT</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">DT</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -124,7 +124,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-e-v.html">EV</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-e-v/index.html">SgfProperty.EV</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-e-v/index.html">SgfProperty.EV</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">EV</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -132,7 +132,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-g-b.html">GB</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-b/index.html">SgfProperty.GB</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-b/index.html">SgfProperty.GB</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">GB</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -140,7 +140,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-g-c.html">GC</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-c/index.html">SgfProperty.GC</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-c/index.html">SgfProperty.GC</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">GC</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -148,7 +148,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-g-n.html">GN</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-n/index.html">SgfProperty.GN</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-n/index.html">SgfProperty.GN</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">GN</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -156,7 +156,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-g-w.html">GW</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-w/index.html">SgfProperty.GW</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-g-w/index.html">SgfProperty.GW</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">GW</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -164,7 +164,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-h-a.html">HA</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-h-a/index.html">SgfProperty.HA</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-h-a/index.html">SgfProperty.HA</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">HA</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -172,7 +172,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-h-o.html">HO</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-h-o/index.html">SgfProperty.HO</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-h-o/index.html">SgfProperty.HO</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">HO</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -180,7 +180,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-i-t.html">IT</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-i-t.html">SgfProperty.IT</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-i-t/index.html">SgfProperty.IT</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">IT</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -188,7 +188,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-k-m.html">KM</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-k-m/index.html">SgfProperty.KM</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-k-m/index.html">SgfProperty.KM</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">KM</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -196,7 +196,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-n.html">N</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-n/index.html">SgfProperty.N</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-n/index.html">SgfProperty.N</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">N</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -204,7 +204,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-o-b.html">OB</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-b/index.html">SgfProperty.OB</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-b/index.html">SgfProperty.OB</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">OB</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -212,7 +212,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-o-n.html">ON</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-n/index.html">SgfProperty.ON</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-n/index.html">SgfProperty.ON</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">ON</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -220,7 +220,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-o-t.html">OT</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-t/index.html">SgfProperty.OT</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-t/index.html">SgfProperty.OT</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">OT</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -228,7 +228,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-o-w.html">OW</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-w/index.html">SgfProperty.OW</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-o-w/index.html">SgfProperty.OW</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">OW</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -236,7 +236,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-p-b.html">PB</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-b/index.html">SgfProperty.PB</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-b/index.html">SgfProperty.PB</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">PB</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -244,7 +244,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-p-c.html">PC</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-c/index.html">SgfProperty.PC</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-c/index.html">SgfProperty.PC</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">PC</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -252,7 +252,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-p-l.html">PL</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-l/index.html">SgfProperty.PL</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-l/index.html">SgfProperty.PL</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">PL</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -260,7 +260,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-p-w.html">PW</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-w/index.html">SgfProperty.PW</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-p-w/index.html">SgfProperty.PW</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">PW</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -268,7 +268,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-r-e.html">RE</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-r-e/index.html">SgfProperty.RE</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-r-e/index.html">SgfProperty.RE</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">RE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -276,7 +276,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-r-o.html">RO</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-r-o/index.html">SgfProperty.RO</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-r-o/index.html">SgfProperty.RO</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">RO</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -284,7 +284,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-r-u.html">RU</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-r-u/index.html">SgfProperty.RU</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-r-u/index.html">SgfProperty.RU</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">RU</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -292,7 +292,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-s-o.html">SO</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-s-o/index.html">SgfProperty.SO</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-s-o/index.html">SgfProperty.SO</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">SO</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -300,7 +300,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-t-e.html">TE</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-t-e/index.html">SgfProperty.TE</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-t-e/index.html">SgfProperty.TE</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">TE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -308,7 +308,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-t-m.html">TM</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-t-m/index.html">SgfProperty.TM</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-t-m/index.html">SgfProperty.TM</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">TM</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -316,7 +316,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-u-c.html">UC</a></h4>
 </td>
 <td>
-<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-u-c/index.html">SgfProperty.UC</a> property</p>
+<p>Strings used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-u-c/index.html">SgfProperty.UC</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">UC</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -324,7 +324,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-u-s.html">US</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-u-s/index.html">SgfProperty.US</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-u-s/index.html">SgfProperty.US</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">US</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -332,7 +332,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-v.html">V</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-v/index.html">SgfProperty.V</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-v/index.html">SgfProperty.V</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">V</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -340,7 +340,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-w-l.html">WL</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-l/index.html">SgfProperty.WL</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-l/index.html">SgfProperty.WL</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">WL</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -348,7 +348,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-w-r.html">WR</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-r/index.html">SgfProperty.WR</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-r/index.html">SgfProperty.WR</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">WR</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -356,7 +356,7 @@ for the application name (<a href="-a-p-n.html">SgfInfoKeys.APN</a>) and version
 <h4><a href="-w-t.html">WT</a></h4>
 </td>
 <td>
-<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-sgf-drawer/index.html">DefaultSgfDrawer</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-t/index.html">SgfProperty.WT</a> property</p>
+<p>String used by <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-default-info-text-maker.html">DefaultInfoTextMaker</a> to display the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-w-t/index.html">SgfProperty.WT</a> property</p>
 <code><span class="keyword">var </span><span class="identifier">WT</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>

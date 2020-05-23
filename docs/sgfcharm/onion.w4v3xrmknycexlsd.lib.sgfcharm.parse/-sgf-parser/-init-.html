@@ -8,10 +8,24 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="index.html">SgfParser</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
 <br/>
 <h1>&lt;init&gt;</h1>
-<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$&lt;init&gt;(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))"></a>
-<code><span class="identifier">SgfParser</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))/coordinateParser">coordinateParser</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;GoCoordinateParser<span class="symbol">)</span></code>
-<p>initializes the parser with the given <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a></p>
-<p><strong>Constructor</strong><br/>
-initializes the parser with the given <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a></p>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$&lt;init&gt;()"></a>
+<code><span class="identifier">SgfParser</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Parser for reading <code>SGF</code> strings into <a href="../-sgf-collection.html">SgfCollection</a>s.</p>
+<p>It is very lenient, in that it will not throw errors for incorrect input, but it will try to
+parse it as good as it can. Of course, that means that for incorrect input, the results might be
+completely wrong (it will not try to correct anything).</p>
+<p>Note that the parser returns all <code>GameTree</code>s represented in the string, i.e., it returns a
+collection. This is only to make the parser more reusable; the other components ignore all but the
+first tree in the collection.</p>
+<p>Only the current <code>SGF</code> version <code>FF[4]</code> is supported, and only coordinate parsing for Go
+is implemented. Unknown properties will be included in the output as <a href="../-sgf-property/-c-u-s-t-o-m/index.html">CUSTOM</a> types.
+Thus, if you need to handle old file formats or game-specific properties for games other than Go,
+you can run the parser as it is and handle the <a href="../-sgf-property/-c-u-s-t-o-m/index.html">CUSTOM</a> properties manually later on in the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a>.</p>
+<p>Most of the parsing functionality is private as it simply implements the FF<a href="#">4</a> specification.
+However, since the parsing of <a href="../-sgf-type/-point/index.html">Point</a>, <a href="../-sgf-type/-move/index.html">Move</a> and <a href="../-sgf-type/-stone/index.html">Stone</a> is game-dependent, there is a possibility
+to implement the <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a> interface and making it the parsing strategy for a
+specific game type via <a href="use-coordinate-parser.html">useCoordinateParser</a>.</p>
+<p>If no strategy is found for the game type given in the <code>SGF</code> file by the <code>GM</code> property, the
+default <a href="../-go-coordinate-parser/index.html">GoCoordinateParser</a> will be used.</p>
 </BODY>
 </HTML>

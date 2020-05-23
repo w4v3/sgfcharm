@@ -30,14 +30,14 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener
  * handles the touch events from the view and supplies it with new data to display accordingly.
  *
  * For this task, the controller consists of three components:
- * - an [SgfNavigator] (private), which creates and holds the [SgfTree] from the loaded string and
+ * - an [SgfNavigator], which creates and holds the [SgfTree] from the loaded string and
  * from which it requests the next or previous node
- * - an [SgfState] object (private), which holds the data to communicate to view, as well as their
+ * - an [SgfState] object, which holds the data to communicate to view, as well as their
  * history to make undoing moves possible
  * - an [SgfNodeHandler], which modifies the [SgfState] object according to the current node
  *
  * If you want to change anything about the way the nodes are processed, you need to modify the
- * [sgfNodeHandler]. See [SgfNodeHandler] for more information.
+ * [SgfNodeHandler].
  *
  * @property[sgfViewAdapter] the [SgfViewAdapter] to control
  * @property[showVariations] whether or not to hint at the possible variations, overrides the settings

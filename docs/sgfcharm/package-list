@@ -10,6 +10,7 @@ $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.parse$parseNumberOrComposeNu
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.parse$parseReal(kotlin.String)onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/kotlin.-string/parse-real.html
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.parse$parseSimpleText(kotlin.String)onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/kotlin.-string/parse-simple-text.html
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.parse$parseText(kotlin.String)onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/kotlin.-string/parse-text.html
+$dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.view$contains(android.graphics.Rect, kotlin.Pair((kotlin.Float, )))onion.w4v3xrmknycexlsd.lib.sgfcharm.view/android.graphics.-rect/contains.html
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.view$drawArrow(android.graphics.Canvas, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, kotlin.Float, android.graphics.Paint)onion.w4v3xrmknycexlsd.lib.sgfcharm.view/android.graphics.-canvas/draw-arrow.html
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.view$drawTriangle(android.graphics.Canvas, kotlin.Int, kotlin.Int, kotlin.Int, android.graphics.Paint)onion.w4v3xrmknycexlsd.lib.sgfcharm.view/android.graphics.-canvas/draw-triangle.html
 $dokka.location:onion.w4v3xrmknycexlsd.lib.sgfcharm.view$height(kotlin.String, android.graphics.Paint)onion.w4v3xrmknycexlsd.lib.sgfcharm.view/kotlin.-string/height.html

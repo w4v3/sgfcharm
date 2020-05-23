@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfView.useMarkupDrawer - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="index.html">SgfView</a>&nbsp;/&nbsp;<a href="./use-markup-drawer.html">useMarkupDrawer</a><br/>
+<br/>
+<h1>useMarkupDrawer</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView.Companion$useMarkupDrawer(kotlin.Function11((android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, , , , , android.graphics.Paint, kotlin.Int, , , kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">useMarkupDrawer</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView.Companion$useMarkupDrawer(kotlin.Function11((android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, , , , , android.graphics.Paint, kotlin.Int, , , kotlin.Unit)))/markupDrawer">markupDrawer</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-markup-drawer.html"><span class="identifier">SgfMarkupDrawer</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfView.kt#L580">(source)</a>
+<p>Makes the <a href="index.html">SgfView</a> use the given <a href="use-markup-drawer.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView.Companion$useMarkupDrawer(kotlin.Function11((android.graphics.Canvas, onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Markup, kotlin.Float, , , , , android.graphics.Paint, kotlin.Int, , , kotlin.Unit)))/markupDrawer">markupDrawer</a> to draw the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-markup/index.html">Markup</a> to the <a href="https://developer.android.com/reference/android/graphics/Canvas.html">Canvas</a>
+at screen coordinates <code>x</code> and <code>y</code>, with <code>xTo</code> and <code>yTo</code> if the markup type uses
+two coordinates, using the <code>paint</code>.</p>
+<p>The <code>size</code> parameter is the distance between two lines on the board. The passed <code>paint</code> is
+the text paint used by the <a href="index.html">SgfView</a>.</p>
+<p>Note that you can <em>not</em> use this to override the drawing behavior for markup of type
+<a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-markup-type/-v-i-s-i-b-l-e.html">MarkupType.VISIBLE</a>. This will always draw a square in the background color over the invisible
+parts of the board, no matter what you specify here.</p>
+<p>The used default is <a href="../-default-markup-drawer.html">DefaultMarkupDrawer</a>.</p>
+</BODY>
+</HTML>

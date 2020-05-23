@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfBoard - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view</a>&nbsp;/&nbsp;<a href="./index.html">SgfBoard</a><br/>
+<br/>
+<h1>SgfBoard</h1>
+<code><span class="keyword">interface </span><span class="identifier">SgfBoard</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/view/SgfBoard.kt#L42">(source)</a>
+<p>This interface represents a board for a specific game for interaction with the <a href="../-sgf-view/index.html">SgfView</a>.</p>
+<p>It can be thought of as a subview of the <a href="../-sgf-view/index.html">SgfView</a> handling everything related to the board, which
+is game specific. Therefore, it is responsible for converting the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-point/index.html">SgfType.Point</a> type used by the game
+to screen coordinates, for drawing the board, handling variation markup and converting touch events
+to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-move/index.html">SgfType.Move</a> type of the game.</p>
+<p>Implement this interface if you want to keep the overall structure of the <a href="../-sgf-view/index.html">SgfView</a>, but handle
+a Game other than Go. Add your implementation to the view using <a href="../-sgf-view/use-board.html">SgfView.useBoard</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-go-board/index.html">GoBoard</a></p>
+</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="tile-size.html">tileSize</a></h4>
+</td>
+<td>
+<p>Returns a measure for the size of a board tile on screen, like the sidelength of a tile
+or the distance between two gridlines.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">tileSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="draw-board.html">drawBoard</a></h4>
+</td>
+<td>
+<p>Draws the portion of the board given by <a href="draw-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/onDisplay">onDisplay</a>, when the board has total column count
+<a href="draw-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/trueColumns">trueColumns</a> and total row count <a href="draw-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/trueRows">trueRows</a> onto this <a href="https://developer.android.com/reference/android/graphics/Canvas.html">Canvas</a> using the given <a href="draw-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/paint">paint</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">.</span><span class="identifier">drawBoard</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/trueColumns">trueColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/trueRows">trueRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/onDisplay">onDisplay</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Rect.html"><span class="identifier">Rect</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/paint">paint</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="draw-variations.html">drawVariations</a></h4>
+</td>
+<td>
+<p>Puts the variations given by the <a href="draw-variations.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawVariations(android.graphics.Canvas, kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.VariationData)), android.graphics.Paint)/variationData">variationData</a> on the board.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">.</span><span class="identifier">drawVariations</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawVariations(android.graphics.Canvas, kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.VariationData)), android.graphics.Paint)/variationData">variationData</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-variation-data/index.html"><span class="identifier">VariationData</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$drawVariations(android.graphics.Canvas, kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.VariationData)), android.graphics.Paint)/paint">paint</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-all-points.html">getAllPoints</a></h4>
+</td>
+<td>
+<p>Returns a set of all the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-point/index.html">SgfType.Point</a>s on the board, given column count <a href="get-all-points.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$getAllPoints(kotlin.Int, kotlin.Int)/numColumns">numColumns</a> and row count <a href="get-all-points.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$getAllPoints(kotlin.Int, kotlin.Int)/numRows">numRows</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAllPoints</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$getAllPoints(kotlin.Int, kotlin.Int)/numColumns">numColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$getAllPoints(kotlin.Int, kotlin.Int)/numRows">numRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-touch.html">onTouch</a></h4>
+</td>
+<td>
+<p>Handle a touch event on the board at these coordinates <code>(x, y)</code>, with the <a href="on-touch.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$onTouch(kotlin.Pair((kotlin.Float, )), kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)))/currentPieces">currentPieces</a>
+on the board, and return a triggered <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-move/index.html">SgfType.Move</a>, if any, and the index of the variation
+selected by this event, if any.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">onTouch</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$onTouch(kotlin.Pair((kotlin.Float, )), kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)))/currentPieces">currentPieces</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-piece/index.html"><span class="identifier">Piece</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-board.html">setBoard</a></h4>
+</td>
+<td>
+<p>Initialize the board dimensions to the requested <a href="set-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/width">width</a>, where <a href="set-board.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/toDisplay">toDisplay</a> should consist of
+the borders of the currently visible board in terms of board coordinates.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setBoard</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/toDisplay">toDisplay</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Rect.html"><span class="identifier">Rect</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfBoard$setBoard(android.graphics.Rect, kotlin.Int)/width">width</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="to-screen-coordinate.html">toScreenCoordinate</a></h4>
+</td>
+<td>
+<p>Converts this <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-type/-point/index.html">SgfType.Point</a> to a coordinate <code>(x to y)</code> on screen.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">Point</span><span class="symbol">.</span><span class="identifier">toScreenCoordinate</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-go-board/index.html">GoBoard</a></h4>
+</td>
+<td>
+<p>Default implementation of the <a href="./index.html">SgfBoard</a> used by the <a href="../-sgf-view/index.html">SgfView</a> for the game Go, based on <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-point/index.html">XYPoint</a>s and <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-x-y-move/index.html">XYMove</a>s.</p>
+<code><span class="keyword">object </span><span class="identifier">GoBoard</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">SgfBoard</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

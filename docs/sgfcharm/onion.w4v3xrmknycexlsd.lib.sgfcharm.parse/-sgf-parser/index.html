@@ -8,22 +8,24 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">SgfParser</a><br/>
 <br/>
 <h1>SgfParser</h1>
-<code><span class="identifier">@Api</span> <span class="keyword">class </span><span class="identifier">SgfParser</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L59">(source)</a>
-<p>Parser for reading <code>sgf</code> strings into <a href="../-sgf-collection.html">SgfCollection</a>s.</p>
+<code><span class="identifier">@Api</span> <span class="keyword">class </span><span class="identifier">SgfParser</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfParser.kt#L60">(source)</a>
+<p>Parser for reading <code>SGF</code> strings into <a href="../-sgf-collection.html">SgfCollection</a>s.</p>
 <p>It is very lenient, in that it will not throw errors for incorrect input, but it will try to
 parse it as good as it can. Of course, that means that for incorrect input, the results might be
 completely wrong (it will not try to correct anything).</p>
 <p>Note that the parser returns all <code>GameTree</code>s represented in the string, i.e., it returns a
 collection. This is only to make the parser more reusable; the other components ignore all but the
 first tree in the collection.</p>
-<p>Only the current <code>sgf</code> version <code>FF[4]</code> is supported, and only coordinate parsing for Go
+<p>Only the current <code>SGF</code> version <code>FF[4]</code> is supported, and only coordinate parsing for Go
 is implemented. Unknown properties will be included in the output as <a href="../-sgf-property/-c-u-s-t-o-m/index.html">CUSTOM</a> types.
 Thus, if you need to handle old file formats or game-specific properties for games other than Go,
-you can run the parser as it is and handle the <a href="../-sgf-property/-c-u-s-t-o-m/index.html">CUSTOM</a> properties manually later on.</p>
-<p>Most of the parser is private as it simply implements the FF<a href="#">4</a> specification. However, since
-the parsing of <a href="../-sgf-type/-point/index.html">Point</a>, <a href="../-sgf-type/-move/index.html">Move</a> and <a href="../-sgf-type/-stone/index.html">Stone</a> is game-dependent, there is
-a possibility of implementing the <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a> interface and setting the
-<a href="coordinate-parser.html">coordinateParser</a> property to the parser to be used.</p>
+you can run the parser as it is and handle the <a href="../-sgf-property/-c-u-s-t-o-m/index.html">CUSTOM</a> properties manually later on in the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.handle/-sgf-node-handler/index.html">SgfNodeHandler</a>.</p>
+<p>Most of the parsing functionality is private as it simply implements the FF<a href="#">4</a> specification.
+However, since the parsing of <a href="../-sgf-type/-point/index.html">Point</a>, <a href="../-sgf-type/-move/index.html">Move</a> and <a href="../-sgf-type/-stone/index.html">Stone</a> is game-dependent, there is a possibility
+to implement the <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a> interface and making it the parsing strategy for a
+specific game type via <a href="use-coordinate-parser.html">useCoordinateParser</a>.</p>
+<p>If no strategy is found for the game type given in the <code>SGF</code> file by the <code>GM</code> property, the
+default <a href="../-go-coordinate-parser/index.html">GoCoordinateParser</a> will be used.</p>
 <h3>Types</h3>
 <table>
 <tbody>
@@ -46,22 +48,8 @@ a possibility of implementing the <a href="-coordinate-parser/index.html">SgfPar
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<p>initializes the parser with the given <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a></p>
-<code><span class="identifier">SgfParser</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))/coordinateParser">coordinateParser</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;GoCoordinateParser<span class="symbol">)</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="coordinate-parser.html">coordinateParser</a></h4>
-</td>
-<td>
-<p>the <a href="-coordinate-parser/index.html">SgfParser.CoordinateParser</a> to be used for game-specific parsing;
-default is <a href="../-go-coordinate-parser/index.html">GoCoordinateParser</a></p>
-<code><span class="keyword">var </span><span class="identifier">coordinateParser</span><span class="symbol">: </span><span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span></code></td>
+<p>Parser for reading <code>SGF</code> strings into <a href="../-sgf-collection.html">SgfCollection</a>s.</p>
+<code><span class="identifier">SgfParser</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -75,6 +63,19 @@ default is <a href="../-go-coordinate-parser/index.html">GoCoordinateParser</a><
 <td>
 <p>Parses the <a href="parse-sgf-collection.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$parseSgfCollection(kotlin.String)/sgfString">sgfString</a> representing an <code>sgf GameTree</code> into an <a href="../-sgf-collection.html">SgfCollection</a> object.</p>
 <code><span class="keyword">fun </span><span class="identifier">parseSgfCollection</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser$parseSgfCollection(kotlin.String)/sgfString">sgfString</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-sgf-collection.html"><span class="identifier">SgfCollection</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="use-coordinate-parser.html">useCoordinateParser</a></h4>
+</td>
+<td>
+<p>Make the parser use the supplied <a href="use-coordinate-parser.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.Companion$useCoordinateParser(kotlin.Int, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))/coordinateParser">coordinateParser</a> for the game type with the given <a href="use-coordinate-parser.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.Companion$useCoordinateParser(kotlin.Int, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))/gameId">gameId</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">useCoordinateParser</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.Companion$useCoordinateParser(kotlin.Int, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))/gameId">gameId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.Companion$useCoordinateParser(kotlin.Int, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser((onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Point)))/coordinateParser">coordinateParser</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>

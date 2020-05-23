@@ -8,7 +8,7 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">GoCoordinateParser</a><br/>
 <br/>
 <h1>GoCoordinateParser</h1>
-<code><span class="keyword">object </span><span class="identifier">GoCoordinateParser</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">XYPoint</span><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/CoordinateParsers.kt#L34">(source)</a>
+<code><span class="keyword">object </span><span class="identifier">GoCoordinateParser</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><a href="../-x-y-point/index.html"><span class="identifier">XYPoint</span></a><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/CoordinateParsers.kt#L30">(source)</a>
 <p>A coordinate parser for the Go game.</p>
 <p>The <code>Point</code>, <code>Move</code> and <code>Stone</code> data types are all the same in Go. A <code>Point</code> consists of two
 letters, 'a'..'z' + 'A'..'Z', where the first letter represents the column and the second one
@@ -22,7 +22,7 @@ the row (see <a href="../-sgf-type/-point/index.html">SgfType.Point</a> for deta
 </td>
 <td>
 <p>Parses the <a href="../-sgf-parser/-coordinate-parser/parse-move.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseMove(kotlin.String)/from">from</a> string representing an <code>sgf Move</code> into an <a href="../-sgf-type/-move/index.html">Move</a> object.</p>
-<code><span class="keyword">fun </span><span class="identifier">parseMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$parseMove(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">XYMove</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">parseMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$parseMove(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-x-y-move/index.html"><span class="identifier">XYMove</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -30,7 +30,7 @@ the row (see <a href="../-sgf-type/-point/index.html">SgfType.Point</a> for deta
 </td>
 <td>
 <p>Parses the <a href="../-sgf-parser/-coordinate-parser/parse-point.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parsePoint(kotlin.String)/from">from</a> string representing an <code>sgf Point</code> into an <a href="../-sgf-type/-point/index.html">Point</a> object.</p>
-<code><span class="keyword">fun </span><span class="identifier">parsePoint</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$parsePoint(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">XYPoint</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">parsePoint</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$parsePoint(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-x-y-point/index.html"><span class="identifier">XYPoint</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -38,7 +38,7 @@ the row (see <a href="../-sgf-type/-point/index.html">SgfType.Point</a> for deta
 </td>
 <td>
 <p>Parses the <a href="../-sgf-parser/-coordinate-parser/parse-stone.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$parseStone(kotlin.String)/from">from</a> string representing an <code>sgf Stone</code> into an <a href="../-sgf-type/-stone/index.html">Stone</a> object.</p>
-<code><span class="keyword">fun </span><span class="identifier">parseStone</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$parseStone(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">XYStone</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">parseStone</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$parseStone(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-x-y-stone/index.html"><span class="identifier">XYStone</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -56,7 +56,7 @@ the row (see <a href="../-sgf-type/-point/index.html">SgfType.Point</a> for deta
 <p>Returns a list of <a href="../-sgf-type/-point/index.html">Point</a>s contained in a rectangle between <a href="../-sgf-parser/-coordinate-parser/range-to/-this-.html">this</a> upper left
 and the <a href="../-sgf-parser/-coordinate-parser/range-to.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser$rangeTo(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfParser.CoordinateParser.T)/other">other</a> lower right <a href="../-sgf-type/-point/index.html">Point</a>. Returns an empty list if that rectangle is
 empty, including the case where the other point lies to the left or above this point.</p>
-<code><span class="keyword">fun </span><span class="identifier">XYPoint</span><span class="symbol">.</span><span class="identifier">rangeTo</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$rangeTo(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.XYPoint, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.XYPoint)/other">other</span><span class="symbol">:</span>&nbsp;<span class="identifier">XYPoint</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">XYPoint</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><a href="../-x-y-point/index.html"><span class="identifier">XYPoint</span></a><span class="symbol">.</span><span class="identifier">rangeTo</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.GoCoordinateParser$rangeTo(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYPoint, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYPoint)/other">other</span><span class="symbol">:</span>&nbsp;<a href="../-x-y-point/index.html"><span class="identifier">XYPoint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-x-y-point/index.html"><span class="identifier">XYPoint</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>

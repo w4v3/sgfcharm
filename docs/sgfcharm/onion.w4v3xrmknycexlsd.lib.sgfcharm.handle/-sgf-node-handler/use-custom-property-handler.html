@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SgfNodeHandler.useCustomPropertyHandler - sgfcharm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="index.html">SgfNodeHandler</a>&nbsp;/&nbsp;<a href="./use-custom-property-handler.html">useCustomPropertyHandler</a><br/>
+<br/>
+<h1>useCustomPropertyHandler</h1>
+<a name="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useCustomPropertyHandler(kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, kotlin.String, , kotlin.Unit)))"></a>
+<code><span class="identifier">@Beta</span> <span class="keyword">fun </span><span class="identifier">useCustomPropertyHandler</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useCustomPropertyHandler(kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, kotlin.String, , kotlin.Unit)))/customPropertyHandler">customPropertyHandler</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-custom-property-handler.html"><span class="identifier">SgfCustomPropertyHandler</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfNodeHandler.kt#L250">(source)</a>
+<p>Makes the <a href="index.html">SgfNodeHandler</a> use the provided <a href="use-custom-property-handler.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler.Companion$useCustomPropertyHandler(kotlin.Function3((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState, kotlin.String, , kotlin.Unit)))/customPropertyHandler">customPropertyHandler</a> for handling custom properties.</p>
+<p>The <a href="../-sgf-custom-property-handler.html">SgfCustomPropertyHandler</a> receives the identifier and value of a custom property (see * <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/-c-u-s-t-o-m/index.html">SgfProperty.CUSTOM</a>)
+along with the current <a href="../-sgf-state/index.html">SgfState</a>. You are free to do with it whatever you want; typically
+you would call <a href="../-sgf-state/add-node-info.html">SgfState.addNodeInfo</a> on the state to communicate arbitrary information to the view.</p>
+<p>By default, no custom property handler is used.</p>
+</BODY>
+</HTML>

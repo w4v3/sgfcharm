@@ -12,12 +12,21 @@
 <code><span class="identifier">SgfNodeHandler</span><span class="symbol">(</span><span class="symbol">)</span></code>
 <p>This class processes <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-node.html">SgfNode</a>s given the current <a href="../-sgf-state/index.html">SgfState</a> and modifies that state to include
 the processed data.</p>
-<p>The <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> contains the incremental changes of the board from node to node, but the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>
+<p>The <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a> contains the incremental changes of the board from node to node, but the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>
 should know about the current state of the whole board (and nothing more). Therefore, no <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree/index.html">SgfTree</a>
-types should appear anywhere higher up the flow from here; only <a href="../-sgf-data.html">SgfData</a> may be used to communicate
-with the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+properties should appear anywhere higher up the flow from here; only <a href="../-sgf-data.html">SgfData</a> may be used to communicate
+with the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <p>To this end, this class consists purely of extension functions to <a href="../-sgf-state/index.html">SgfState</a> which turn <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-property/index.html">SgfProperty</a>s
-into <a href="../-sgf-data.html">SgfData</a> and feed it back into the state. Most of the implementation is private, but you can
-supply some game specific operations (unstable):</p>
+into <a href="../-sgf-data.html">SgfData</a> and feed it back into the state. The different types of properties are treated in different ways:</p>
+<ul><li>most of the annotation, markup and game info properties are simply wrapped up into the
+appropriate <a href="../-sgf-data.html">SgfData</a> structure</li>
+<li>move and setup properties are handled and remembered, as the user might want to go back;
+also, removal of stones must be handled by the <a href="../-sgf-move-handler.html">SgfMoveHandler</a></li>
+<li>variations might be shown as markup on the board</li>
+<li>changes to the board size and the game type are communicated directly to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a></li>
+<li>inheritable markup properties are be remembered, so that they persist and can be undone</li>
+</ul>
+<p>Most of the implementation is private, but you can supply some game specific operations (unstable)
+via <a href="use-move-handler.html">useMoveHandler</a> and <a href="use-custom-property-handler.html">useCustomPropertyHandler</a>.</p>
 </BODY>
 </HTML>

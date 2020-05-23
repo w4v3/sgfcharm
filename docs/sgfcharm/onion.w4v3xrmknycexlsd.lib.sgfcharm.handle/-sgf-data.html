@@ -8,10 +8,10 @@
 <a href="../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="./-sgf-data.html">SgfData</a><br/>
 <br/>
 <h1>SgfData</h1>
-<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfData</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfData.kt#L33">(source)</a>
-<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfData</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfData.kt#L35">(source)</a>
+<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <p>This is to cast the semantics of the <code>sgf</code> format into the semantics of what actually
-needs to be drawn in the end, which might be different. For example, the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a> always
+needs to be drawn in the end, which might be different. For example, the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a> always
 needs a complete representation of the current board configuration, but each <code>sgf</code> node
 contains only incremental changes to the board.</p>
 <h3>Inheritors</h3>
@@ -19,11 +19,11 @@ contains only incremental changes to the board.</p>
 <tbody>
 <tr>
 <td>
-<h4><a href="-board-config/index.html">BoardConfig</a></h4>
+<h4><a href="-game-config/index.html">GameConfig</a></h4>
 </td>
 <td>
-<p>Communicates the current board dimensions.</p>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BoardConfig</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+<p>Communicates the current game configuration.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GameConfig</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -56,6 +56,14 @@ contains only incremental changes to the board.</p>
 <td>
 <p>A gaming piece.</p>
 <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Piece</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-variation-data/index.html">VariationData</a></h4>
+</td>
+<td>
+<p>Information about currently possible variations (successors or siblings depending on <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a> configuration).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">VariationData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
 </tr>
 </tbody>
 </table>

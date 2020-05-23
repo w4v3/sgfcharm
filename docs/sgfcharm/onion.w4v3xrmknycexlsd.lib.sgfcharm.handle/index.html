@@ -19,19 +19,11 @@ each node of the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree
 <tbody>
 <tr>
 <td>
-<h4><a href="-board-config/index.html">BoardConfig</a></h4>
+<h4><a href="-game-config/index.html">GameConfig</a></h4>
 </td>
 <td>
-<p>Communicates the current board dimensions.</p>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BoardConfig</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-go-node-handler/index.html">GoNodeHandler</a></h4>
-</td>
-<td>
-<p>An <a href="-sgf-node-handler/index.html">SgfNodeHandler</a> for Go.</p>
-<code><span class="keyword">object </span><span class="identifier">GoNodeHandler</span></code></td>
+<p>Communicates the current game configuration.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">GameConfig</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -78,15 +70,14 @@ each node of the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree
 <h4><a href="-sgf-custom-property-handler.html">SgfCustomPropertyHandler</a></h4>
 </td>
 <td>
-<p>See <a href="-sgf-node-handler/custom-property-handler.html">SgfNodeHandler.customPropertyHandler</a>.</p>
-<code><span class="keyword">typealias </span><span class="identifier">SgfCustomPropertyHandler</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-sgf-state/index.html"><span class="identifier">SgfState</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">typealias </span><span class="identifier">SgfCustomPropertyHandler</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><span class="identifier">state</span><span class="symbol">:</span>&nbsp;<a href="-sgf-state/index.html"><span class="identifier">SgfState</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">propIdent</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">propValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="-sgf-data.html">SgfData</a></h4>
 </td>
 <td>
-<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>Base class for all instructions understandable by <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">SgfData</span></code></td>
 </tr>
 <tr>
@@ -94,8 +85,7 @@ each node of the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.parse/-sgf-tree
 <h4><a href="-sgf-move-handler.html">SgfMoveHandler</a></h4>
 </td>
 <td>
-<p>See <a href="-sgf-node-handler/move-handler.html">SgfNodeHandler.moveHandler</a>.</p>
-<code><span class="keyword">typealias </span><span class="identifier">SgfMoveHandler</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-sgf-state/index.html"><span class="identifier">SgfState</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<span class="identifier">Move</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="-move-info/index.html"><span class="identifier">MoveInfo</span></a><span class="symbol">?</span></code></td>
+<code><span class="keyword">typealias </span><span class="identifier">SgfMoveHandler</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><span class="identifier">state</span><span class="symbol">:</span>&nbsp;<a href="-sgf-state/index.html"><span class="identifier">SgfState</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">colorValue</span><span class="symbol">:</span>&nbsp;<span class="identifier">Value</span><span class="symbol">,</span>&nbsp;<span class="identifier">move</span><span class="symbol">:</span>&nbsp;<span class="identifier">Move</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="-move-info/index.html"><span class="identifier">MoveInfo</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -111,16 +101,29 @@ the processed data.</p>
 <h4><a href="-sgf-state/index.html">SgfState</a></h4>
 </td>
 <td>
-<p>This class holds state relevant to the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>This class holds state relevant to the <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <code><span class="keyword">class </span><span class="identifier">SgfState</span></code></td>
 </tr>
 <tr>
 <td>
-<h4><a href="-sgf-variations-marker.html">SgfVariationsMarker</a></h4>
+<h4><a href="-variation-data/index.html">VariationData</a></h4>
 </td>
 <td>
-<p>See <a href="-sgf-node-handler/variations-marker.html">SgfNodeHandler.variationsMarker</a>.</p>
-<code><span class="keyword">typealias </span><span class="identifier">SgfVariationsMarker</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><a href="-sgf-state/index.html"><span class="identifier">SgfState</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="-markup/index.html"><span class="identifier">Markup</span></a><span class="symbol">&gt;</span></code></td>
+<p>Information about currently possible variations (successors or siblings depending on <a href="../onion.w4v3xrmknycexlsd.lib.sgfcharm/-sgf-controller/index.html">SgfController</a> configuration).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">VariationData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-sgf-data.html"><span class="identifier">SgfData</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-go-move-handler.html">GoMoveHandler</a></h4>
+</td>
+<td>
+<p>The move handler used by <a href="-sgf-node-handler/index.html">SgfNodeHandler</a> to handle Go moves.</p>
+<code><span class="keyword">val </span><span class="identifier">GoMoveHandler</span><span class="symbol">: </span><a href="-sgf-move-handler.html"><span class="identifier">SgfMoveHandler</span></a></code></td>
 </tr>
 </tbody>
 </table>

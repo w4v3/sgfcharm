@@ -8,17 +8,13 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.parse</a>&nbsp;/&nbsp;<a href="./index.html">SgfNavigator</a><br/>
 <br/>
 <h1>SgfNavigator</h1>
-<code><span class="identifier">@Api</span> <span class="keyword">class </span><span class="identifier">SgfNavigator</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfNavigator.kt#L36">(source)</a>
-<p>This class offers the facilities to navigate through an <code>sgf GameTree</code> given by its constructor parameter.
-It calls the <a href="../-sgf-parser/index.html">SgfParser</a> to get the first <a href="../-sgf-tree/index.html">SgfTree</a> arising from the string, and provides
-functions to obtain the next and preceding nodes as well as to list and descend into possible
-variations.</p>
+<code><span class="identifier">@Api</span> <span class="keyword">class </span><span class="identifier">SgfNavigator</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/parse/SgfNavigator.kt#L34">(source)</a>
+<p>This class offers the facilities to navigate through an <a href="../-sgf-tree/index.html">SgfTree</a> given by its constructor parameter.
+It provides functions to obtain the next and preceding nodes as well as to list and descend into
+possible variations.</p>
 <p>The user can also navigate away from the tree by entering their own moves, in which case a new
 variation is created in which the user can move back and forth. Once the last user move is undone,
 the variation is deleted and <a href="next-node.html">nextNode</a> will return the primary variation of the actual tree.</p>
-<h3>Parameters</h3>
-<p><a name="sgfString"></a>
-<code>sgfString</code> - the string containing the <code>sgf GameTree</code> associated with this navigator</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -27,8 +23,8 @@ the variation is deleted and <a href="next-node.html">nextNode</a> will return t
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<p>creates the <a href="../-sgf-tree/index.html">SgfTree</a> from the given string and initializes the navigator instance on it</p>
-<code><span class="identifier">SgfNavigator</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$<init>(kotlin.String)/sgfString">sgfString</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code></td>
+<p>initializes the navigator instance on the given <a href="../-sgf-tree/index.html">SgfTree</a></p>
+<code><span class="identifier">SgfNavigator</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfNavigator$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfTree)/sgfTree">sgfTree</span><span class="symbol">:</span>&nbsp;<a href="../-sgf-tree/index.html"><span class="identifier">SgfTree</span></a><span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>

@@ -8,8 +8,8 @@
 <a href="../../index.html">sgfcharm</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.handle</a>&nbsp;/&nbsp;<a href="./index.html">SgfState</a><br/>
 <br/>
 <h1>SgfState</h1>
-<code><span class="identifier">@Impl</span> <span class="keyword">class </span><span class="identifier">SgfState</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfState.kt#L40">(source)</a>
-<p>This class holds state relevant to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<code><span class="identifier">@Impl</span> <span class="keyword">class </span><span class="identifier">SgfState</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm/handle/SgfState.kt#L41">(source)</a>
+<p>This class holds state relevant to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <p>Although I believe that this class is fairly generally applicable, I would not recommend using
 it directly. Instead, the <a href="../-sgf-node-handler/index.html">SgfNodeHandler</a> should define everything which is necessary to manipulate
 this object.</p>
@@ -34,7 +34,7 @@ this object.</p>
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<p>This class holds state relevant to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>This class holds state relevant to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <code><span class="identifier">SgfState</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
 </tr>
 </tbody>
@@ -49,6 +49,14 @@ this object.</p>
 <td>
 <p>gets the current configuration of the board as a list of <a href="../-piece/index.html">Piece</a>s</p>
 <code><span class="keyword">val </span><span class="identifier">currentPieces</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-piece/index.html"><span class="identifier">Piece</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="game-id.html">gameId</a></h4>
+</td>
+<td>
+<p>the type of game encoded in the <code>SGF</code> file (<code>GM</code> property)</p>
+<code><span class="keyword">var </span><span class="identifier">gameId</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -117,7 +125,7 @@ They will stay on the board until that setting is cleared by adding a <code>list
 <h4><a href="add-node-info.html">addNodeInfo</a></h4>
 </td>
 <td>
-<p>Adds the <a href="add-node-info.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addNodeInfo(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)/info">info</a> to the <a href="../-node-info/index.html">NodeInfo</a> communicated to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-go-sgf-view/index.html">GoSgfView</a>.</p>
+<p>Adds the <a href="add-node-info.html#onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addNodeInfo(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)/info">info</a> to the <a href="../-node-info/index.html">NodeInfo</a> communicated to the <a href="../../onion.w4v3xrmknycexlsd.lib.sgfcharm.view/-sgf-view/index.html">SgfView</a>.</p>
 <code><span class="keyword">fun </span><span class="identifier">addNodeInfo</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfState$addNodeInfo(onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo)/info">info</span><span class="symbol">:</span>&nbsp;<a href="../-node-info/index.html"><span class="identifier">NodeInfo</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>

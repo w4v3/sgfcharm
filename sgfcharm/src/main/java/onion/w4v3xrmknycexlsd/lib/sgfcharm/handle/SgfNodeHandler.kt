@@ -42,7 +42,7 @@ typealias SgfCustomPropertyHandler = (state: SgfState, propIdent: String, propVa
  * - most of the annotation, markup and game info properties are simply wrapped up into the
  * appropriate [SgfData] structure
  * - move and setup properties are handled and remembered, as the user might want to go back;
- * also, removal of stones must be handled by the [moveHandler]
+ * also, removal of stones must be handled by the [SgfMoveHandler]
  * - variations might be shown as markup on the board
  * - changes to the board size and the game type are communicated directly to the [SgfView]
  * - inheritable markup properties are be remembered, so that they persist and can be undone
