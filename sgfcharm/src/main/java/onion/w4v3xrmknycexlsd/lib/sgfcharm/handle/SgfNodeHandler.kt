@@ -17,67 +17,38 @@
 
 package onion.w4v3xrmknycexlsd.lib.sgfcharm.handle
 
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.GameId
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfInfoKeys
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView
 
-/** See [SgfNodeHandler.moveHandler]. */
-typealias SgfMoveHandler = (SgfState, SgfType.Color.Value, SgfType.Move) -> MoveInfo?
-/** See [SgfNodeHandler.customPropertyHandler]. */
-typealias SgfCustomPropertyHandler = (SgfState, String, String) -> Unit
-/** See [SgfNodeHandler.variationsMarker]. */
-typealias SgfVariationsMarker = (SgfState, List<SgfType.Move?>) -> List<Markup>
+/** @see SgfNodeHandler.useMoveHandler */
+typealias SgfMoveHandler = (state: SgfState, colorValue: SgfType.Color.Value, move: SgfType.Move) -> MoveInfo?
+/** @see SgfNodeHandler.useCustomPropertyHandler */
+typealias SgfCustomPropertyHandler = (state: SgfState, propIdent: String, propValue: String) -> Unit
 
 /**
  * This class processes [SgfNode]s given the current [SgfState] and modifies that state to include
  * the processed data.
  *
- * The [SgfTree] contains the incremental changes of the board from node to node, but the [GoSgfView]
+ * The [SgfTree] contains the incremental changes of the board from node to node, but the [SgfView]
  * should know about the current state of the whole board (and nothing more). Therefore, no [SgfTree]
- * types should appear anywhere higher up the flow from here; only [SgfData] may be used to communicate
- * with the [GoSgfView].
+ * properties should appear anywhere higher up the flow from here; only [SgfData] may be used to communicate
+ * with the [SgfView].
  *
  * To this end, this class consists purely of extension functions to [SgfState] which turn [SgfProperty]s
- * into [SgfData] and feed it back into the state. Most of the implementation is private, but you can
- * supply some game specific operations (unstable):
- *
- * @property[moveHandler] modifies the given state by making the given move of the given color, returning
- * a [MoveInfo] object for the move executed or `null` if the move was invalid.
- * When implementing this function, it is your responsibility to make [SgfState.addPiece] and
- * [SgfState.removePiece] calls on the [SgfState] object passed. Note that if the move involves
- * moving a piece from one position to another, you must add it to the final position and remove
- * it from the previous one. You also need to increase move count and prisoner counts in the [MoveInfo]
- * object you return, for which you may want to use the info provided by [SgfState.lastMoveInfo].
- *
- * In case of a pass, you should still return a [MoveInfo] instance, but with [Piece.stone] of [MoveInfo.lastPlaced]
- * set to `null`.
- *
- * By default, this is [GoNodeHandler.moveHandler].
- *
- * @property[customPropertyHandler] receives the identifier and value of a custom property (see
- * [SgfProperty.CUSTOM]) along with the current [SgfState]. You are free to do with it whatever
- * you want; typically you would call [SgfState.addNodeInfo] on the state to communicate arbitrary
- * information to the view.
- *
- * By default, this does nothing.
- *
- * @property[variationsMarker] receives a list of variations given as `[SgfType.Move]?`s, where each
- * entry corresponds to one variation `GameTree` in the order they appear in the `sgf` file.
- * The respective entry is the first move in the first node of the variation, or `null` if there is
- * no move in that node. The lambda returns a list of [Markup] representing the board markup to apply
- * for each variation.
- *
- * By default, this is [GoNodeHandler.variationMarker].
- *
- * The different types of properties are treated in different ways:
+ * into [SgfData] and feed it back into the state. The different types of properties are treated in different ways:
  * - most of the annotation, markup and game info properties are simply wrapped up into the
  * appropriate [SgfData] structure
  * - move and setup properties are handled and remembered, as the user might want to go back;
  * also, removal of stones must be handled by the [moveHandler]
  * - variations might be shown as markup on the board
- * - changes to the board size are communicated directly to the [GoSgfView]
+ * - changes to the board size and the game type are communicated directly to the [SgfView]
  * - inheritable markup properties are be remembered, so that they persist and can be undone
+ *
+ * Most of the implementation is private, but you can supply some game specific operations (unstable)
+ * via [useMoveHandler] and [useCustomPropertyHandler].
  */
 class SgfNodeHandler {
     @Status.Impl
@@ -123,8 +94,7 @@ class SgfNodeHandler {
                 }
                 is SgfProperty.FF -> { // I'm sorry but it should be FF[4]
                 }
-                is SgfProperty.GM -> { // no automatic file format detection yet, as only go is implemented
-                }
+                is SgfProperty.GM -> setGameId(property.value)
                 is SgfProperty.ST -> configureVariations(property.value.number)
                 is SgfProperty.SZ -> setBoardSize(property.value)
                 is SgfProperty.AN -> addNodeInfo(SgfInfoKeys.AN, property.value.text)
@@ -169,6 +139,9 @@ class SgfNodeHandler {
         }
     }
 
+    private var moveHandler: SgfState.(SgfType.Color.Value, SgfType.Move) -> MoveInfo? =
+        GoMoveHandler
+
     private fun SgfState.makeMove(colorValue: SgfType.Color.Value, move: SgfType.Move) =
         moveHandler(colorValue, move)?.let { addMoveInfo(it) }
 
@@ -176,8 +149,7 @@ class SgfNodeHandler {
     private fun SgfState.addStones(
         colorValue: SgfType.Color.Value,
         stones: SgfType.List<SgfType.Stone>
-    ) =
-        addPieces(stones.map { Piece(colorValue, it) })
+    ) = addPieces(stones.map { Piece(colorValue, it) })
 
     // remove pieces if they are at the specified points
     private fun SgfState.removePoints(points: SgfType.List<SgfType.Point>) {
@@ -198,9 +170,14 @@ class SgfNodeHandler {
         addNodeInfo(NodeInfo(SgfInfoKeys.PL[color.value]))
     }
 
+    private fun SgfState.setGameId(number: SgfType.Number) {
+        gameId = number.number
+        moveHandler = moveHandlerStrategies[number.number]
+            ?: GoMoveHandler
+    }
+
     private fun SgfState.setBoardSize(dimensions: SgfType.Compose<SgfType.Number, SgfType.Number>) =
         dimensions.let { (c, r) -> numCols = c.number; numRows = r.number }
-
 
     // the passed [value] is the sum of 0/1 for successor/sibling and 0/2 for show on/off
     private fun SgfState.configureVariations(value: Int) {
@@ -217,26 +194,12 @@ class SgfNodeHandler {
     private fun SgfState.addComposeMarkup(
         type: MarkupType,
         values: SgfType.List<SgfType.Compose<SgfType.Point, SgfType.Point>>
-    ) =
-        addMarkups(values.map {
-            Markup(
-                type,
-                it.first,
-                it.second
-            )
-        })
+    ) = addMarkups(values.map { Markup(type, it.first, it.second) })
 
     private fun SgfState.addLabelMarkup(
         type: MarkupType,
         values: SgfType.List<SgfType.Compose<SgfType.Point, SgfType.SimpleText>>
-    ) =
-        addMarkups(values.map {
-            Markup(
-                type,
-                it.first,
-                label = it.second.text
-            )
-        })
+    ) = addMarkups(values.map { Markup(type, it.first, label = it.second.text) })
 
     private fun SgfState.addPointInherits(type: MarkupType, values: SgfType.List<SgfType.Point>) =
         if (values.elements.isNotEmpty()) addInherits(values.map { Markup(type, it) })
@@ -245,14 +208,47 @@ class SgfNodeHandler {
     private fun SgfState.addNodeInfo(key: String? = null, message: String? = null) =
         addNodeInfo(NodeInfo(key, message))
 
-    @Status.Beta
-    public var moveHandler: SgfState.(SgfType.Color.Value, SgfType.Move) -> MoveInfo? =
-        GoNodeHandler.moveHandler
+    companion object {
+        private val moveHandlerStrategies = mutableMapOf(GameId.GO to GoMoveHandler)
+        private var customPropertyHandler: SgfState.(String, String) -> Unit = { _, _ -> }
 
-    @Status.Beta
-    public var customPropertyHandler: SgfState.(String, String) -> Unit = { _, _ -> }
+        /**
+         * Makes the [SgfNodeHandler] use the provided [moveHandler] to handle move properties for
+         * the game with the given [gameId]. The [moveHandler] modifies the given state by executing
+         * the given move of the given color, returning a [MoveInfo] object reflecting the **change**
+         * introduced by the executed move or `null` if the move was invalid.
+         *
+         * When implementing this function, it is your responsibility to make [SgfState.addPiece] and
+         * [SgfState.removePiece] calls on the [SgfState] object passed. Note that if the move involves
+         * moving a piece from one position to another, you must add it to the final position and remove
+         * it from the previous one. The [MoveInfo.moveNumber] should indicate as how many moves this move should
+         * count (usually 1), and [MoveInfo.prisoners] should reflect the change of black and white prisoners
+         * (or "scores"), respectively.
+         *
+         * In case of a pass, you should still return a [MoveInfo] instance, but with [SgfType.Move.point]
+         * of [MoveInfo.lastPlayed] set to `null`.
+         *
+         * By default, the [GoMoveHandler] is used.
+         *
+         * @see GameId
+         */
+        @Status.Beta
+        public fun useMoveHandler(gameId: Int, moveHandler: SgfMoveHandler) {
+            moveHandlerStrategies[gameId] = moveHandler
+        }
 
-    @Status.Beta
-    public var variationsMarker: SgfState.(List<SgfType.Move?>) -> List<Markup> =
-        GoNodeHandler.variationMarker
+        /**
+         * Makes the [SgfNodeHandler] use the provided [customPropertyHandler] for handling custom properties.
+         *
+         * The [SgfCustomPropertyHandler] receives the identifier and value of a custom property (see * [SgfProperty.CUSTOM])
+         * along with the current [SgfState]. You are free to do with it whatever you want; typically
+         * you would call [SgfState.addNodeInfo] on the state to communicate arbitrary information to the view.
+         *
+         * By default, no custom property handler is used.
+         */
+        @Status.Beta
+        public fun useCustomPropertyHandler(customPropertyHandler: SgfCustomPropertyHandler) {
+            this.customPropertyHandler = customPropertyHandler
+        }
+    }
 }

@@ -14,15 +14,18 @@
  *    limitations under the License.
  *
  */
+@file:JvmName("SgfParserUtils")
 
 package onion.w4v3xrmknycexlsd.lib.sgfcharm.parse
 
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.GameId
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Number
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Double
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.Color
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler
 import kotlin.collections.List as KList
 
 // NOTE: Number, Double, Color in this file are data types defined here
@@ -30,7 +33,7 @@ import kotlin.collections.List as KList
 // everything in this file is public; the modifier is left out for readability
 
 /**
- * Parser for reading `sgf` strings into [SgfCollection]s.
+ * Parser for reading `SGF` strings into [SgfCollection]s.
  *
  * It is very lenient, in that it will not throw errors for incorrect input, but it will try to
  * parse it as good as it can. Of course, that means that for incorrect input, the results might be
@@ -40,23 +43,21 @@ import kotlin.collections.List as KList
  * collection. This is only to make the parser more reusable; the other components ignore all but the
  * first tree in the collection.
  *
- * Only the current `sgf` version `FF[4]` is supported, and only coordinate parsing for Go
+ * Only the current `SGF` version `FF[4]` is supported, and only coordinate parsing for Go
  * is implemented. Unknown properties will be included in the output as [CUSTOM] types.
  * Thus, if you need to handle old file formats or game-specific properties for games other than Go,
- * you can run the parser as it is and handle the [CUSTOM] properties manually later on.
+ * you can run the parser as it is and handle the [CUSTOM] properties manually later on in the [SgfNodeHandler].
  *
- * Most of the parser is private as it simply implements the FF[4] specification. However, since
- * the parsing of [Point], [Move] and [Stone] is game-dependent, there is
- * a possibility of implementing the [SgfParser.CoordinateParser] interface and setting the
- * [coordinateParser] property to the parser to be used.
+ * Most of the parsing functionality is private as it simply implements the FF[4] specification.
+ * However, since the parsing of [Point], [Move] and [Stone] is game-dependent, there is a possibility
+ * to implement the [SgfParser.CoordinateParser] interface and making it the parsing strategy for a
+ * specific game type via [useCoordinateParser].
  *
- * @property[coordinateParser] the [SgfParser.CoordinateParser] to be used for game-specific parsing;
- * default is [GoCoordinateParser]
- *
- * @constructor initializes the parser with the given [SgfParser.CoordinateParser]
+ * If no strategy is found for the game type given in the `SGF` file by the `GM` property, the
+ * default [GoCoordinateParser] will be used.
  */
 @Status.Api
-class SgfParser(public var coordinateParser: CoordinateParser<*> = GoCoordinateParser) {
+class SgfParser {
     private enum class ParseState {
         EXPECT_ANYTHING,
         PARSE_PROPIDENT,
@@ -65,6 +66,9 @@ class SgfParser(public var coordinateParser: CoordinateParser<*> = GoCoordinateP
     }
 
     private var state: ParseState = ParseState.EXPECT_ANYTHING
+
+    private var coordinateParser: CoordinateParser<*> =
+        GoCoordinateParser
 
     /**
      * The class to extend for parsing of the property values for the game-specific
@@ -96,7 +100,8 @@ class SgfParser(public var coordinateParser: CoordinateParser<*> = GoCoordinateP
         /**
          * Parses the [from] string representing an `sgf Move` into an [Move] object.
          *
-         * Should return `null` if the move is a pass or input is invalid (which will be treated as pass).
+         * The returned [Move.point] should be `null` if the move is a pass or input is invalid
+         * (which will be treated as pass).
          */
         @Status.Beta
         public abstract fun parseMove(from: String): Move
@@ -293,7 +298,11 @@ class SgfParser(public var coordinateParser: CoordinateParser<*> = GoCoordinateP
                 ?.let { AP(it) }
             "CA" -> CA(propValue.parseSimpleText())
             "FF" -> propValue.parseNumber()?.let { FF(it) }
-            "GM" -> propValue.parseNumber()?.let { GM(it) }
+            "GM" -> propValue.parseNumber()
+                ?.let { // we use this value to change the coordinate parsing strategy
+                    coordinateParser = coordinateParsingStrategies[it.number] ?: GoCoordinateParser
+                    GM(it)
+                }
             "ST" -> propValue.parseNumber()?.let { ST(it) }
             "SZ" -> propValue.parseNumberOrComposeNumber()?.let { SZ(it) }
             "AN" -> AN(propValue.parseSimpleText())
@@ -338,6 +347,23 @@ class SgfParser(public var coordinateParser: CoordinateParser<*> = GoCoordinateP
                     Text(propValue)
                 )
             )
+        }
+    }
+
+    companion object {
+        private val coordinateParsingStrategies: MutableMap<Int, CoordinateParser<*>> =
+            mutableMapOf(
+                GameId.GO to GoCoordinateParser
+            )
+
+        /**
+         * Make the parser use the supplied [coordinateParser] for the game type with the given [gameId].
+         *
+         * See the FF[4] specification for a list of existing game types, given by the `GM` property.
+         */
+        @Status.Beta
+        public fun useCoordinateParser(gameId: Int, coordinateParser: CoordinateParser<*>) {
+            coordinateParsingStrategies[gameId] = coordinateParser
         }
     }
 }

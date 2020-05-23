@@ -18,15 +18,17 @@
 package onion.w4v3xrmknycexlsd.lib.sgfcharm.handle
 
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.*
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfViewAdapter
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfInfoKeys
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.GameId
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController
 
 /**
- * Base class for all instructions understandable by [GoSgfView].
+ * Base class for all instructions understandable by [SgfView].
  *
  * This is to cast the semantics of the `sgf` format into the semantics of what actually
- * needs to be drawn in the end, which might be different. For example, the [GoSgfView] always
+ * needs to be drawn in the end, which might be different. For example, the [SgfView] always
  * needs a complete representation of the current board configuration, but each `sgf` node
  * contains only incremental changes to the board.
  */
@@ -44,11 +46,25 @@ data class Piece(val color: Color.Value, val stone: Stone?) : SgfData()
  * Information about the last move played.
  *
  * @property[moveNumber] the number of the move
- * @property[lastPlaced] the [Piece] played in the move
+ * @property[lastColor] the [Color.Value] that played the last move
+ * @property[lastPlayed] the last [Move] played
  * @property[prisoners] a pair of Black and White prisoner counts
  */
-data class MoveInfo(var moveNumber: Int, var lastPlaced: Piece, var prisoners: Pair<Int, Int>) :
+data class MoveInfo(
+    var moveNumber: Int,
+    var lastColor: Color.Value,
+    var lastPlayed: Move,
+    var prisoners: Pair<Int, Int>
+) :
     SgfData()
+
+/**
+ * Information about currently possible variations (successors or siblings depending on [SgfController] configuration).
+ *
+ * @property[index] the index of the variation in the `GameTree`
+ * @property[move] the move in the first node of this variation, or `null` if no move is present
+ */
+data class VariationData(val index: Int, val move: Move?) : SgfData()
 
 /**
  * Markup of nodes on the board.
@@ -69,9 +85,6 @@ data class Markup(
  * The possible values for board Markup.
  */
 enum class MarkupType {
-    /** Labels the currently possible variations. */
-    VARIATION,
-
     /** Draws an arrow. */
     ARROW,
 
@@ -112,19 +125,24 @@ enum class MarkupType {
 /**
  * A piece of information relating to the current node to be displayed in the text window.
  *
- * Anything can be used for the [key] as long as the [SgfView] knows how to deal with it,
+ * Anything can be used for the [key] as long as the [SgfViewAdapter] knows how to deal with it,
  * but by default, the [SgfNodeHandler] uses the values from [SgfInfoKeys] to encode which
  * `SGF` property this info came from.
  *
  * @property[key] the property type dependent part of the info
  * @property[message] the variable part of the info
+ *
+ * @see[SgfInfoKeys]
  */
 data class NodeInfo(val key: String? = null, val message: String? = null) : SgfData()
 
 /**
- * Communicates the current board dimensions.
+ * Communicates the current game configuration.
  *
+ * @property[gameId] the game type of the game encoded in the `SGF` file (property `GM`)
  * @property[columns] number of columns on the board
  * @property[rows] number of rows on the board
+ *
+ * @see[GameId]
  */
-data class BoardConfig(val columns: Int, val rows: Int) : SgfData()
+data class GameConfig(val gameId: Int, val columns: Int, val rows: Int) : SgfData()

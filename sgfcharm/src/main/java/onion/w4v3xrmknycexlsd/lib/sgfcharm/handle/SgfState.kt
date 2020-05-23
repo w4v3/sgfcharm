@@ -20,10 +20,10 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharm.handle
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.not
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView
 
 /**
- * This class holds state relevant to the [GoSgfView].
+ * This class holds state relevant to the [SgfView].
  *
  * Although I believe that this class is fairly generally applicable, I would not recommend using
  * it directly. Instead, the [SgfNodeHandler] should define everything which is necessary to manipulate
@@ -32,6 +32,7 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.GoSgfView
  * @property[currentPieces] gets the current configuration of the board as a list of [Piece]s
  * @property[showVariations] whether or not to show variations according to the `sgf`
  * @property[variationMode] the [VariationMode] indicating how to display variations
+ * @property[gameId] the type of game encoded in the `SGF` file (`GM` property)
  * @property[numRows] the number of rows of the board
  * @property[numCols] the number of columns of the board
  * @property[lastMoveInfo] the [MoveInfo] object from the last move played
@@ -41,9 +42,9 @@ class SgfState {
     // all the state bundled together
     @Status.Impl
     internal val data: List<SgfData>
-        get() = currentPieces + nodeInfo + markup + variationMarkup +
+        get() = currentPieces + nodeInfo + markup + variationData +
                 (inherited.findLast { it.isNotEmpty() }?.filterNotNull() ?: emptyList()) +
-                BoardConfig(numCols, numRows) +
+                GameConfig(gameId, numCols, numRows) +
                 (lastMoveInfo?.let { listOf(it) } ?: emptyList())
 
     // this is a list containing for each node the incremental change of pieces on the board,
@@ -76,7 +77,7 @@ class SgfState {
 
     // for variation display
     @Status.Impl
-    internal val variationMarkup: MutableList<Markup> = mutableListOf()
+    internal var variationData: List<VariationData> = listOf()
 
     @Status.Beta
     public var showVariations: Boolean = true
@@ -96,6 +97,10 @@ class SgfState {
     }
 
     // root properties
+    @Status.Beta
+    public var gameId: Int = 1
+        internal set
+
     @Status.Beta
     public var numRows: Int = 19
         internal set
@@ -117,7 +122,7 @@ class SgfState {
 
     @Status.Impl
     internal val nextColor: SgfType.Color.Value
-        get() = colorJustSet ?: !(lastMoveInfo?.lastPlaced?.color) ?: SgfType.Color.Value.BLACK
+        get() = colorJustSet ?: !(lastMoveInfo?.lastColor ?: SgfType.Color.Value.WHITE)
 
     @Status.Impl
     internal var moveNumberJustSet: Int? = null
@@ -137,7 +142,7 @@ class SgfState {
         incrementalPieces.add(mutableListOf()) // each node is in a separate list
         nodeInfo.clear()
         markup.clear()
-        variationMarkup.clear()
+        variationData = listOf()
         moveInfo.add(null)
         colorJustSet = null
         moveNumberJustSet = null
@@ -194,8 +199,10 @@ class SgfState {
         markup.addAll(markups)
 
     @Status.Impl
-    internal fun addVariationMarkups(markups: List<Markup>): Boolean =
-        variationMarkup.addAll(markups)
+    internal fun setVariationInfos(infos: List<SgfType.Move?>) {
+        variationData = (infos.indices zip infos)
+            .map { (idx, inf) -> VariationData(idx, inf) }
+    }
 
     /**
      * Adds the [inheritMarkups] to the current board.
@@ -205,7 +212,7 @@ class SgfState {
     public fun addInherits(inheritMarkups: List<Markup?>): Boolean =
         inherited.last().addAll(inheritMarkups)
 
-    /** Adds the [info] to the [NodeInfo] communicated to the [GoSgfView]. */
+    /** Adds the [info] to the [NodeInfo] communicated to the [SgfView]. */
     @Status.Beta
     public fun addNodeInfo(info: NodeInfo): Boolean =
         nodeInfo.add(info)
@@ -213,9 +220,11 @@ class SgfState {
     @Status.Impl
     internal fun addMoveInfo(info: MoveInfo): Unit {
         moveInfo[moveInfo.lastIndex] = MoveInfo(
-            moveNumberJustSet ?: info.moveNumber,
-            info.lastPlaced,
-            info.prisoners
+            moveNumberJustSet ?: ((lastMoveInfo?.moveNumber ?: 0) + info.moveNumber),
+            info.lastColor,
+            info.lastPlayed,
+            ((lastMoveInfo?.prisoners?.first ?: 0 + info.prisoners.first) to
+                    (lastMoveInfo?.prisoners?.second ?: 0 + info.prisoners.second))
         )
     }
 }

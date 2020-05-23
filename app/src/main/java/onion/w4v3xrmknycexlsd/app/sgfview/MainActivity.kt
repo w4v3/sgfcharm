@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         controller =
             savedInstanceState?.getSgfController(SGFSAVE) ?: SgfController(
                 showVariations = true,
-                interactionMode = SgfController.InteractionMode.COUNTERMOVE
+                interactionMode = SgfController.InteractionMode.FREE_PLAY
             ).load("(;SZ[3])")
         controller.into(sgfview)
 

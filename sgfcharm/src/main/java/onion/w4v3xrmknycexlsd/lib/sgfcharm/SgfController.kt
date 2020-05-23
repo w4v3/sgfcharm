@@ -19,11 +19,11 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharm
 import android.os.Bundle
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.*
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView
+import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfViewAdapter
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener
 
 /**
- * Controls interaction between an [SgfView] and [SgfTree] objects.
+ * Controls interaction between an [SgfViewAdapter] and [SgfTree] objects.
  *
  * The typical call would be `SgfController().load(someSgfString).into(someSgfView)`. This creates an
  * [SgfTree] from the given string and loads its current representation into the view. The controller
@@ -39,30 +39,31 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfInputListener
  * If you want to change anything about the way the nodes are processed, you need to modify the
  * [sgfNodeHandler]. See [SgfNodeHandler] for more information.
  *
- * @property[sgfView] the [SgfView] to control
- * @property[sgfNodeHandler] the [SgfNodeHandler] used to transform the state with the information from the nodes
+ * @property[sgfViewAdapter] the [SgfViewAdapter] to control
  * @property[showVariations] whether or not to hint at the possible variations, overrides the settings
  * by the `sgf`; `null` not to override them (default)
- * @property[interactionMode] specifies how the user can interact with the controlled [SgfView], one of [InteractionMode]
+ * @property[interactionMode] specifies how the user can interact with the controlled [SgfViewAdapter], one of [InteractionMode]
  */
 @Status.Api
 public class SgfController(
     var showVariations: Boolean? = null,
     var interactionMode: InteractionMode = InteractionMode.FREE_PLAY
 ) : SgfInputListener {
-    public var sgfView: SgfView? = null
-        set(sgfView) {
-            sgfView?.registerInputListener(this)
-            field = sgfView
+    public var sgfViewAdapter: SgfViewAdapter? = null
+        set(value) {
+            value?.registerInputListener(this)
+            field = value
             state?.loadIntoView()
         }
 
-    public var sgfNodeHandler: SgfNodeHandler = SgfNodeHandler()
-    internal var navigator: SgfNavigator? = null
+    private var sgfNodeHandler: SgfNodeHandler = SgfNodeHandler()
+    internal var navigator: SgfNavigator? = null // internal for save and restore
     private var state: SgfState? = null
 
+    internal var sgfString: String? = null // for save and restore
+
     /**
-     * How the user can interact with the [SgfView] controlled by this [SgfController].
+     * How the user can interact with the [SgfViewAdapter] controlled by this [SgfController].
      *
      * Note that the behavior of the undo/redo buttons is not affected by this setting.
      */
@@ -86,9 +87,12 @@ public class SgfController(
         sgfString: String,
         indices: IntArray = listOf(0).toIntArray()
     ): SgfController {
-        navigator =
-            SgfNavigator(sgfString)
-        state = SgfState()
+        this.sgfString = sgfString
+
+        SgfParser().parseSgfCollection(sgfString).getOrNull(0)?.let {
+            navigator = SgfNavigator(it)
+            state = SgfState()
+        }
 
         navigator?.goToIndices(indices)?.forEach { it.process() }
 
@@ -98,14 +102,14 @@ public class SgfController(
         return this
     }
 
-    /** Loads the [SgfTree] into the [sgfView] and subscribes to it as [SgfInputListener]. */
+    /** Loads the [SgfTree] into the [adapter] and subscribes to it as [SgfInputListener]. */
     @Status.Api
-    public fun into(sgfView: SgfView) {
-        this.sgfView = sgfView
+    public fun into(adapter: SgfViewAdapter) {
+        this.sgfViewAdapter = adapter
     }
 
     // loading the [state] into the view
-    private fun SgfState.loadIntoView() = sgfView?.onReceiveSgfData(data)
+    private fun SgfState.loadIntoView() = sgfViewAdapter?.onReceiveSgfData(data)
 
     // processes this node using the handler, and then determining which variations to show
     // returning the transformed state
@@ -115,30 +119,29 @@ public class SgfController(
             if (showVariations ?: (state?.showVariations == true)) {
                 navigator?.variations(state?.variationMode == SgfState.VariationMode.SUCCESSORS)
                     ?.let { variations ->
-                        state?.variationsMarker(variations)
-                            ?.let { markups -> state?.addVariationMarkups(markups) }
+                        state?.setVariationInfos(variations)
                     }
             }
         }
         return state
     }
 
-    /** Finds out of there is a variation to play at move point, or otherwise simply places the piece. */
-    public override fun onMove(move: SgfType.Move): Unit =
+    /** Play the [move], or loads the variation at the given [variationIndex] if this is not `null`. */
+    public override fun onMove(move: SgfType.Move, variationIndex: Int?): Unit =
         if (interactionMode == InteractionMode.DISABLE) Unit else
             state?.let { state ->
-                val variationNumber =
-                    state.variationMarkup.indexOfFirst { it.point == move.point }.takeIf { it >= 0 }
-                // if the user has tapped a sibling variation, we undo the last move before proceeding
-                if (state.variationMode == SgfState.VariationMode.SIBLINGS && variationNumber != null && showVariations ?: (state.showVariations))
-                    onUndo()
+                if (
+                    state.variationMode == SgfState.VariationMode.SIBLINGS
+                    && showVariations ?: state.showVariations
+                    && variationIndex != null
+                ) onUndo() // going into a sibling variation
+
                 navigator?.makeMove(
                     when (state.nextColor) {
                         SgfType.Color.Value.BLACK -> SgfProperty.B(move)
                         SgfType.Color.Value.WHITE -> SgfProperty.W(move)
-                    }, variationNumber
-                )
-                    ?.process()?.loadIntoView()
+                    }, variationIndex
+                )?.process()?.loadIntoView()
                     ?.also { if (interactionMode == InteractionMode.COUNTERMOVE) onRedo() }
             } ?: Unit
 
@@ -161,7 +164,7 @@ public class SgfController(
  */
 @Status.Beta
 public fun Bundle.putSgfController(key: String?, controller: SgfController?) {
-    putString("$key#sgfstring", controller?.navigator?.sgfString)
+    putString("$key#sgfstring", controller?.sgfString)
     putIntArray("$key#indices", controller?.navigator?.currentIndices)
     putSerializable("$key#showvariations", Ternary[controller?.showVariations])
     putSerializable("$key#interactionmode", controller?.interactionMode)

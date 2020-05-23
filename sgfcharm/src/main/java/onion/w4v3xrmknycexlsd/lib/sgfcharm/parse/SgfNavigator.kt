@@ -20,21 +20,19 @@ package onion.w4v3xrmknycexlsd.lib.sgfcharm.parse
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
 
 /**
- * This class offers the facilities to navigate through an `sgf GameTree` given by its constructor parameter.
- * It calls the [SgfParser] to get the first [SgfTree] arising from the string, and provides
- * functions to obtain the next and preceding nodes as well as to list and descend into possible
- * variations.
+ * This class offers the facilities to navigate through an [SgfTree] given by its constructor parameter.
+ * It provides functions to obtain the next and preceding nodes as well as to list and descend into
+ * possible variations.
  *
  * The user can also navigate away from the tree by entering their own moves, in which case a new
  * variation is created in which the user can move back and forth. Once the last user move is undone,
  * the variation is deleted and [nextNode] will return the primary variation of the actual tree.
  *
- * @param[sgfString] the string containing the `sgf GameTree` associated with this navigator
- * @constructor creates the [SgfTree] from the given string and initializes the navigator instance on it
+ * @constructor initializes the navigator instance on the given [SgfTree]
  */
 @Status.Api
-class SgfNavigator(internal val sgfString: String) {
-    private var currentTree: SgfTree? = SgfParser().parseSgfCollection(sgfString).getOrNull(0)
+class SgfNavigator(sgfTree: SgfTree) {
+    private var currentTree: SgfTree? = sgfTree
     private var currentNodeIndex: Int = -1
 
     private var userBranch: Boolean = false // is the user currently branching off on their own?

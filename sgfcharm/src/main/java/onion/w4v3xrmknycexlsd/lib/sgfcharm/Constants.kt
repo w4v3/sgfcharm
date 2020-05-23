@@ -21,7 +21,6 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfProperty
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.NodeInfo
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.SgfNodeHandler
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.DefaultSgfDrawer
 
 /**
  * This object holds string literals to be used as [NodeInfo.key]s.
@@ -240,4 +239,56 @@ object SgfInfoKeys {
     /** String used by [DefaultSgfDrawer] to display the application version part of the [SgfProperty.AP] property */
     @Status.Beta
     public var APV: String = "Application version"
+}
+
+/** Some possible values of the `GM` property in FF[4] for identifying the current game type. */
+object GameId {
+
+    /** The Go game. */
+    const val GO: Int = 1
+
+    /** The Othello game. */
+    const val OTHELLO: Int = 2
+
+    /** The Chess game. */
+    const val CHESS: Int = 3
+
+    /** The Gomoku game. */
+    const val GOMOKU: Int = 4
+
+    /** The Nine Men's Morris game. */
+    const val NINE_MENS_MORRIS: Int = 5
+
+    /** The Backgammon game. */
+    const val BACKGAMMON: Int = 6
+
+    /** The Chinese Chess game. */
+    const val CHINESE_CHESS: Int = 7
+
+    /** The Shogi game. */
+    const val SHOGI: Int = 8
+
+    /** The Lines of Action game. */
+    const val LINES_OF_ACTION: Int = 9
+
+    /** The Ataxx game. */
+    const val ATAXX: Int = 10
+
+    /** The Hex game. */
+    const val HEX: Int = 11
+
+    /** The Jungle game. */
+    const val JUNGLE: Int = 12
+
+    /** The Neutron game. */
+    const val NEUTRON: Int = 13
+
+    /** The Philosopher's Football game. */
+    const val PHILOSOPHERS_FOOTBALL: Int = 14
+
+    /** The Quadrature game. */
+    const val QUADRATURE: Int = 15
+
+    /** The Trax game. */
+    const val TRAX: Int = 16
 }

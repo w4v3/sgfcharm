@@ -1,12 +1,12 @@
 # Module sgfview
 
-This is the SgfView library for rendering `sgf` files.
+This is the SgfView library for rendering `SGF` files.
 
 It consists of:
 
 * the [onion.w4v3xrmknycexlsd.lib.sgfcharm.view] package containing the UI logic
 * the [onion.w4v3xrmknycexlsd.lib.sgfcharm.parse] package containing the parser for `SGF` files and the data type definitions
-* the [SgfController] class managing the interaction of the two components
+* the [SgfController] class managing the interaction of those two components
 * the [onion.w4v3xrmknycexlsd.lib.sgfcharm.handle] package containing several helper classes supporting the [SgfController]
 
 Please take note of the [Status] annotations provided throughout the documentation which should guide
@@ -16,13 +16,13 @@ your reliance on the different components of the API.
 
 This package contains the logic for rendering [SgfData] received from the [SgfController]:
 
-* the [GoSgfView] can render the data into an interactive view, and forwards touch events to the [SgfController]
-* the [SgfView] interface can be implemented by any view to be controllable by the [SgfController]
-* the [SgfDrawer] interface can be implemented if only relatively minor changes to the [GoSgfView] drawing are required
+* the [SgfView] can render the data into an interactive view, and forwards touch events to the [SgfController]
+* the [SgfViewAdapter] interface can be implemented by any view to be controllable by the [SgfController]
+* the [SgfBoard] interface can be implemented to support types of boards for games other than Go
 
 # Package onion.w4v3xrmknycexlsd.lib.sgfcharm.parse
 
-This package contains the `sgf` parser and the library data models:
+This package contains the `SGF` parser and the library data models:
 
 * the [SgfTree] is the internal representation of the SGF `GameTree`, with a strong type system
 * the [SgfParser] exposes the [SgfParser.parseSgfCollection] function, which reads a string into a list of [SgfTree]s

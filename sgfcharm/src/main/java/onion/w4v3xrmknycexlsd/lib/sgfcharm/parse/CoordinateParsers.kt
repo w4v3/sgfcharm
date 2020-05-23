@@ -18,12 +18,8 @@
 package onion.w4v3xrmknycexlsd.lib.sgfcharm.parse
 
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.Status
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.XYPoint
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.XYMove
-import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.XYStone
 
 // this file contains the implementations of the [SgfParser.CoordinateParser] interface
-
 /**
  * A coordinate parser for the Go game.
  *
@@ -33,13 +29,19 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.SgfType.XYStone
  */
 object GoCoordinateParser : SgfParser.CoordinateParser<XYPoint>(::XYStone) {
     public override fun parsePoint(from: String): XYPoint? =
-        from.parseXYCoordinate()?.let { XYPoint(it.first, it.second) }
+        from.parseXYCoordinate()?.let {
+            XYPoint(it.first, it.second)
+        }
 
     public override fun parseStone(from: String): XYStone? =
-        from.parseXYCoordinate()?.let { XYStone(it.first, it.second) }
+        from.parseXYCoordinate()?.let {
+            XYStone(it.first, it.second)
+        }
 
     public override fun parseMove(from: String): XYMove =
-        from.parseXYCoordinate()?.let { XYMove(it.first, it.second) } ?: XYMove(null)
+        from.parseXYCoordinate()?.let {
+            XYMove(it.first, it.second)
+        } ?: XYMove(null)
 
     public override fun XYPoint.rangeTo(other: XYPoint): List<XYPoint> =
         (x..other.x).flatMap { x -> (y..other.y).map { y -> XYPoint(x, y) } }
