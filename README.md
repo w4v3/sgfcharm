@@ -34,9 +34,9 @@ for details.
 **module `build.gradle`**
 
 	dependencies {
-        implementation 'com.github.w4v3:sgfcharm:v0.2.0'
+        implementation 'com.github.w4v3:sgfcharm:v0.3.0'
         // if you want to use it for chess, too, add:
-        // implementation 'com.github.w4v3:sgfcharm-chess:v0.2.0'
+        // implementation 'com.github.w4v3:sgfcharm-chess:v0.3.0'
 	}
 
 
@@ -486,6 +486,14 @@ properties, though)
 
 ## Release notes
 
+### 2020-05-31 version 0.3.0
+
+Made API more easily extendable:
+
+* added the `sgfcharm-chess` module for (basic) chess `SGF` file support
+* refactored `SgfDrawer` to lambda components
+* segregated `SgfBoard` interface for custom boards
+
 ### 2020-05-18 version 0.2.0
 
 Added new functionality:
@@ -497,14 +505,6 @@ possibility of instant countermoves from the view upon user input
 from the `SGF` specification
 
 Fixed inherited property bug.
-
-### 2020-05-31 version 0.2.0
-
-Made API more easily extendable:
-
-* added the `sgfcharm-chess` module for (basic) chess `SGF` file support
-* refactored `SgfDrawer` to lambda components
-* segregated `SgfBoard` interface for custom boards
 
 ### 2020-05-17 version 0.1.0
 
