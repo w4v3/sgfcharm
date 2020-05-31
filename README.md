@@ -36,7 +36,7 @@ for details.
 	dependencies {
         implementation 'com.github.w4v3:sgfcharm:v0.3.0'
         // if you want to use it for chess, too, add:
-        // implementation 'com.github.w4v3:sgfcharm-chess:v0.3.0'
+        // implementation "com.github.w4v3.sgfcharm:sgfcharm-chess:v0.3.0"
 	}
 
 
