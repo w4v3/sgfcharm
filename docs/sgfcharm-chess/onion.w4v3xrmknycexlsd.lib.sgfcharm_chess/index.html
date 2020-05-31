@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>onion.w4v3xrmknycexlsd.lib.sgfcharm_chess - sgfcharm-chess</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">sgfcharm-chess</a>&nbsp;/&nbsp;<a href="./index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm_chess</a><br/>
+<br/>
+<h2>Package onion.w4v3xrmknycexlsd.lib.sgfcharm_chess</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-castling-move/index.html">CastlingMove</a></h4>
+</td>
+<td>
+<p>A castling move.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CastlingMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-chess-move/index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-board/index.html">ChessBoard</a></h4>
+</td>
+<td>
+<p>Draws a checkerboard pattern for chess boards and converts touch input to <a href="-chess-move/index.html">ChessMove</a>s.</p>
+<code><span class="keyword">object </span><span class="identifier">ChessBoard</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">SgfBoard</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-coordinate-parser/index.html">ChessCoordinateParser</a></h4>
+</td>
+<td>
+<p>The coordinate parser for used to parse chess <code>SGF</code>.</p>
+<code><span class="keyword">object </span><span class="identifier">ChessCoordinateParser</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">XYPoint</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-move/index.html">ChessMove</a></h4>
+</td>
+<td>
+<p>Base class for the different types of moves for Chess.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ChessMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Move</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-pass.html">ChessPass</a></h4>
+</td>
+<td>
+<p>A pass move.</p>
+<code><span class="keyword">object </span><span class="identifier">ChessPass</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-chess-move/index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-stone/index.html">ChessStone</a></h4>
+</td>
+<td>
+<p><a href="#">SgfType.Stone</a> type for Chess.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ChessStone</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Stone</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-stone-type/index.html">ChessStoneType</a></h4>
+</td>
+<td>
+<p>The possible types of <a href="-chess-stone/index.html">ChessStone</a>s.</p>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">ChessStoneType</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-en-passant-move/index.html">EnPassantMove</a></h4>
+</td>
+<td>
+<p>An en passant capture pawn move.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnPassantMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-chess-move/index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-promotion-move/index.html">PromotionMove</a></h4>
+</td>
+<td>
+<p>A move where a pawn reaches the last row and is then promoted to another piece.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PromotionMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-chess-move/index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-standard-chess-move/index.html">StandardChessMove</a></h4>
+</td>
+<td>
+<p>A move of a <a href="-chess-stone/index.html">ChessStone</a> to a point, potentially capturing what was at the target point before.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">StandardChessMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-chess-move/index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="onion.w4v3xrmknycexlsd.lib.sgfcharm.-sgf-info-keys/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfInfoKeys</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="onion.w4v3xrmknycexlsd.lib.sgfcharm.view.-sgf-view/index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView</a></h4>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-chess-custom-property-handler.html">ChessCustomPropertyHandler</a></h4>
+</td>
+<td>
+<p>Handles the custom chess properties.</p>
+<code><span class="keyword">val </span><span class="identifier">ChessCustomPropertyHandler</span><span class="symbol">: </span><span class="identifier">SgfCustomPropertyHandler</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-move-handler.html">ChessMoveHandler</a></h4>
+</td>
+<td>
+<p>Move handler for chess; captures target stones irrespective of color or legality of the move.</p>
+<code><span class="keyword">val </span><span class="identifier">ChessMoveHandler</span><span class="symbol">: </span><span class="identifier">SgfMoveHandler</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-chess-piece-drawer.html">ChessPieceDrawer</a></h4>
+</td>
+<td>
+<p>Draws a chess piece on the canvas.</p>
+<code><span class="keyword">val </span><span class="identifier">ChessPieceDrawer</span><span class="symbol">: </span><span class="symbol">(</span><a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">SgfPieceDrawer</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

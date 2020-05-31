@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ChessBoard - sgfcharm-chess</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm-chess</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm_chess</a>&nbsp;/&nbsp;<a href="./index.html">ChessBoard</a><br/>
+<br/>
+<h1>ChessBoard</h1>
+<code><span class="identifier">@Beta</span> <span class="keyword">object </span><span class="identifier">ChessBoard</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">SgfBoard</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm-chess/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm_chess/ChessView.kt#L101">(source)</a>
+<p>Draws a checkerboard pattern for chess boards and converts touch input to <a href="../-chess-move/index.html">ChessMove</a>s.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="tile-size.html">tileSize</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">tileSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="draw-board.html">drawBoard</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">.</span><span class="identifier">drawBoard</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/trueColumns">trueColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/trueRows">trueRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/onDisplay">onDisplay</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Rect.html"><span class="identifier">Rect</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$drawBoard(android.graphics.Canvas, kotlin.Int, kotlin.Int, android.graphics.Rect, android.graphics.Paint)/paint">paint</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="draw-variations.html">drawVariations</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://developer.android.com/reference/android/graphics/Canvas.html"><span class="identifier">Canvas</span></a><span class="symbol">.</span><span class="identifier">drawVariations</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$drawVariations(android.graphics.Canvas, kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.VariationData)), android.graphics.Paint)/variationData">variationData</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">VariationData</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$drawVariations(android.graphics.Canvas, kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.VariationData)), android.graphics.Paint)/paint">paint</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Paint.html"><span class="identifier">Paint</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-all-points.html">getAllPoints</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getAllPoints</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$getAllPoints(kotlin.Int, kotlin.Int)/numColumns">numColumns</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$getAllPoints(kotlin.Int, kotlin.Int)/numRows">numRows</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">Point</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-touch.html">onTouch</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">onTouch</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$onTouch(kotlin.Pair((kotlin.Float, )), kotlin.collections.List((onion.w4v3xrmknycexlsd.lib.sgfcharm.handle.Piece)))/currentPieces">currentPieces</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Piece</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">Move</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-board.html">setBoard</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setBoard</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$setBoard(android.graphics.Rect, kotlin.Int)/toDisplay">toDisplay</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Rect.html"><span class="identifier">Rect</span></a><span class="symbol">, </span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessBoard$setBoard(android.graphics.Rect, kotlin.Int)/width">width</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="to-screen-coordinate.html">toScreenCoordinate</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">Point</span><span class="symbol">.</span><span class="identifier">toScreenCoordinate</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

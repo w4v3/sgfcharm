@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ChessMove - sgfcharm-chess</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm-chess</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm_chess</a>&nbsp;/&nbsp;<a href="./index.html">ChessMove</a><br/>
+<br/>
+<h1>ChessMove</h1>
+<code><span class="identifier">@Beta</span> <span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ChessMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Move</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm-chess/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm_chess/ChessParse.kt#L56">(source)</a>
+<p>Base class for the different types of moves for Chess.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Base class for the different types of moves for Chess.</p>
+<code><span class="identifier">ChessMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessMove$<init>(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYPoint)/point">point</span><span class="symbol">:</span>&nbsp;<span class="identifier">XYPoint</span><span class="symbol">?</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="point.html">point</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">point</span><span class="symbol">: </span><span class="identifier">XYPoint</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-castling-move/index.html">CastlingMove</a></h4>
+</td>
+<td>
+<p>A castling move.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CastlingMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-chess-pass.html">ChessPass</a></h4>
+</td>
+<td>
+<p>A pass move.</p>
+<code><span class="keyword">object </span><span class="identifier">ChessPass</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-en-passant-move/index.html">EnPassantMove</a></h4>
+</td>
+<td>
+<p>An en passant capture pawn move.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnPassantMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-promotion-move/index.html">PromotionMove</a></h4>
+</td>
+<td>
+<p>A move where a pawn reaches the last row and is then promoted to another piece.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PromotionMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-standard-chess-move/index.html">StandardChessMove</a></h4>
+</td>
+<td>
+<p>A move of a <a href="../-chess-stone/index.html">ChessStone</a> to a point, potentially capturing what was at the target point before.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">StandardChessMove</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

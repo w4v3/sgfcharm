@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ChessCoordinateParser - sgfcharm-chess</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">sgfcharm-chess</a>&nbsp;/&nbsp;<a href="../index.html">onion.w4v3xrmknycexlsd.lib.sgfcharm_chess</a>&nbsp;/&nbsp;<a href="./index.html">ChessCoordinateParser</a><br/>
+<br/>
+<h1>ChessCoordinateParser</h1>
+<code><span class="identifier">@Beta</span> <span class="keyword">object </span><span class="identifier">ChessCoordinateParser</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CoordinateParser</span><span class="symbol">&lt;</span><span class="identifier">XYPoint</span><span class="symbol">&gt;</span></code> <a href="https://github.com/w4v3/sgfcharm/tree/master/sgfcharm-chess/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm_chess/ChessParse.kt#L119">(source)</a>
+<p>The coordinate parser for used to parse chess <code>SGF</code>.</p>
+<p>As no official specification for the <code>SGF</code> encoding for chess exists, we use our own rules here:</p>
+<ul><li>a <code>Point</code> is encoded by a lowercase letter indicating the column, starting from the right;
+and a number indicating the row, counted from the <em>bottom</em> (as opposed to Go, but in accordance
+with standard algebraic notation)</li>
+<li>a <code>Stone</code> consists of a letter <code>KQRBNP</code> indicating its type, followed by a <code>Point</code></li>
+<li>a <code>Move</code> is either a <code>StandardMove</code>, a <code>CastlingMove</code>, a <code>PromotionMove</code> or an <code>EnPassantMove</code></li>
+<li>a <code>StandardMove</code> is a <code>Stone</code> and a <code>Move</code>, separated by ':'</li>
+<li>a <code>CastlingMove</code> is either "0-0" for short castling or "0-0-0" for long castling</li>
+<li>a <code>PromotionMove</code> is a <code>StandardMove</code> followed by '=' and a letter <code>QRBN</code> indicating which type
+of piece the pawn is promoted to</li>
+<li>an <code>EnPassantMove</code> is a <code>StandardMove</code> followed by "e.p."</li>
+<li>any move property with a value not parseable into one of these categories is passed on as a pass move</li>
+</ul>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="parse-move.html">parseMove</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">parseMove</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessCoordinateParser$parseMove(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-chess-move/index.html"><span class="identifier">ChessMove</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parse-point.html">parsePoint</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">parsePoint</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessCoordinateParser$parsePoint(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">XYPoint</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parse-stone.html">parseStone</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">parseStone</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessCoordinateParser$parseStone(kotlin.String)/from">from</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-chess-stone/index.html"><span class="identifier">ChessStone</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="range-to.html">rangeTo</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">XYPoint</span><span class="symbol">.</span><span class="identifier">rangeTo</span><span class="symbol">(</span><span class="identifier" id="onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.ChessCoordinateParser$rangeTo(onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYPoint, onion.w4v3xrmknycexlsd.lib.sgfcharm.parse.XYPoint)/other">other</span><span class="symbol">:</span>&nbsp;<span class="identifier">XYPoint</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">XYPoint</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
