@@ -36,6 +36,7 @@ import onion.w4v3xrmknycexlsd.lib.sgfcharm.view.SgfView
  * @property[numRows] the number of rows of the board
  * @property[numCols] the number of columns of the board
  * @property[lastMoveInfo] the [MoveInfo] object from the last move played
+ * @property[colorJustSet] can be set to force the next color to play
  */
 @Status.Impl
 class SgfState {
@@ -118,7 +119,7 @@ class SgfState {
         get() = moveInfo.findLast { it != null }
 
     @Status.Impl
-    internal var colorJustSet: SgfType.Color.Value? = null
+    public var colorJustSet: SgfType.Color.Value? = null
 
     @Status.Impl
     internal val nextColor: SgfType.Color.Value
@@ -223,8 +224,8 @@ class SgfState {
             moveNumberJustSet ?: ((lastMoveInfo?.moveNumber ?: 0) + info.moveNumber),
             info.lastColor,
             info.lastPlayed,
-            ((lastMoveInfo?.prisoners?.first ?: 0 + info.prisoners.first) to
-                    (lastMoveInfo?.prisoners?.second ?: 0 + info.prisoners.second))
+            (((lastMoveInfo?.prisoners?.first ?: 0) + info.prisoners.first) to
+                    ((lastMoveInfo?.prisoners?.second ?: 0) + info.prisoners.second))
         )
     }
 }

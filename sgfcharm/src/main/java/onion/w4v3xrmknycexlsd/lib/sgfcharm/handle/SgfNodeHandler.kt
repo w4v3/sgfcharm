@@ -172,6 +172,8 @@ class SgfNodeHandler {
 
     private fun SgfState.setGameId(number: SgfType.Number) {
         gameId = number.number
+        numCols = if (number.number == GameId.GO) 19 else 8
+        numRows = if (number.number == GameId.GO) 19 else 8
         moveHandler = moveHandlerStrategies[number.number]
             ?: GoMoveHandler
     }

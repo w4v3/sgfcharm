@@ -31,7 +31,22 @@ import kotlin.math.round
 /** Default implementation of the [SgfBoard] used by the [SgfView] for the game Go, based on [XYPoint]s and [XYMove]s. */
 object GoBoard : SgfBoard {
     override var tileSize: Int = 0
+
     private var displayedVariations: List<SgfType.Point> = listOf()
+    private var boardPadding = 0
+    private var gridSep = 0
+    private var onDisplay = Rect(0, 0, 0, 0)
+
+    override fun setBoard(toDisplay: Rect, width: Int): Int {
+        onDisplay = toDisplay
+        gridSep = width / (toDisplay.right - toDisplay.left + 1)
+        boardPadding = gridSep / 2
+        tileSize = gridSep
+        return gridSep * (toDisplay.bottom - toDisplay.top) + 2 * boardPadding
+    }
+
+    override fun getAllPoints(numColumns: Int, numRows: Int): Set<SgfType.Point> =
+        (1..numColumns).flatMap { x -> (1..numRows).map { y -> XYPoint(x, y) } }.toSet()
 
     public override fun Canvas.drawBoard(
         trueColumns: Int,
@@ -75,52 +90,22 @@ object GoBoard : SgfBoard {
             round(getYCoordinateFromScreen(second)).toInt()
         )
 
-    override fun Pair<Float, Float>.onTouch(currentPieces: List<Piece>): Pair<SgfType.Move?, Int?> =
-        toBoardCoordinate().let { (xb, yb) ->
-            XYMove(xb, yb).takeIf { (xb.toFloat() to yb.toFloat()) in onDisplay } to
-                    displayedVariations.indexOf(
-                        XYPoint(
-                            xb,
-                            yb
-                        )
-                    ).takeIf { it >= 0 }
-        }
-
-    override fun getAllPoints(numColumns: Int, numRows: Int): Set<SgfType.Point> =
-        (1..numColumns).flatMap { x ->
-            (1..numRows).map { y ->
-                XYPoint(
-                    x,
-                    y
-                )
-            }
-        }.toSet()
-
-    private var boardPadding = 0
-    private var gridSep = 0
-    private var onDisplay = Rect(0, 0, 0, 0)
-
-    override fun setBoard(toDisplay: Rect, width: Int): Int {
-        onDisplay = toDisplay
-        gridSep = width / (toDisplay.right - toDisplay.left + 1)
-        boardPadding = gridSep / 2
-        tileSize = gridSep
-        return gridSep * (toDisplay.bottom - toDisplay.top) + 2 * boardPadding
-    }
-
     // convert between coordinates on board and on screen
     private val getXCoordinateFromBoard = { col: Int ->
         boardPadding.toFloat() +
                 (col - onDisplay.left) * gridSep
     }
+
     private val getYCoordinateFromBoard = { row: Int ->
         boardPadding.toFloat() +
                 (row - onDisplay.top) * gridSep
     }
+
     private val getXCoordinateFromScreen = { x: Float ->
         (x - boardPadding.toFloat()) /
                 gridSep + onDisplay.left
     }
+
     private val getYCoordinateFromScreen = { y: Float ->
         (y - boardPadding.toFloat()) /
                 gridSep + onDisplay.top
@@ -181,4 +166,10 @@ object GoBoard : SgfBoard {
 
         displayedVariations = variationMarkup.map { it.second }
     }
+
+    override fun Pair<Float, Float>.onTouch(currentPieces: List<Piece>): Pair<SgfType.Move?, Int?> =
+        toBoardCoordinate().let { (xb, yb) ->
+            XYMove(xb, yb).takeIf { (xb.toFloat() to yb.toFloat()) in onDisplay } to
+                    displayedVariations.indexOf(XYPoint(xb, yb)).takeIf { it >= 0 }
+        }
 }

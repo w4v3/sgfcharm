@@ -18,3 +18,4 @@
 rootProject.name='SgfCharm'
 include ':app'
 include ':sgfcharm'
+include ':sgfcharm-chess'

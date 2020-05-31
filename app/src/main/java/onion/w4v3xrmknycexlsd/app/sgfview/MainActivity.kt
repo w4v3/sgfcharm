@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.SgfController
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.getSgfController
 import onion.w4v3xrmknycexlsd.lib.sgfcharm.putSgfController
+import onion.w4v3xrmknycexlsd.lib.sgfcharm_chess.setupChess
 
 const val SGFSAVE = "sgf"
 
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        sgfview.setupChess()
 
         controller =
             savedInstanceState?.getSgfController(SGFSAVE) ?: SgfController(

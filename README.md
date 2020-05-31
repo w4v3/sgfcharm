@@ -2,14 +2,15 @@
 
 This is an [`SGF`](https://www.red-bean.com/sgf/index.html) parser and viewer library for Android, written in Kotlin.
 
-It provides a `GoSgfView` view that can display Go games encoded in an `SGF` file and that allows
+It provides a `SgfView` view that can display games encoded in an `SGF` file (by default Go) and that allows
 user interaction with the game. It can also be used as just a parsing library that converts each
 property from the `SGF` to a proper type, allowing type-safe and idiomatic handling in Kotlin.
 
 Only the `FF[4]` standard of the `SGF` specification (i.e., the current one) is implemented so far,
-and the `GoSgfView` widget can only handle `SGF` files for the Go game. However, the library was
-developed to be as widely applicable to the `SGF` specification as possible, so that it should be easy
-to use it to define views for other games, as well. See [Customization](#customization) for details.
+and the default configuration of the `SgfView` widget can only handle `SGF` files for the Go game.
+However, the library was developed to be as widely applicable to the `SGF` specification as possible,
+so that it should be easy to use it to define views for other games, as well. See [Customization](#customization)
+for details.
 
 [Installation](#installation)  
 [Basic Usage](#basic-usage)  
@@ -33,7 +34,9 @@ to use it to define views for other games, as well. See [Customization](#customi
 **module `build.gradle`**
 
 	dependencies {
-        implementation 'com.github.w4v3:sgfcharm:v0.1.0'
+        implementation 'com.github.w4v3:sgfcharm:v0.2.0'
+        // if you want to use it for chess, too, add:
+        // implementation 'com.github.w4v3:sgfcharm-chess:v0.2.0'
 	}
 
 
@@ -41,7 +44,7 @@ to use it to define views for other games, as well. See [Customization](#customi
 
 First, add the view to your layout:
 ```xml
-<sgfcharm.view.GoSgfView
+<sgfcharm.view.SgfView
     android:id="@+id/sgfview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
@@ -60,6 +63,9 @@ first variation, if any. You can also interact freely with the board by placing 
 checks for captures, but it does not check for illegal moves. For example, placing a stone onto an
 existing one and suicide are both allowed. This is in accordance with the `SGF` specification of a
 `Move`, but I might change this behavior in the future (or at least provide an option to turn it off).
+
+If you would like to make use of the (experimental) chess `SGF` functionalities of the library, in 
+addition to including the above library dependencies, you need to call `sgfview.setupChess()` on the view.
 
 The view does not retain its state upon configuration changes. Instead, you can put and get the state
 of the controller into the respective bundles using `Bundle.putSgfController` and `Bundle.getSgfController`,
@@ -94,9 +100,9 @@ Depending on what you have in mind, a different amount of work is required and d
 stability are guaranteed. If you …
 
 * want to use it to display Go `SGF` files and only want to make changes to the default theme,
-change the [`GoSgfView` attributes](#styling-the-gosgfview);
-* want to use it for `Go` but make more fundamental changes to the appearance, you could implement
-the `SgfDrawer` interface or even create your own `View` and have it implement the `SgfView` interface,
+change the [`SgfView` attributes](#styling-the-sgfview);
+* want to use it for `Go` but make more fundamental changes to the appearance, you could change
+the `SgfView` components or even create your own `View` and have it implement the `SgfViewAdapter` interface,
 see [here](#custom-drawing) for details;
 * want to use it for a different game with different rules and possibly different parsing of point/move/
 stone types, or need to handle custom `SGF` properties outside of the standard, find out how to
@@ -106,12 +112,12 @@ stone types, or need to handle custom `SGF` properties outside of the standard, 
 In the following sections are a few "tutorials" showing examples of how to do these things. For more
 details, please always refer to the [documentation](https://w4v3.github.io/sgfcharm/sgfcharm/index.html).
 
-### Styling the `GoSgfView`
+### Styling the `SgfView`
 
-First of all, let me note that the `GoSgfView` is actually a `TextView`, so all `TextView`
+First of all, let me note that the `SgfView` is actually a `TextView`, so all `TextView`
 attributes can be used on it and have an effect on the info text displayed below the board.
 
-In addition, the `GoSgfView` has the following `XML` attributes:
+In addition, the `SgfView` has the following `XML` attributes:
 
    attribute     |                 description                  |   default  |   type
 -----------------|----------------------------------------------|------------|-----------
@@ -145,65 +151,54 @@ together with `app:showButtons="false"` in the `XML` file.
 ### Custom drawing
 
 The easiest way to change the appearance in a bit more fundamental ways than described above is to
-implement the `SgfDrawer` interface. Here is an example:
+change some customizable `SgfView` components, namely
 
+* the `SgfPieceDrawer` set by `SgfView.usePieceDrawer` used to draw the pieces on the board
+* the `SgfMarkupDrawer` set by `SgfView.useMarkupDrawer` used to draw the board markup
+* the `SgfInfoTextMaker` set by `SgfView.useInfoTextMaker` used to turn additional information on the
+current node into the info text displayed underneath the view
+
+Here is an example:
 ```kotlin
-    // inside SgfDrawer object
-    override fun Canvas.drawPiece(
-        piece: Piece,
-        x: Float,
-        y: Float,
-        size: Float,
-        paint: Paint
-    ): Boolean {
-        val colorValue = piece.color
+SgfView.usePieceDrawer(GameId.GO) { canvas, piece, x, y, size, paint, blackColor, whiteColor ->
+    val colorValue = piece.color
 
-        paint.apply {
-            style = Paint.Style.STROKE
-            color = when (colorValue) {
-                SgfType.Color.Value.BLACK -> myBlackColor
-                SgfType.Color.Value.WHITE -> myWhiteColor
-            }
+    paint.apply {
+        style = Paint.Style.STROKE
+        color = when (colorValue) {
+            SgfType.Color.Value.BLACK -> blackColor
+            SgfType.Color.Value.WHITE -> whiteColor
         }
-
-        drawRect(x - size / 2, y - size / 2, x + size / 2, y + size / 2, paint)
-
-        return true
     }
+
+    canvas.drawRect(x - size / 2, y - size / 2, x + size / 2, y + size / 2, paint)
+}
 ```
-This implementation of the `drawPiece` method draws an outlined rectangle, which will be used to draw
+This `SgfPieceDrawer` implementation draws an outlined rectangle, which will be used to draw
 the Go pieces. Note the `Piece` object; this is the type of data the `SgfView` receives which encodes
 the current situation of the board. The `drawPiece` method has to choose the correct color accordingly.
-It should return `true` if it has actually drawn the piece, and `false` otherwise.
+The supplied drawer will only be used to draw pieces for the given `GameId`, i.e., Go pieces in this
+case. If no piece drawer is known for a particular type of game, the default `GoPieceDrawer` will be used.
 ```kotlin
-    override fun Canvas.drawMarkup(
-        markup: Markup,
-        x: Float,
-        y: Float,
-        xTo: Float?,
-        yTo: Float?,
-        size: Float,
-        paint: Paint
-    ): Boolean =
-        if (markup.type == MarkupType.SELECT) {
-            val myPaint = Paint().apply {
-                style = Paint.Style.FILL
-                color = mySelectMarkupColor
-            }
-
-            drawTriangle(x, y, size / 2, myPaint)
-            true
-        } else false
+SgfView.useMarkupDrawer { canvas, markup, x, y, xTo, yTo, size, paint, blackColor, whiteColor, markupColor ->
+    if (markup.type == MarkupType.SELECT) {
+        val myPaint = Paint().apply {
+            style = Paint.Style.FILL
+            color = markupColor
+        }
+        canvas.drawTriangle(x.toInt(), y.toInt(), size.toInt() / 2, myPaint)
+    } else DefaultMarkupDrawer(canvas, markup, x, y, xTo, yTo, size, paint, blackColor, whiteColor, markupColor)
+}
 ```
-This implementation of `drawMarkup` only does something special for *selection* (`SL`) markups. Instead
+This `SgfMarkupDrawer` implementation only does something special for *selection* (`SL`) markups. Instead
 of the default (encircling the selected piece), it draws a filled triangle. Note the convenience extension
-function `drawTriangle` provided by the library. In all other cases, the function returns `false`, meaning
-that these markup types are drawn normally.
+function `drawTriangle` provided by the library.
 ```kotlin
-    override fun makeInfoText(nodeInfos: List<NodeInfo>, lastMoveInfo: MoveInfo?): CharSequence =
-        nodeInfos.filter { it.key == SgfInfoKeys.C }.joinToString("\n")
+SgfView.useInfoTextMaker { nodeInfos, lastMoveInfo ->
+    nodeInfos.filter { it.key == SgfInfoKeys.C }.joinToString("\n")
+}
 ```
-Finally, `makeInfoText` can be used to specify how the textual information from the `SGF` file should
+Finally, `SgfInfoTextMaker` can be used to specify how the textual information from the `SGF` file should
 be displayed. Here, it ignores the `MoveInfo` information on the last move and uses only those
 `NodeInfo` objects of the current node that have a key `SgfInfoKeys.C`, meaning *comment*, and displays
 them interspersed with newlines.
@@ -211,19 +206,17 @@ them interspersed with newlines.
 If you merely want to change the string displayed for each informational property, have a look at
 `SgfInfoKeys`, which contains the displayed strings.
 
-Now, all that is left is to set the `sgfView.sgfDrawer` to this custom implementation. If you wish to
-implement only some of the methods, you can always refer the call to `DefaultSgfDrawer`.
-
 The above approach is not applicable if you …
 
 * want to draw a custom grid or a different kind of board altogether;
 * want to include additional buttons or other features;
 * want to change the order of the components.
 
-In this case, you will have to make your own `View` and have it implement the `SgfView` interface.
+The implementation of custom boards or games is discussed in the [next section](#implementing-a-different-game).
+Otherwise, you will have to make your own `View` and have it implement the `SgfViewAdapter` interface.
 A minimal implementation looks like this:
 ```kotlin
-class MySgfView(context: Context) : View(context), SgfView {
+class MySgfView(context: Context) : View(context), SgfViewAdapter {
     private var inputListener: SgfInputListener? = null
     
     override fun registerInputListener(listener: InputListener) { inputListener = listener }
@@ -268,14 +261,13 @@ in which case you need to specify how to handle these properties;
 is required.
 
 Nevertheless, the required changes are relatively straightforward. In fact, I will use the implementation
-of a `ChessSgfView` throughout the section as an example.
+of the [sgfcharm-chess module](https://w4v3.github.io/sgfcharm/sgfcharm-chess/index.html) throughout the section as an example.
 
 Let's start at the bottom of the whole process. First of all, we need to define our own `SgfType.Stone`
 and `SgfType.Move` types. The `SgfType.Point` can be reused from the `XYPoint` implementation from Go,
 as a point in chess can still be defined using two coordinates:
 ```kotlin
-data class ChessStone(val type: ChessStoneType, override val point: SgfType.XYPoint) :
-    SgfType.Stone(point)
+data class ChessStone(val type: ChessStoneType, override val point: XYPoint) : SgfType.Stone(point)
 
 enum class ChessStoneType {
     KING,
@@ -286,21 +278,27 @@ enum class ChessStoneType {
     PAWN
 }
 
-data class ChessMove(
-    val stone: ChessStone,
-    override val point: SgfType.XYPoint
-) : SgfType.Move(point)
+abstract class ChessMove(override val point: XYPoint?) : SgfType.Move(point)
+
+data class StandardChessMove(val stone: ChessStone, override val point: XYPoint) : ChessMove(point)
+data class CastlingMove(val long: Boolean) : ChessMove(null)
+object ChessPass : ChessMove(null)
 ```
 As you can see, we define a `ChessStone` type that extens `SgfType.Stone` and overrides its `point`
-property. A `ChessMove` then consists of a stone (with its current position) and a point where to move to.
-Now we can tell the `SgfParser` how to parse a property value that represents each of these types.
-This is done by extending the `CoordinateParser` class:
+property. A `ChessMove` is taken to be an abstract class as there are many different subtypes of moves
+in chess. Here, two examples are given: The `StandardChessMove` consists of a stone (with its current position)
+and a point where to move the stone to. A `CastlingMove` represents either short or long castling.
+Finally, `ChessPass` indicates a pass move. Now we can tell the `SgfParser` how to parse a property
+value that represents each of these types. This is done by extending the `CoordinateParser` class:
 ```kotlin
 class ChessCoordinateParser : SgfParser.CoordinateParser<SgfType.XYPoint>() {
-    override fun parsePoint(from: String): SgfType.XYPoint? =
-        GoCoordinateParser.parsePoint(from)
+    public override fun parsePoint(from: String): XYPoint? = from.getOrNull(0)?.let { column ->
+        from.drop(0).toIntOrNull()?.let { row ->
+            XYPoint(('a'..'z').indexOf(column) + 1, row)
+        }
+    }
 
-    override fun parseStone(from: String): ChessStone? = with(from) {
+    public override fun parseStone(from: String): ChessStone? = with(from) {
         firstOrNull()?.toChessStoneType()?.let { stone ->
             parsePoint(drop(1))?.let { point ->
                 ChessStone(stone, point)
@@ -319,159 +317,164 @@ class ChessCoordinateParser : SgfParser.CoordinateParser<SgfType.XYPoint>() {
             else -> null
         }
 
-    @OptIn(Status.Util::class)
-    override fun parseMove(from: String): ChessMove? = with(from) {
-        parseCompose(::parseStone, ::parsePoint)?.let { (stone, point) ->
-            ChessMove(stone, point)
-        }
-    }
+    public override fun parseMove(from: String): ChessMove = when (from) {
+        "0-0" -> CastlingMove(false)
+        "0-0-0" -> CastlingMove(true)
+        else -> from.parseStandardMove()
+    } ?: ChessPass
 
-    override fun SgfType.XYPoint.rangeTo(other: SgfType.XYPoint): List<SgfType.XYPoint> =
-        with(GoCoordinateParser) {
-            this@rangeTo.rangeTo(other)
+    @OptIn(Status.Util::class)
+    private fun String.parseStandardMove(): StandardChessMove? =
+        parseCompose(::parseStone, ::parsePoint)?.let { (stone, point) ->
+            StandardChessMove(stone, point)
         }
+
+    public override fun XYPoint.rangeTo(other: XYPoint): List<XYPoint> =
+        (x..other.x).flatMap { x -> (other.y downTo y).map { y -> XYPoint(x, y) } }
 }
 ```
 To be honest, I did not find any information on how these Chess types are represented in the `SGF`,
-but I assumed here that each point is given like in Go, with letters `aa` to `hh`, and a stone has
-a capital identifier and a point, like `Peb` for the pawn at `e7` (with the coordinate system starting
-at the top left).
-
-`parsePoint` and `rangeTo` (used for parsing compressed point lists) are taken from the `GoCoordinateParser`
-as the point types are the same. For a `Stone`, the first character is parsed as type and the rest
-as a point. A `Move` is assumed to be a compose type of `ChessStone` and `Stone`, like `Peb:ed`for `e7-e5`.
+but I assumed here that each point is given like in standard algebraic notation, from `a1` to `h8`,
+and that each stone has a capital identifier and a point, like `Pe7` for the pawn at `e7`
+(with the coordinate system starting at the bottom left). A `StandardChessMove` is assumed to be a compose type of
+`ChessStone` and `Stone`, like `Peb:ed`for `e7-e5`, while castling is indicated by `0-0` or `0-0-0`.
 
 Note that `parseMove` opts in to the `Status.Util` annotation because it uses `parseCompose`, which
 is a utility function provided for these custom purposes but is not regarded part of the official API
 of this library. See the [documentation](https://w4v3.github.io/sgfcharm/sgfcharm/onion.w4v3xrmknycexlsd.lib.sgfcharm/-status/index.html)
 of the annotations for more information.
 
-Now we only need to set the `coordinateParser` property of the `SgfParser` and the parser will give
+Now we only need to set up the `SgfParser` to use this `CoordinateParser` for chess, by calling
+`SgfParser.useCoordinateParser(GameId.CHESS, ChessCoordinateParser)` and the parser will give
 us a properly parsed `SgfTree`.
 
-To illustrate how a custom property would be handled, let's say we introduce a new property for castling,
-`CS`, and it is a composed type of a `Color` and a `Double` value, where for the latter `1` means
-castling short, and `2` means castling long.
+To illustrate how a custom property would be handled, we introduce a two new properties:
+* `CHK`, indicating that a move in the same node has caused a check, taking an `SGF Double` type where
+`1` means check and `2` means checkmate
+* `DEF`, setting up the board with the default starting position for chess
 
-The `SgfParser` will turn any property identifier it does not know into a property of type `UNKNOWN`
+The `SgfParser` will turn any property identifier it does not know into a property of type `CUSTOM`
 and it is up to the `SgfNodeHandler` to deal with it. This handler takes a node and processes it,
 using and modifying the current (abstract) state of the view via an `SgfState` object.
 
-The handler has three public lambda members that you may replace to influence its functionality.
-First, there is `moveHandler` for carrying out moves, then `customPropertyHandler` for handling
-`UNKNOWN` properties, and `variationMarker` which can control how variations are marked on the board.
+The handler has two components that you may replace to influence its functionality: the `SgfMoveHandler`
+set by `SgfNodeHandler.useMoveHandler` for carrying out moves, and the `SgfCustomPropertyHandler` set
+by `SgfNodeHandler.useCustomPropertyHandler` for handling `CUSTOM` properties.
 
-The `moveHandler` should mainly call `SgfState.addPiece` and `SgfState.removePiece` functions to
+The `SgfMoveHandler` should mainly call `SgfState.addPiece` and `SgfState.removePiece` functions to
 add or remove pieces. It can find out about the pieces currently on board by inquiring into
-`SgfState.currentPieces`. It also has to return a `MoveInfo` object with information about the executed
-move, for which it might use the `SgfState.lastMoveInfo` property. Here is a very simple implementation
-for chess, which only looks if there is a piece at the target in which case it removes it, and carries out the move:
-
+`SgfState.currentPieces`. It also has to return a `MoveInfo` object with information about what has
+changed by the executed move (move numbers and captures). Here is an implementation
+for chess, which looks if there is a piece at the target in which case it removes it, and carries out the move
+or executes the correct castling move sequence if the move was a `CastlingMove`:
 ```kotlin
 @OptIn(Status.Impl::class)
-fun SgfState.chessMoveHandler(colorValue: SgfType.Color.Value, move: SgfType.Move): MoveInfo? {
-    if (move !is ChessMove) return null
+SgfNodeHandler.useMoveHandler {
+    state: SgfState, colorValue: SgfType.Color.Value, move: SgfType.Move ->
+        with(state) {
+            var prisoners = 0
+            var prisonerColor = SgfType.Color.Value.BLACK
 
-    var captured = false
-    currentPieces.find { it.stone.point == move.point }?.let { prisoner ->
-        removePiece(prisoner)
-        captured = true
-    }
+            when (move) {
+                is StandardChessMove -> {
+                    removePiece(Piece(colorValue, move.stone))
+                    currentPieces.find { it.stone?.point == point }?.let {
+                        prisonerColor = it.color
+                        removePiece(it)
+                        prisoners = 1
+                    }
+                    addPiece(Piece(colorValue, ChessStone(move.stone.type, move.point)))
+                }
+                is CastlingMove -> {
+                    val king = currentPieces.find {
+                        (it.stone as? ChessStone)?.type == ChessStoneType.KING &&
+                                it.color == colorValue
+                    }
 
-    removePiece(Piece(colorValue, move.stone))
-    val newPiece = Piece(colorValue, ChessStone(move.stone.type, move.point))
-    addPiece(newPiece)
+                    val rook = currentPieces.find {
+                        (it.stone as? ChessStone)?.type == ChessStoneType.ROOK &&
+                                it.color == colorValue &&
+                                (it.stone?.point as? XYPoint)?.x?.minus(
+                                    (king?.stone as? ChessStone)?.point?.x ?: 0
+                                )?.absoluteValue == if (move.long) 3 else 2
+                    }
 
-    return MoveInfo(
-        moveNumber = (lastMoveInfo?.moveNumber ?: 0) + 1,
-        lastPlaced = newPiece,
-        prisoners = if (captured) when (colorValue) {
-            SgfType.Color.Value.BLACK -> (lastMoveInfo?.prisoners?.first ?: 0) to
-                    (lastMoveInfo?.prisoners?.second ?: 0) + 1
-            SgfType.Color.Value.WHITE -> (lastMoveInfo?.prisoners?.first ?: 0) + 1 to
-                    (lastMoveInfo?.prisoners?.second ?: 0)
+                    king?.let { removePiece(it) }
+                    rook?.let { removePiece(it) }
+
+                    val row = when (colorValue) {
+                        SgfType.Color.Value.BLACK -> 8
+                        SgfType.Color.Value.WHITE -> 1
+                    }
+
+                    val kingcol = if (move.long) 3 else 7
+                    val rookcol = if (move.long) 4 else 6
+
+                    if (move.long) {
+                        addPiece(
+                            Piece(
+                                colorValue,
+                                ChessStone(ChessStoneType.KING, XYPoint(kingcol, row))
+                            )
+                        )
+                        addPiece(
+                            Piece(
+                                colorValue,
+                                ChessStone(ChessStoneType.ROOK, XYPoint(rookcol, row))
+                            )
+                        )
+                    }
+                }
+                is ChessPass -> MoveInfo(1, colorValue, move, (0 to 0))
+                else -> return@lambda null
+            }
+
+            MoveInfo(
+                1,
+                colorValue,
+                move,
+                if (prisonerColor == SgfType.Color.Value.BLACK) (prisoners to 0) else (0 to prisoners)
+            )
         }
-        else lastMoveInfo?.prisoners ?: (0 to 0)
-    )
 }
 ```
 As you can see, opting it to use the `Status.Impl` annotated features is required. Next, the handler
 for our custom castling property:
 ```kotlin
 @OptIn(Status.Impl::class, Status.Util::class)
-fun SgfState.chessPropertyHandler(propIdent: String, propValue: String) {
-    if (propIdent == "CS") {
-        val (color, length) = propValue.parseCompose(String::parseColor, String::parseDouble)
-            ?: return
-        when (color.value) {
-            SgfType.Color.Value.BLACK -> {
-                when (length.value) {
-                    SgfType.Double.Value.MUCH -> {
-                        chessMoveHandler(
-                            color.value,
-                            ChessMove(
-                                ChessStone(ChessStoneType.KING, SgfType.XYPoint(5, 1)),
-                                SgfType.XYPoint(7, 1)
-                            )
+SgfHandler.useCustomPropertyHandler {
+    { state: SgfState, propIdent: String, propValue: String ->
+        with(state) {
+            when (propIdent) {
+                "CHK" -> propValue.parseDouble()?.value?.let { addNodeInfo(NodeInfo(SgfInfoKeys.CHK[it])) }
+                "DEF" -> {
+                    colorJustSet = SgfType.Color.Value.WHITE
+                    addPiece(
+                        Piece(
+                            SgfType.Color.Value.WHITE,
+                            ChessStone(ChessStoneType.PAWN, XYPoint(1, 7))
                         )
-                        chessMoveHandler(
-                            color.value,
-                            ChessMove(
-                                ChessStone(ChessStoneType.ROOK, SgfType.XYPoint(8, 1)),
-                                SgfType.XYPoint(6, 1)
-                            )
-                        )
-                    }
-                    SgfType.Double.Value.VERY_MUCH -> {} // TODO
-                }
-            }
-            SgfType.Color.Value.WHITE -> {
-                when (length.value) {
-                    SgfType.Double.Value.MUCH -> {} // TODO
-                    SgfType.Double.Value.VERY_MUCH -> {} // TODO
+                    )
+                    // add all other default pieces …
                 }
             }
         }
     }
 }
+
+public val SgfInfoKeys.CHK: Map<SgfType.Double.Value, String>
+    get() = mapOf(SgfType.Double.Value.MUCH to "Check", SgfType.Double.Value.MUCH to "Checkmate")
 ```
-As you can see, it first checks if the passed property identifier is `CS`, and then it calls the
-`chessMoveHandler` just defined to carry out two moves; note that this is actually wrong as castling
-should be counted as one move, but it should be enough for illustration purposes.
+As you can see, it first checks if the passed property identifier is `CHK` or `DEF`. For `CHK`, the
+value is parsed as a double type, then `addNodeInfo` is called to turn it into a `NodeInfo` object
+transmitted to the view. A key map is used for convenience to convert the double value to a message.
+For `DEF`, the next color to move is set to white and the pieces are added using `addPiece`.
 
-As to the matter of variations, the Go way of just marking the point where the next move occurs isn't
-suitable for chess as each move has a start and end point and there might be coincides for different
-stones. The following implementation simply draws arrows from start to end:
-```kotlin
-@OptIn(Status.Impl::class)
-fun SgfState.chessVariationMarkup(moves: List<SgfType.Move?>): List<Markup> {
-    val markup = moves.map {
-        (it as? ChessMove)?.let { (stone, point) ->
-            Markup(MarkupType.ARROW, stone.point, point)
-        }
-    }
-
-    // deal with `null` entries ...
-
-    return markup
-}
-```
-The function receives a list of moves and has to return a list of `Markup` objects describing how
-the move should be marked, in the order of the moves received. Note that some of the moves might be
-`null`, which is the case if the variation does not contain a move in its first node. Those entries
-must be dealt with somehow; the default implementation simply places them on the middle row of the
-board, taking care that no coincidences occur, but you are free to do what you want here.
-
-All that is left now is to set the properties of the node handler of the controller to our implementation:
-```kotlin
-sgfController.sgfNodeHandler.apply {
-    moveHandler = SgfState::chessMoveHandler
-    customPropertyHandler = SgfState::chessPropertyHandler
-    variationsMarker = SgfState::chessVariationMarkup
-}
-```
-At this point you are ready to create your own view and have it implement `SgfView` as described
-[here](#custom-drawing).
+Now, in order to draw the pieces, an `SgfPieceDrawer` was implemented. For drawing the grid and handling
+the different properties of the board (such as the response to touch events in order to enter a `ChessMove`),
+we can implement the `SgfBoard` interface and use `SgfView.useBoard` to register the implementation for
+chess with the view. See the [sgfcharm-chess source](sgfcharm-chess/src/main/java/onion/w4v3xrmknycexlsd/lib/sgfcharm_chess/ChessView.kt) 
+for an example on how to implement this interface.
 
 ### Limitations
 
@@ -494,6 +497,14 @@ possibility of instant countermoves from the view upon user input
 from the `SGF` specification
 
 Fixed inherited property bug.
+
+### 2020-05-31 version 0.2.0
+
+Made API more easily extendable:
+
+* added the `sgfcharm-chess` module for (basic) chess `SGF` file support
+* refactored `SgfDrawer` to lambda components
+* segregated `SgfBoard` interface for custom boards
 
 ### 2020-05-17 version 0.1.0
 
