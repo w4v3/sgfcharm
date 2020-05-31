@@ -261,7 +261,7 @@ in which case you need to specify how to handle these properties;
 is required.
 
 Nevertheless, the required changes are relatively straightforward. In fact, I will use the implementation
-of the [sgfcharm-chess module](https://w4v3.github.io/sgfcharm/sgfcharm-chess/index.html) throughout the section as an example.
+of the [sgfcharm-chess module](https://w4v3.github.io/sgfcharm/sgfcharm-chess/) throughout the section as an example.
 
 Let's start at the bottom of the whole process. First of all, we need to define our own `SgfType.Stone`
 and `SgfType.Move` types. The `SgfType.Point` can be reused from the `XYPoint` implementation from Go,
