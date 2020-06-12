@@ -20,6 +20,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.jetbrains.dokka'
 
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.w4v3.sgfcharm'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"

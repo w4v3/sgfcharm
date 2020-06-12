@@ -486,6 +486,10 @@ properties, though)
 
 ## Release notes
 
+### 2020-06-12 version 0.3.1
+
+Minor build configuration fix.
+
 ### 2020-05-31 version 0.3.0
 
 Made API more easily extendable:
