@@ -34,9 +34,14 @@ for details.
 **module `build.gradle`**
 
 	dependencies {
-        implementation 'com.github.w4v3:sgfcharm:v0.3.0'
-        // if you want to use it for chess, too, add:
-        // implementation "com.github.w4v3.sgfcharm:sgfcharm-chess:v0.3.0"
+        // if you want only the core including Go support, use:
+        implementation "com.github.w4v3.sgfcharm:sgfcharm:v0.3.1"
+        
+        // to add Chess support, use:
+        implementation "com.github.w4v3.sgfcharm:sgfcharm-chess:v0.3.1"
+        
+        // to always add the full library (for now, equivalent to adding both of the two modules above), use:
+        implementation 'com.github.w4v3:sgfcharm:v0.3.1'
 	}
 
 
